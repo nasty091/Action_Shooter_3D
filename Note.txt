@@ -1,3 +1,12 @@
 _Input System dùng để tạo các action cho đối tượng như người chơi...
 
 _Hàm magnitude dùng để tính độ lớn của vector = Căn bậc 2 của (x^2 + y^2 + z^2)
+
+_aimLayerMask: Đây là một layer mask được sử dụng để chỉ ra những layer nào sẽ được xem xét 
+khi kiểm tra va chạm. Chỉ các đối tượng thuộc các layer được chỉ định trong layer mask này mới sẽ được xem xét 
+trong quá trình kiểm tra va chạm
+
+_Chuẩn hóa vector: Ví dụ, nếu bạn có một vector có độ dài lớn hơn 1, ví dụ (2, 2, 2), 
+thì sau khi áp dụng hàm Normalize(), nó sẽ trở thành một vector có độ dài bằng 1 nhưng vẫn giữ nguyên hướng, 
+tức là (0.577, 0.577, 0.577). Nếu vector ban đầu đã có độ dài là 1 hoặc là một vector không đổi (0, 0, 0), 
+thì hàm Normalize() sẽ không làm thay đổi nó
