@@ -1,1 +1,3 @@
 _Input System dùng để tạo các action cho đối tượng như người chơi...
+
+_Hàm magnitude dùng để tính độ lớn của vector = Căn bậc 2 của (x^2 + y^2 + z^2)
