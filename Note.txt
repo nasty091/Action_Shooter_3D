@@ -10,3 +10,6 @@ _Chuẩn hóa vector: Ví dụ, nếu bạn có một vector có độ dài lớ
 thì sau khi áp dụng hàm Normalize(), nó sẽ trở thành một vector có độ dài bằng 1 nhưng vẫn giữ nguyên hướng, 
 tức là (0.577, 0.577, 0.577). Nếu vector ban đầu đã có độ dài là 1 hoặc là một vector không đổi (0, 0, 0), 
 thì hàm Normalize() sẽ không làm thay đổi nó
+
+_float xVelocity = Vector3.Dot(moveDirection.normalized, transform.right);
+Dot dùng để tính tích vô hướng giữa 2 vector, transform.right = (1,0,0)
