@@ -13,3 +13,8 @@ thì hàm Normalize() sẽ không làm thay đổi nó
 
 _float xVelocity = Vector3.Dot(moveDirection.normalized, transform.right);
 Dot dùng để tính tích vô hướng giữa 2 vector, transform.right = (1,0,0)
+
+_Has Exit Time: Khi bạn tạo một transition giữa hai trạng thái trong Animator Controller, 
+bạn có thể thiết lập exit time để xác định thời gian mà animator phải ở trong trạng thái hiện tại 
+trước khi chuyển sang trạng thái tiếp theo. Nếu exit time được thiết lập, 
+animator sẽ phải chờ cho đến khi thời gian trôi qua tương ứng với exit time trước khi chuyển đến trạng thái mới.

@@ -706,7 +706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1.5
-  moveDirection: {x: 0, y: 0, z: 0}
+  runSpeed: 3
+  movementDirection: {x: 0, y: 0, z: 0}
   aim: {fileID: 177013446}
   aimLayerMask:
     serializedVersion: 2
