@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerControlls controlls;
+    private Player player;
+
+    private PlayerControlls controls;
 
     private CharacterController characterController;
 
@@ -25,17 +27,16 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 aimInput;
 
-    private void Awake()
-    {
-        AssignInputEvents();
-    }
-
     private void Start()
     {
+        player = GetComponent<Player>();
+
         characterController = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
 
         speed = walkSpeed;
+
+        AssignInputEvents();
     }
 
     private void Update()
@@ -44,11 +45,6 @@ public class PlayerMovement : MonoBehaviour
         AimTowardsMouse();
         AnimatorControllers();
     }
-
-    private void Shoot()
-    {
-        animator.SetTrigger("Fire");
-    } 
 
     private void AnimatorControllers()
     {
@@ -105,36 +101,24 @@ public class PlayerMovement : MonoBehaviour
     #region New Input System
     private void AssignInputEvents()
     {
-        controlls = new PlayerControlls();
+        controls = player.controls;
 
-        controlls.Character.Fire.performed += context => Shoot();
+        controls.Character.Movement.performed += context => moveInput = context.ReadValue<Vector2>();
+        controls.Character.Movement.canceled += context => moveInput = Vector2.zero;
 
-        controlls.Character.Movement.performed += context => moveInput = context.ReadValue<Vector2>();
-        controlls.Character.Movement.canceled += context => moveInput = Vector2.zero;
+        controls.Character.Aim.performed += context => aimInput = context.ReadValue<Vector2>();
+        controls.Character.Aim.canceled += context => aimInput = Vector2.zero;
 
-        controlls.Character.Aim.performed += context => aimInput = context.ReadValue<Vector2>();
-        controlls.Character.Aim.canceled += context => aimInput = Vector2.zero;
-
-        controlls.Character.Run.performed += context =>
+        controls.Character.Run.performed += context =>
         {
             speed = runSpeed;
             isRunning = true;
         };
-        controlls.Character.Run.canceled += context =>
+        controls.Character.Run.canceled += context =>
         {
             speed = walkSpeed;
             isRunning = false;
         };
-    }
-
-    private void OnEnable()
-    {
-        controlls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controlls.Disable();
     }
     #endregion
 }
