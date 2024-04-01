@@ -103,7 +103,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Auto-Rifle Fire
+  m_Name: Gun Fire
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -439,10 +439,16 @@ AnimatorController:
     m_Name: Shotgun Weapon Layer
     m_StateMachine: {fileID: -4591916944318588146}
     m_Mask: {fileID: 31900000, guid: c089db69311671e45b9e5e06272c4264, type: 2}
-    m_Motions: []
+    m_Motions:
+    - serializedVersion: 2
+      m_State: {fileID: 6652456652548555071}
+      m_Motion: {fileID: -203655887218126122, guid: aaffa84e89258374c81ca8b30747e839, type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: -7763866979025604994}
+      m_Motion: {fileID: -203655887218126122, guid: 3f456f30e9358db48a9df494254de25e, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
-    m_SyncedLayerIndex: -1
+    m_SyncedLayerIndex: 1
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
@@ -451,10 +457,16 @@ AnimatorController:
     m_Name: Rifle Weapon Layer
     m_StateMachine: {fileID: 3325303571973209056}
     m_Mask: {fileID: 31900000, guid: c089db69311671e45b9e5e06272c4264, type: 2}
-    m_Motions: []
+    m_Motions:
+    - serializedVersion: 2
+      m_State: {fileID: 6652456652548555071}
+      m_Motion: {fileID: -203655887218126122, guid: 08bf939d21251e845bfb4ff214f79f6b, type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: -7763866979025604994}
+      m_Motion: {fileID: -203655887218126122, guid: 895b2e82122a01d469466647dad2a5eb, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
-    m_SyncedLayerIndex: -1
+    m_SyncedLayerIndex: 1
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
@@ -620,7 +632,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Auto-Rifle Fire Idle
+  m_Name: Gun Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
