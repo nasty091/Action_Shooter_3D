@@ -1076,6 +1076,7 @@ MonoBehaviour:
   autoRifle: {fileID: 2078165430}
   shotgun: {fileID: 2077046347}
   rifle: {fileID: 1665040794}
+  rigIncreaseStep: 2.75
   leftHand: {fileID: 985628927}
 --- !u!1 &963194225
 GameObject:
@@ -4805,6 +4806,7 @@ GameObject:
   - component: {fileID: 7778926917805248920}
   - component: {fileID: 7778926917805248922}
   - component: {fileID: 7778926917805248921}
+  - component: {fileID: 7778926917805248923}
   m_Layer: 0
   m_Name: character_main
   m_TagString: Untagged
@@ -5097,7 +5099,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Head'\n\tTransform 'mixamorig:LeftArm'\n\tTransform
+    'mixamorig:RightHand'\n\tTransform 'mixamorig:LeftForeArm'\n\tTransform 'mixamorig:RightForeArm'\n\tTransform
+    'mixamorig:Neck'\n\tTransform 'mixamorig:LeftHand'\n\tTransform 'mixamorig:Head'\n\tTransform
+    'mixamorig:LeftArm'\n\tTransform 'mixamorig:RightHand'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -5192,6 +5199,18 @@ MonoBehaviour:
   - m_Rig: {fileID: 8631878}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &7778926917805248923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971462811816938285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc9dcf87f57d034785382be8e974607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7808785170750060677
 GameObject:
   m_ObjectHideFlags: 0
