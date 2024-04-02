@@ -18,3 +18,7 @@ _Has Exit Time: Khi bạn tạo một transition giữa hai trạng thái trong 
 bạn có thể thiết lập exit time để xác định thời gian mà animator phải ở trong trạng thái hiện tại 
 trước khi chuyển sang trạng thái tiếp theo. Nếu exit time được thiết lập, 
 animator sẽ phải chờ cho đến khi thời gian trôi qua tương ứng với exit time trước khi chuyển đến trạng thái mới.
+
+_private enum GrabType { SideGrab, BackGrab}
+Console.Write(GrabType.SideGrab) => Kết quả: SideGrab
+Console.Write((float)GrabType.SideGrab) => Kết quả: 0
