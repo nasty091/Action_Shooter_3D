@@ -22,3 +22,7 @@ animator sẽ phải chờ cho đến khi thời gian trôi qua tương ứng v�
 _private enum GrabType { SideGrab, BackGrab}
 Console.Write(GrabType.SideGrab) => Kết quả: SideGrab
 Console.Write((float)GrabType.SideGrab) => Kết quả: 0
+
+_transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, turnSpeed * Time.deltaTime);
+_Hàm Slerp sử dụng nội suy tuyến tính để chuyển từ giá trị transform.rotation sang desiredRotation với bước nhảy là turnSpeed * Time.deltaTime
+**Xem Phần 5 (38. Smooth character rotation - Lerp & Slerp) 
