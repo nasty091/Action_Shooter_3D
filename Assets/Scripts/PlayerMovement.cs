@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float turnSpeed;
     private float verticalVelocity;
 
-    [SerializeField] private Vector3 movementDirection;
-    private Vector2 moveInput;
+    public Vector2 moveInput {  get; private set; }
+    private Vector3 movementDirection;
 
     private bool isRunning;
 

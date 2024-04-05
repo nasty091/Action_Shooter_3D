@@ -26,3 +26,10 @@ Console.Write((float)GrabType.SideGrab) => Kết quả: 0
 _transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, turnSpeed * Time.deltaTime);
 _Hàm Slerp sử dụng nội suy tuyến tính để chuyển từ giá trị transform.rotation sang desiredRotation với bước nhảy là turnSpeed * Time.deltaTime
 **Xem Phần 5 (38. Smooth character rotation - Lerp & Slerp) 
+
+_float clampedDistance = Mathf.Clamp(distanceToDesiredPosition, minCameraDistance, maxCameraDistance);
+_Hàm này nhận ba đối số: giá trị cần hạn chế (distanceToDesiredPosition), giá trị tối thiểu (minCameraDistance), 
+và giá trị tối đa (maxCameraDistance). Nó trả về giá trị của distanceToDesiredPosition nhưng nếu nó nhỏ hơn minCameraDistance 
+thì trả về minCameraDistance, và nếu nó lớn hơn maxCameraDistance thì trả về maxCameraDistance.
+
+
