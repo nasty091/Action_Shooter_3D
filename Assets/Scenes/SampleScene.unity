@@ -1321,7 +1321,6 @@ MonoBehaviour:
   bulletSpeed: 20
   gunPoint: {fileID: 885547277}
   weaponHolder: {fileID: 1074394383}
-  aim: {fileID: 2054880360}
 --- !u!114 &959240744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,7 +1361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimLaser: {fileID: 1074394384}
-  tipLength: 0.5
   aim: {fileID: 2054880360}
   isAimingPrecisely: 1
   isLookingToTarget: 1
@@ -2727,7 +2725,7 @@ GameObject:
   - component: {fileID: 2054880358}
   - component: {fileID: 2054880357}
   m_Layer: 10
-  m_Name: Aim
+  m_Name: Aim_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
