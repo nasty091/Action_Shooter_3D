@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class PlayerAim : MonoBehaviour
 {
     private Player player;
     private PlayerControlls controls;
+
+    [Header("Aim Visual - Laser")]
+    [SerializeField] private LineRenderer aimLaser;
 
     [Header("Aim control")]
     [SerializeField] private Transform aim;
@@ -45,8 +49,30 @@ public class PlayerAim : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.L))
             isLookingToTarget = !isLookingToTarget;
 
+        UpdateAimLaser();
         UpdateAimPosition();
         UpdateCameraPosition();
+    }
+
+    private void UpdateAimLaser()
+    {
+        Transform gunPoint = player.weapon.GunPoint();
+        Vector3 laserDirection = player.weapon.BulletDirection();
+
+        float laserTipLength = .5f;
+        float gunDistance = 4f;
+
+        Vector3 endPoint = gunPoint.position + laserDirection * gunDistance;
+
+        if(Physics.Raycast(gunPoint.position, laserDirection, out RaycastHit hit, gunDistance))
+        {
+            endPoint = hit.point;
+            laserTipLength = 0f;
+        }
+
+        aimLaser.SetPosition(0, gunPoint.position);
+        aimLaser.SetPosition(1, endPoint);
+        aimLaser.SetPosition(2, endPoint + laserDirection * laserTipLength);
     }
 
     public Transform Target()
