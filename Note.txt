@@ -32,4 +32,7 @@ _Hàm này nhận ba đối số: giá trị cần hạn chế (distanceToDesire
 và giá trị tối đa (maxCameraDistance). Nó trả về giá trị của distanceToDesiredPosition nhưng nếu nó nhỏ hơn minCameraDistance 
 thì trả về minCameraDistance, và nếu nó lớn hơn maxCameraDistance thì trả về maxCameraDistance.
 
+_Universal Render Pipeline is a modern and optimized rendering tool in unity that is designed to be 
+flexible, scalable, and provide high-quality graphics across a wide range of devices.
+
 
