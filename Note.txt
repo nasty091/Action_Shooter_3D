@@ -35,4 +35,8 @@ thì trả về minCameraDistance, và nếu nó lớn hơn maxCameraDistance th
 _Universal Render Pipeline is a modern and optimized rendering tool in unity that is designed to be 
 flexible, scalable, and provide high-quality graphics across a wide range of devices.
 
+_GameObject newImpact = Instantiate(bulletImpactFX, contact.point, Quaternion.LookRotation(contact.normal));
+Trong ngữ cảnh của đoạn code này, normal không phải là hàm normalize. Thay vào đó, normal là một vector được sử dụng 
+để biểu diễn pháp tuyến của bề mặt tại điểm va chạm.
+
 
