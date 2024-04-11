@@ -2133,6 +2133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b6c719980e6db41abba37adecc6774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWeapon:
+    ammo: 0
+    maxAmmo: 10
   bulletPrefab: {fileID: 1201070655292555940, guid: 225c1f1518262da489bf743c65bdcf66, type: 3}
   bulletSpeed: 30
   gunPoint: {fileID: 885547277}

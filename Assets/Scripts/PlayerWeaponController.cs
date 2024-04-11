@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    private const float REFERENCE_BULLET_SPEED = 20f; // This is the default speed from which our mass formula is derived.
-    
     private Player player;
+    private const float REFERENCE_BULLET_SPEED = 20f; // This is the default speed from which our mass formula is derived.
 
+    [SerializeField] private Weapon currentWeapon;    
+
+    [Header("Bullet details")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private Transform gunPoint;
@@ -20,10 +22,13 @@ public class PlayerWeaponController : MonoBehaviour
         player = GetComponent<Player>();
 
         player.controls.Character.Fire.performed += context => Shoot();
+
+        currentWeapon.ammo = currentWeapon.maxAmmo;
     }
 
     private void Shoot()
     {
+        currentWeapon.ammo--;
 
         GameObject newBullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.LookRotation(gunPoint.forward));
 
