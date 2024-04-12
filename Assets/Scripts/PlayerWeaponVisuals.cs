@@ -120,7 +120,7 @@ public class PlayerWeaponVisuals : MonoBehaviour
 
     private void SwitchOffGuns()
     {
-        for(int i = 1; i < gunTransforms.Length; i++)
+        for(int i = 0; i < gunTransforms.Length; i++)
         {
             gunTransforms[i].gameObject.SetActive(false);
         }

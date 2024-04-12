@@ -39,4 +39,6 @@ _GameObject newImpact = Instantiate(bulletImpactFX, contact.point, Quaternion.Lo
 Trong ngữ cảnh của đoạn code này, normal không phải là hàm normalize. Thay vào đó, normal là một vector được sử dụng 
 để biểu diễn pháp tuyến của bề mặt tại điểm va chạm.
 
+_Array có tốc độ truy cập nhanh hơn List vì Array có kích thước cố định còn List khi dùng phải thêm thư viện.
+
 
