@@ -34,7 +34,7 @@ public class Weapon
 
         return false;
     }
-
+    //Weapon's reaload
     public bool CanReload()
     {
         if(bulletsInMagazine == magazineCapacity) 
