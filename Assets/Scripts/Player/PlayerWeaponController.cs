@@ -19,7 +19,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] private int maxSlots = 2;
-    [SerializeField] private List<Weapon> weaponSlots;
+    [SerializeField] public List<Weapon> weaponSlots;
 
     private void Start()
     {
@@ -30,18 +30,7 @@ public class PlayerWeaponController : MonoBehaviour
         currentWeapon.ammo = currentWeapon.maxAmmo;
     }
 
-    private void AssignInputEvents()
-    {
-        PlayerControlls controls = player.controls;
-
-        controls.Character.Fire.performed += context => Shoot();
-
-        controls.Character.EquipSlot1.performed += context => EquipWeapon(0);
-        controls.Character.EquipSlot2.performed += context => EquipWeapon(1);
-
-        controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
-    }
-
+    #region Slots managment - Pickup\Equip\Drop Weapon
     private void EquipWeapon(int i)
     {
         currentWeapon = weaponSlots[i];
@@ -64,10 +53,12 @@ public class PlayerWeaponController : MonoBehaviour
 
         currentWeapon = weaponSlots[0];
     }
+    #endregion
 
     private void Shoot()
     {
-        currentWeapon.ammo--;
+        if(currentWeapon.CanShoot() == false)
+            return;
 
         GameObject newBullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.LookRotation(gunPoint.forward));
 
@@ -97,6 +88,20 @@ public class PlayerWeaponController : MonoBehaviour
     }
 
     public Transform GunPoint() => gunPoint;
+
+    #region Input Events
+    private void AssignInputEvents()
+    {
+        PlayerControlls controls = player.controls;
+
+        controls.Character.Fire.performed += context => Shoot();
+
+        controls.Character.EquipSlot1.performed += context => EquipWeapon(0);
+        controls.Character.EquipSlot2.performed += context => EquipWeapon(1);
+
+        controls.Character.DropCurrentWeapon.performed += context => DropWeapon();
+    }
+    #endregion
 
     //private void OnDrawGizmos()
     //{
