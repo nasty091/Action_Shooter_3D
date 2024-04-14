@@ -2342,13 +2342,13 @@ MonoBehaviour:
   maxSlots: 2
   weaponSlots:
   - weaponType: 0
-    bulletsInMagazine: 15
-    magazineCapacity: 15
-    totalReserveAmmo: 33
-  - weaponType: 1
-    bulletsInMagazine: 0
-    magazineCapacity: 0
-    totalReserveAmmo: 0
+    bulletsInMagazine: 100
+    magazineCapacity: 100
+    totalReserveAmmo: 300
+  - weaponType: 4
+    bulletsInMagazine: 100
+    magazineCapacity: 100
+    totalReserveAmmo: 3000
 --- !u!114 &959240744
 MonoBehaviour:
   m_ObjectHideFlags: 0

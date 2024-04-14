@@ -41,4 +41,6 @@ Trong ngữ cảnh của đoạn code này, normal không phải là hàm normal
 
 _Array có tốc độ truy cập nhanh hơn List vì Array có kích thước cố định còn List khi dùng phải thêm thư viện.
 
+_Rig thường được sử dụng để chỉ một cấu trúc hoặc bộ khung để điều khiển và hoạt động các phần tử trong một hoạt ảnh hoặc mô hình 3D.
+
 
