@@ -56,6 +56,16 @@ public class PlayerAim : MonoBehaviour
 
     private void UpdateAimVisuals()
     {
+        aimLaser.enabled = player.weapon.WeaponReady(); // if animation of weapon reload or weapon equip is over, the laser enable will be true 
+
+        if (aimLaser.enabled == false)
+            return;
+
+        WeaponModel weaponModel = player.weaponVisuals.CurrentWeaponModel();
+
+        weaponModel.transform.LookAt(aim);
+        weaponModel.gunPoint.LookAt(aim);
+
         Transform gunPoint = player.weapon.GunPoint();
         Vector3 laserDirection = player.weapon.BulletDirection();
 
