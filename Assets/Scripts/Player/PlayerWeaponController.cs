@@ -124,6 +124,9 @@ public class PlayerWeaponController : MonoBehaviour
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+        bulletScript.BulletSetup(currentWeapon.gunDistance);
+
         Vector3 bulletsDirection = currentWeapon.ApplySpread(BulletDirection());
 
         rbNewBullet.mass = REFERENCE_BULLET_SPEED / bulletSpeed;
