@@ -43,4 +43,6 @@ _Array có tốc độ truy cập nhanh hơn List vì Array có kích thước c
 
 _Rig thường được sử dụng để chỉ một cấu trúc hoặc bộ khung để điều khiển và hoạt động các phần tử trong một hoạt ảnh hoặc mô hình 3D.
 
+_poolDictionary.Add("BulletPool", bulletPool); (nếu tồn tại khóa BulletPool sẽ báo lỗi)
+ poolDictionary["EffectPool"] = effectPool;    (nếu tồn tại khóa EffectPool sẽ thay thế giá trị khóa bằng effectPool)
 
