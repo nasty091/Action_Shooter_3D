@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Item_Pickup : MonoBehaviour
 {
-    [SerializeField] private Weapon weapon;
+    [SerializeField] private Weapon_Data weaponData;
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerWeaponController>()?.PickupWeapon(weapon); // If other.GetComponent<PlayerWeaponController>() not null PickupWeapon(weapon) will be called
+        other.GetComponent<PlayerWeaponController>()?.PickupWeapon(weaponData); // If other.GetComponent<PlayerWeaponController>() not null PickupWeapon(weapon) will be called
     }
 }

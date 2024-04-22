@@ -19,12 +19,14 @@ public enum ShootType
 [System.Serializable] // Makes class visible in the inspector
 public class Weapon
 {
+    public WeaponType weaponType;
+
     #region Regular mode variables
     public ShootType shootType;
     public int bulletsPerShot { get; private set; }
 
     private float defaultFireRate;
-    private float fireRate = 1; // bullets per second
+    public float fireRate = 1; // bullets per second
     private float lastShootTime;
     #endregion
 
@@ -43,7 +45,6 @@ public class Weapon
     public int totalReserveAmmo;
 
     #region Weapon generic info variables
-    public WeaponType weaponType;
     public float reloadSpeed { get; private set; } // how fast character reloads weapon
     public float equipmentSpeed { get; private set; } // how fast character equips weapon
     public float gunDistance { get; private set; }
@@ -64,6 +65,10 @@ public class Weapon
 
     public Weapon(Weapon_Data weaponData)
     {
+        bulletsInMagazine = weaponData.bulletsInMagazine;
+        magazineCapacity = weaponData.magazineCapacity;
+        totalReserveAmmo = weaponData.totalReserveAmmo;
+
         fireRate = weaponData.fireRate;
         weaponType = weaponData.weaponType;
 
