@@ -60,6 +60,12 @@ public class Weapon
     public float lastSpreadUpdateTime;
     private float spreadCoolDown = 1;
 
+    public Weapon(WeaponType weaponType)
+    {
+        defaultFireRate = fireRate;
+        this.weaponType = weaponType;
+    }
+
     #region Spread methods
     public Vector3 ApplySpread(Vector3 oringinalDirection)
     {
