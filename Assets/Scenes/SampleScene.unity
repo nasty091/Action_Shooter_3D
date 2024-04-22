@@ -777,28 +777,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon:
-    weaponType: 2
     shootType: 0
-    bulletsPerShot: 0
-    defaultFireRate: 0
-    fireRate: 1
-    burstAvailable: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 0
     magazineCapacity: 0
     totalReserveAmmo: 0
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 6
-    cameraDistance: 6
-    baseSpread: 0
-    currentSpread: 2
-    maximumSpread: 3
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
+    weaponType: 2
 --- !u!1001 &222832907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2298,144 +2282,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b6c719980e6db41abba37adecc6774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultWeaponData: {fileID: 11400000, guid: 009c20b760c1c6d429117239de4627be, type: 2}
   currentWeapon:
-    weaponType: 0
     shootType: 0
-    bulletsPerShot: 3
-    defaultFireRate: 0
-    fireRate: 1
-    burstAvailable: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 0
     magazineCapacity: 0
     totalReserveAmmo: 0
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 6
-    cameraDistance: 6
-    baseSpread: 0
-    currentSpread: 2
-    maximumSpread: 3
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
+    weaponType: 0
   bulletPrefab: {fileID: 1201070655292555940, guid: 225c1f1518262da489bf743c65bdcf66, type: 3}
   bulletSpeed: 30
   weaponHolder: {fileID: 1074394383}
   maxSlots: 2
   weaponSlots:
-  - weaponType: 2
-    shootType: 0
-    bulletsPerShot: 1
-    defaultFireRate: 10
-    fireRate: 10
-    burstAvailable: 1
+  - shootType: 0
     burstActive: 0
-    burstBulletsPerShot: 3
-    burstFireRate: 1.5
-    burstFireDelay: 0.1
     bulletsInMagazine: 100
     magazineCapacity: 100
     totalReserveAmmo: 300
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 6
-    cameraDistance: 7
-    baseSpread: 0
-    currentSpread: 0
-    maximumSpread: 2
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
-  - weaponType: 3
-    shootType: 0
-    bulletsPerShot: 5
-    defaultFireRate: 1
-    fireRate: 1
-    burstAvailable: 0
+    weaponType: 2
+  - shootType: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 1000
     magazineCapacity: 1000
     totalReserveAmmo: 30000
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 2.5
-    cameraDistance: 3.5
-    baseSpread: 15
-    currentSpread: 0
-    maximumSpread: 15
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
-  - weaponType: 1
-    shootType: 0
-    bulletsPerShot: 5
-    defaultFireRate: 1
-    fireRate: 1
-    burstAvailable: 0
+    weaponType: 3
+  - shootType: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 1000
     magazineCapacity: 1000
     totalReserveAmmo: 30000
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 2.5
-    cameraDistance: 3.5
-    baseSpread: 15
-    currentSpread: 0
-    maximumSpread: 15
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
-  - weaponType: 0
-    shootType: 0
-    bulletsPerShot: 5
-    defaultFireRate: 1
-    fireRate: 1
-    burstAvailable: 0
+    weaponType: 1
+  - shootType: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 1000
     magazineCapacity: 1000
     totalReserveAmmo: 30000
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 2.5
-    cameraDistance: 3.5
-    baseSpread: 15
-    currentSpread: 0
-    maximumSpread: 15
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
-  - weaponType: 4
-    shootType: 0
-    bulletsPerShot: 5
-    defaultFireRate: 1
-    fireRate: 1
-    burstAvailable: 0
+    weaponType: 0
+  - shootType: 0
     burstActive: 0
-    burstBulletsPerShot: 0
-    burstFireRate: 0
-    burstFireDelay: 0
     bulletsInMagazine: 1000
     magazineCapacity: 1000
     totalReserveAmmo: 30000
-    reloadSpeed: 1
-    equipmentSpeed: 1
-    gunDistance: 2.5
-    cameraDistance: 3.5
-    baseSpread: 15
-    currentSpread: 0
-    maximumSpread: 15
-    spreadIncreaseRate: 0.15
-    lastSpreadUpdateTime: 0
+    weaponType: 4
 --- !u!114 &959240744
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class PlayerWeaponController : MonoBehaviour
     private Player player;
     private const float REFERENCE_BULLET_SPEED = 20f; // This is the default speed from which our mass formula is derived.
 
+    [SerializeField] private Weapon_Data defaultWeaponData;
     [SerializeField] private Weapon currentWeapon;
     private bool weaponReady;
     private bool isShooting;
@@ -40,7 +41,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void EquipStartingWeapon()
     {
-        weaponSlots[0] = new Weapon(WeaponType.Pistol);
+        weaponSlots[0] = new Weapon(defaultWeaponData);
 
         EquipWeapon(0);
     } 
