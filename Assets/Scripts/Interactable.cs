@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private MeshRenderer mesh;
+    protected MeshRenderer mesh;
+
     [SerializeField] private Material highlightMaterial;
     private Material defaultMaterial;
 
@@ -13,7 +14,13 @@ public class Interactable : MonoBehaviour
         if(mesh == null)
             mesh = GetComponentInChildren<MeshRenderer>();
 
-        defaultMaterial = mesh.material;
+        defaultMaterial = mesh.sharedMaterial;
+    }
+
+    protected void UpdateMeshAndMaterial(MeshRenderer newMesh)
+    {
+        mesh = newMesh;
+        defaultMaterial = newMesh.sharedMaterial;
     }
 
     public virtual void Interaction()
