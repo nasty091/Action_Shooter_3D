@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Idle info")]
+    public float idleTime;
+
     public EnemyStateMachine stateMachine;
 
-    public EnemyState idleState {  get; private set; }
-    public EnemyState moveState { get; private set; }
-
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
         stateMachine = new EnemyStateMachine();
-
-        idleState = new EnemyState(this, stateMachine, "Idle");
-        moveState = new EnemyState(this, stateMachine, "Move");
-
-        stateMachine.Initialize(idleState);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        stateMachine.currentState.Update();
+
+    }
+
+    protected virtual void Update()
+    {
+
     }
 }

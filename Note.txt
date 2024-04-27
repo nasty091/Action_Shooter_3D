@@ -46,3 +46,7 @@ _Rig thường được sử dụng để chỉ một cấu trúc hoặc bộ kh
 _poolDictionary.Add("BulletPool", bulletPool); (nếu tồn tại khóa BulletPool sẽ báo lỗi)
  poolDictionary["EffectPool"] = effectPool;    (nếu tồn tại khóa EffectPool sẽ thay thế giá trị khóa bằng effectPool)
 
+_Virtual
+_Tính đồng nhất (Consistency): Sử dụng hàm ảo và ghi đè giúp duy trì tính đồng nhất trong toàn bộ hệ thống. Nếu bạn muốn thay đổi hành vi của một phương thức, bạn chỉ cần thay đổi một lần trong lớp cha và các lớp con kế thừa sẽ tự động kế thừa thay đổi này.
+_Tính kế thừa (Inheritance): Việc sử dụng ghi đè hàm ảo giúp bảo toàn mối quan hệ kế thừa giữa lớp cha và lớp con. Lớp con vẫn kế thừa tất cả các tính năng và hành vi từ lớp cha, nhưng có thể thay đổi hoặc mở rộng một số phần của chúng.
+

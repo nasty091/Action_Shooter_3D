@@ -8,6 +8,7 @@ public class EnemyState
     protected EnemyStateMachine stateMachine;
 
     protected string animBoolName;
+    protected float stateTimer;
 
     public EnemyState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName)
     {
@@ -23,7 +24,7 @@ public class EnemyState
 
     public virtual void Update()
     {
-
+        stateTimer -= Time.deltaTime;
     }
 
     public virtual void Exit()
