@@ -26,6 +26,6 @@ public class Enemy_Melee : Enemy
     {
         base.Update();
 
-        stateMachine.Initialize(moveState);
+        stateMachine.currentState.Update();
     }
 }

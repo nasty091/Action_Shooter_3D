@@ -26,7 +26,6 @@ public class IdleState_Melee : EnemyState
     public override void Update()
     {
         base.Update();
-
         if (stateTimer < 0)
             stateMachine.ChangeState(enemy.moveState);
     }
