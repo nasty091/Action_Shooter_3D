@@ -50,3 +50,8 @@ _Virtual
 _Tính đồng nhất (Consistency): Sử dụng hàm ảo và ghi đè giúp duy trì tính đồng nhất trong toàn bộ hệ thống. Nếu bạn muốn thay đổi hành vi của một phương thức, bạn chỉ cần thay đổi một lần trong lớp cha và các lớp con kế thừa sẽ tự động kế thừa thay đổi này.
 _Tính kế thừa (Inheritance): Việc sử dụng ghi đè hàm ảo giúp bảo toàn mối quan hệ kế thừa giữa lớp cha và lớp con. Lớp con vẫn kế thừa tất cả các tính năng và hành vi từ lớp cha, nhưng có thể thay đổi hoặc mở rộng một số phần của chúng.
 
+
+_transform.rotation: Quaternion (0.707, 0.0, 0.0, 0.707) => (x,y,z,w)
++w: Là thành phần số thực của quaternion, xác định độ lớn của quay và cũng có thể được coi là cos(θ/2), trong đó θ là góc quay.
++Sử dụng quaternion thay vì Euler angles giúp tránh được các vấn đề như gimbal lock và cho phép các phép toán quay ổn định hơn trong không gian 3D.
+_transform.rotation.eulerAngles: Vector3 (45.0, 0.0, 0.0) => (x,y,z)
