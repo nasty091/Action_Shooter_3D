@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Move data")]
     public float moveSpeed;
+    public float chaseSpeed;
 
     [SerializeField] private Transform[] patrolPoints;
     private int currentPatrolIndex;
