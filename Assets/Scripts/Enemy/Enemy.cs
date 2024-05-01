@@ -5,20 +5,16 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float turnSpeed;
-    public float aggresionRange;
-
-    [Header("Attack data")]
-    public float attackRange;
-    public float attackMoveSpeed;
-
     [Header("Idle data")]
     public float idleTime;
+    public float aggresionRange;
 
     [Header("Move data")]
     public float moveSpeed;
     public float chaseSpeed;
+    public float turnSpeed;
     private bool manualMovement;
+    private bool manualRotation;
 
     [SerializeField] private Transform[] patrolPoints;
     private int currentPatrolIndex;
@@ -51,18 +47,17 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, aggresionRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     public void ActivateManualMovement(bool manualMovement) => this.manualMovement = manualMovement;
     public bool ManualMovementActive() => manualMovement;  
+    public void ActivateManualRotation(bool manualRotation) => this.manualRotation = manualRotation;
+    public bool ManualRotationActive() => manualRotation;
     public void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
     public bool PlayerInAggresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
-    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackRange;
 
     public Vector3 GetPatrolDestination()
     {
