@@ -55,3 +55,7 @@ _transform.rotation: Quaternion (0.707, 0.0, 0.0, 0.707) => (x,y,z,w)
 +w: Là thành phần số thực của quaternion, xác định độ lớn của quay và cũng có thể được coi là cos(θ/2), trong đó θ là góc quay.
 +Sử dụng quaternion thay vì Euler angles giúp tránh được các vấn đề như gimbal lock và cho phép các phép toán quay ổn định hơn trong không gian 3D.
 _transform.rotation.eulerAngles: Vector3 (45.0, 0.0, 0.0) => (x,y,z)
+
+_Nếu isKinematic được bật, Lực, va chạm hoặc khớp sẽ không ảnh hưởng đến vật thể cứng (rigibody) nữa. Phần cứng (rigibody) sẽ được kiểm soát hoàn toàn hoạt ảnh (animation) hoặc kiểm soát tập lệnh bằng cách thay đổi Transform.position.
+_Lúc enemy sống (isKinematic = true): enemy không chịu tác động lực và vật lý mà sẽ được kiểm soát bởi animation
+_Lúc enemy chết (isKinematic = false): enemy chỉ chịu tác động lực và vật lý
