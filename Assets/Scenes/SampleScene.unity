@@ -3539,11 +3539,12 @@ MonoBehaviour:
   - {fileID: 1504650597}
   - {fileID: 1217638043}
   player: {fileID: 0}
-  meleeType: 1
+  meleeType: 2
   shieldTransform: {fileID: 9142035614999128535}
+  dodgeCooldown: 5
   attackData:
     attackName: 
-    attackRange: 1
+    attackRange: 1.5
     moveSpeed: 0
     attackIndex: 1
     animationSpeed: 1.4
