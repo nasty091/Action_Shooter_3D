@@ -18,6 +18,10 @@ _Has Exit Time: Khi bạn tạo một transition giữa hai trạng thái trong 
 bạn có thể thiết lập exit time để xác định thời gian mà animator phải ở trong trạng thái hiện tại 
 trước khi chuyển sang trạng thái tiếp theo. Nếu exit time được thiết lập, 
 animator sẽ phải chờ cho đến khi thời gian trôi qua tương ứng với exit time trước khi chuyển đến trạng thái mới.
+_Ví dụ exit time = 0.9 thì sẽ hoàn thành 90% animation hiện tại rồi chuyểnn sang animation khác
+_Transition Duration là khoảng thời gian chuyển từ animation này sang animation khác.
+_Ví dụ khi chuyển từ tư thế lăn né đạn sang đứng dậy chạy nếu Transition Duration quá ngắn (dưới mức mặc định 0.25) thì sau khi lăn sẽ
+đứng dậy ngay lập tức trông rất kỳ. Cần điều chỉnh Transtion Duration phù hợp để sau khi lăn sẽ đứng dậy từ từ trong sẽ mượt hơn.
 
 _private enum GrabType { SideGrab, BackGrab}
 Console.Write(GrabType.SideGrab) => Kết quả: SideGrab
