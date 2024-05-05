@@ -76,6 +76,12 @@ public class Enemy : MonoBehaviour
     public void ActivateManualRotation(bool manualRotation) => this.manualRotation = manualRotation;
     public bool ManualRotationActive() => manualRotation;
     public void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
+
+    public virtual void AbilityTrigger()
+    {
+        stateMachine.currentState.AbilityTrigger();
+    }
+
     public bool PlayerInAggresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
 
     public Vector3 GetPatrolDestination()
