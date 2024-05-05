@@ -39,12 +39,16 @@ public class DeadState_Melee : EnemyState
         base.Update();
 
         // uncomment to disable interaction when enmey is dead
+        //DisableInteractionIfShould();
+    }
 
-        //if(stateTimer < 0 && interactionDisabled == false)
-        //{
-        //    interactionDisabled = true;
-        //    ragdoll.RagdollActive(false);
-        //    ragdoll.ColliderActive(false);
-        //}
+    private void DisableInteractionIfShould()
+    {
+        if (stateTimer < 0 && interactionDisabled == false)
+        {
+            interactionDisabled = true;
+            ragdoll.RagdollActive(false);
+            ragdoll.ColliderActive(false);
+        }
     }
 }

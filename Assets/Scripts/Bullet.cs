@@ -78,7 +78,7 @@ public class Bullet : MonoBehaviour
         ReturnBulletToPool();
 
         Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
-        EnemyShield shield = collision.collider.GetComponent<EnemyShield>();
+        Enemy_Shield shield = collision.collider.GetComponent<Enemy_Shield>();
 
         if(shield != null)
         {
@@ -92,7 +92,7 @@ public class Bullet : MonoBehaviour
             Rigidbody hitRigibody = collision.collider.attachedRigidbody;
 
             enemy.GetHit();
-            enemy.HitImpact(force, collision.contacts[0].point, hitRigibody);
+            enemy.DeathImpact(force, collision.contacts[0].point, hitRigibody);
 
         }
     }

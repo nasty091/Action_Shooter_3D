@@ -19,9 +19,12 @@ public class Enemy : MonoBehaviour
     private bool manualRotation;
 
     [SerializeField] private Transform[] patrolPoints;
+    private Vector3[] patrolPointsPosition;
     private int currentPatrolIndex;
 
-    public Transform player;
+    public bool inBattleMode {  get; private set; }
+
+    public Transform player { get; private set; }
 
     public Animator anim { get; private set; }
 
@@ -49,28 +52,53 @@ public class Enemy : MonoBehaviour
 
     }
 
+    protected bool ShouldEnterBattleMode()
+    {
+        bool inAggresionRange = Vector3.Distance(transform.position, player.position) < aggresionRange;
+
+        if(inAggresionRange && !inBattleMode)
+        {
+            EnterBattleMode();
+            return true;
+        }
+
+        return false;
+    }
+
+    public virtual void EnterBattleMode()
+    {
+        inBattleMode = true;
+    }
+
     public virtual void GetHit()
     {
+        EnterBattleMode();
         healthPoints--;
     }
 
-    public virtual void HitImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    public virtual void DeathImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
     {
-        StartCoroutine(HitImpactCoroutine(force, hitPoint, rb));
+        StartCoroutine(DeathImpactCoroutine(force, hitPoint, rb));
     }
-
-    private IEnumerator HitImpactCoroutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    private IEnumerator DeathImpactCoroutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
     {
         yield return new WaitForSeconds(.1f);
 
         rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 
-    protected virtual void OnDrawGizmos()
+    public void FaceTarget(Vector3 target)
     {
-        Gizmos.DrawWireSphere(transform.position, aggresionRange);
+        Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
+
+        Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+
+        float yRotation = Mathf.LerpAngle(currentEulerAngles.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
+
+        transform.rotation = Quaternion.Euler(currentEulerAngles.x, yRotation, currentEulerAngles.z);
     }
 
+    #region Animation events
     public void ActivateManualMovement(bool manualMovement) => this.manualMovement = manualMovement;
     public bool ManualMovementActive() => manualMovement;  
     public void ActivateManualRotation(bool manualRotation) => this.manualRotation = manualRotation;
@@ -81,12 +109,12 @@ public class Enemy : MonoBehaviour
     {
         stateMachine.currentState.AbilityTrigger();
     }
+    #endregion
 
-    public bool PlayerInAggresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
-
+    #region Patrol logic
     public Vector3 GetPatrolDestination()
     {
-        Vector3 destination = patrolPoints[currentPatrolIndex].transform.position;
+        Vector3 destination = patrolPointsPosition[currentPatrolIndex];
         currentPatrolIndex++;
 
         if(currentPatrolIndex >= patrolPoints.Length) 
@@ -97,20 +125,18 @@ public class Enemy : MonoBehaviour
 
     private void InitializePatrolPoints()
     {
-        foreach (var t in patrolPoints)
+        patrolPointsPosition = new Vector3[patrolPoints.Length];
+
+        for (int i = 0; i < patrolPoints.Length; i++)
         {
-            t.parent = null;
+            patrolPointsPosition[i] = patrolPoints[i].position;
+            patrolPoints[i].gameObject.SetActive(false);
         }
     }
+    #endregion
 
-    public Quaternion FaceTarget(Vector3 target)
+    protected virtual void OnDrawGizmos()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
-
-        Vector3 currentEulerAngles = transform.rotation.eulerAngles;
-
-        float yRotation = Mathf.LerpAngle(currentEulerAngles.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
-
-        return Quaternion.Euler(currentEulerAngles.x, yRotation, currentEulerAngles.z);
+        Gizmos.DrawWireSphere(transform.position, aggresionRange);
     }
 }
