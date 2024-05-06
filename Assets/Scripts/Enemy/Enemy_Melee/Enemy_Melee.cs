@@ -19,6 +19,8 @@ public enum EnemyMelee_Type { Regular, Shield, Dodge, AxeThrow}
 
 public class Enemy_Melee : Enemy
 {
+    private Enemy_Visuals visuals;
+
     #region States
     public IdleState_Melee idleState {  get; private set; }
     public MoveState_Melee moveState { get; private set; }
@@ -47,12 +49,11 @@ public class Enemy_Melee : Enemy
     public AttackData attackData;
     public List<AttackData> attackList;
 
-    [SerializeField] private Transform hiddenWeapon;
-    [SerializeField] private Transform pulledWeapon;
-
     protected override void Awake()
     {
         base.Awake();
+
+        visuals = GetComponent<Enemy_Visuals>();
 
         idleState = new IdleState_Melee(this, stateMachine, "Idle");
         moveState = new MoveState_Melee(this, stateMachine, "Move");
@@ -69,6 +70,7 @@ public class Enemy_Melee : Enemy
         stateMachine.Initialize(idleState);
 
         InitializeSpeciality();
+        //visuals.SetupLook();
     }
 
     protected override void Update()
@@ -94,15 +96,21 @@ public class Enemy_Melee : Enemy
         base.AbilityTrigger();
 
         moveSpeed = moveSpeed * .6f;
-        pulledWeapon.gameObject.SetActive(false);
+        EnableWeaponModel(false);
     }
 
     private void InitializeSpeciality()
     {
+        if(meleeType == EnemyMelee_Type.AxeThrow)
+        {
+            visuals.SetupWeaponType(Enemy_MeleeWeaponType.Throw);
+        }
+
         if(meleeType == EnemyMelee_Type.Shield)
         {
             anim.SetFloat("ChaseIndex", 1);
             shieldTransform.gameObject.SetActive(true);
+            visuals.SetupWeaponType(Enemy_MeleeWeaponType.OneHand);
         }
     }
 
@@ -114,10 +122,9 @@ public class Enemy_Melee : Enemy
             stateMachine.ChangeState(deadState);
     }
 
-    public void PullWeapon()
+    public void EnableWeaponModel(bool active)
     {
-        hiddenWeapon.gameObject.SetActive(false);
-        pulledWeapon.gameObject.SetActive(true);
+        visuals.currentWeaponModel.gameObject.SetActive(active);
     }
 
     public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackData.attackRange;

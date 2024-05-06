@@ -31,7 +31,7 @@ public class Enemy_Axe : MonoBehaviour
         if (timer > 0)
             direction = player.position + Vector3.up - transform.position;
 
-        rb.velocity = direction.normalized * flySpeed;
+        rb.velocity = direction.normalized * 1;
         transform.forward = rb.velocity;
     }
 

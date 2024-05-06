@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 3827668336026052927}
   - component: {fileID: 5216701085310117971}
   - component: {fileID: 3526903881429523796}
-  - component: {fileID: 3604256374945844592}
+  - component: {fileID: 3402602782536324056}
   m_Layer: 0
   m_Name: Enemy's_Axe
   m_TagString: Untagged
@@ -289,7 +289,7 @@ Transform:
   m_GameObject: {fileID: 8961423484665760033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77, y: 0.888, z: -2.404}
+  m_LocalPosition: {x: 3.048565, y: -0.00000047683716, z: -6.812501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -344,7 +344,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3604256374945844592
+--- !u!114 &3402602782536324056
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8961423484665760033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe055dc731427a4d8103218b939cc46, type: 3}
+  m_Script: {fileID: 11500000, guid: b58f4eaf2fe847a40b09d515c0a549cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   impactFx: {fileID: 951208013738076229, guid: 545d42010dca9a4409a175c33ff2369e, type: 3}
