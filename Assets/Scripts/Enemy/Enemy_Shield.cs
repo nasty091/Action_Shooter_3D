@@ -18,7 +18,7 @@ public class Enemy_Shield : MonoBehaviour
 
         if(durability <= 0)
         {
-            //enemy.anim.SetFloat("ChaseIndex", 0);
+            enemy.anim.SetFloat("ChaseIndex", 0);
             Destroy(gameObject);
         }
     }

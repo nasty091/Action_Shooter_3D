@@ -70,7 +70,7 @@ public class Enemy_Melee : Enemy
         stateMachine.Initialize(idleState);
 
         InitializeSpeciality();
-        //visuals.SetupLook();
+        visuals.SetupLook();
     }
 
     protected override void Update()
