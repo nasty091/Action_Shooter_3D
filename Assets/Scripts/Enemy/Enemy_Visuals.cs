@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
 
-public enum Enemy_MeleeWeaponType { OneHand, Throw}
+public enum Enemy_MeleeWeaponType { OneHand, Throw, Unarmed}
 
 public class Enemy_Visuals : MonoBehaviour
 {
@@ -61,16 +61,16 @@ public class Enemy_Visuals : MonoBehaviour
 
     private void SetupRandomWeapon()
     {
-        foreach(var weaponModel in WeaponModels)
+        foreach (var weaponModel in WeaponModels)
         {
             weaponModel.gameObject.SetActive(false);
         }
 
         List<Enemy_WeaponModel> filteredWeaponModels = new List<Enemy_WeaponModel>();
 
-        foreach(var weaponModel in WeaponModels)
+        foreach (var weaponModel in WeaponModels)
         {
-            if(weaponModel.weaponType == weaponType)
+            if (weaponModel.weaponType == weaponType)
                 filteredWeaponModels.Add(weaponModel);
         }
 
@@ -78,6 +78,18 @@ public class Enemy_Visuals : MonoBehaviour
 
         currentWeaponModel = filteredWeaponModels[randomIndex].gameObject;
         currentWeaponModel.SetActive(true);
+
+        OverrideAnimatorControllerIfCan();
+    }
+
+    private void OverrideAnimatorControllerIfCan()
+    {
+        AnimatorOverrideController overrideController = currentWeaponModel.GetComponent<Enemy_WeaponModel>().overrideController;
+
+        if (overrideController != null)
+        {
+            GetComponentInChildren<Animator>().runtimeAnimatorController = overrideController;
+        }
     }
 
     private void SetupRandomColor()
