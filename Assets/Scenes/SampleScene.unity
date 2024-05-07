@@ -1701,9 +1701,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 670213760}
-  - {fileID: 1545533541}
-  - {fileID: 1403474819}
-  - {fileID: 1163386831}
   m_Father: {fileID: 937651925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &469397351
@@ -1720,6 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 2
   overrideController: {fileID: 22100000, guid: c9027e47dab9e774e9adf4177ad07f07, type: 2}
+  weaponData: {fileID: 11400000, guid: 2e3a599bcb5bb7c4992847e03ff0c384, type: 2}
   trailEffects:
   - {fileID: 670213761}
   - {fileID: 1545533542}
@@ -1783,27 +1781,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0666671
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.066667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.066667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0033320289
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.013182431
+      value: 0.156
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.015590689
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1833,9 +1831,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2367,43 +2373,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.80000025
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2078003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07740107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027794916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.53710836
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.42187953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4655116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5628777
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2417,9 +2423,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2825,27 +2839,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0666672
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.066667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.066667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000013852494
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06928222
+      value: 0.184
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.014382241
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2875,9 +2889,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3427,15 +3449,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000015407273
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.040263638
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0134776365
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3465,9 +3487,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4624,47 +4654,47 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 469397350}
+    m_TransformParent: {fileID: 7637264116947893085}
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.80000025
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2078003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07740107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027794916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.53710836
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.42187953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4655116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5628777
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4678,9 +4708,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5863,47 +5901,47 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 469397350}
+    m_TransformParent: {fileID: 4689552978208146192}
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.80000025
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2078003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07740107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027794916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.53710836
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.42187953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4655116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5628777
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5917,9 +5955,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6283,47 +6329,47 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 469397350}
+    m_TransformParent: {fileID: 4301033288417675490}
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8000001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.80000025
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2078003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07740107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027794916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.53710836
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.42187953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4655116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5628777
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6337,9 +6383,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6378,15 +6432,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.048662774
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.013434145
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6416,9 +6470,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7734,15 +7796,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.095
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7772,9 +7834,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4687362817609938685, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
       propertyPath: m_Name
       value: Enemy_MeleeWeaponTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629589090262386600, guid: f432efda8c02ecc4e93d2fbd5dbd696a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13277,6 +13347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1545533541}
   - {fileID: 9142035614999128535}
   - {fileID: 2916385092328527135}
   - {fileID: 8357547381779781325}
@@ -13751,6 +13822,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1403474819}
   - {fileID: 4035417766243315087}
   m_Father: {fileID: 194376812391185404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17809,6 +17881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1163386831}
   - {fileID: 9163320019754471845}
   - {fileID: 8998551435830338890}
   - {fileID: 5329323600947547017}
@@ -18640,6 +18713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 1
   overrideController: {fileID: 0}
+  weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 1554031842}
 --- !u!1 &8354466377917961741
@@ -18852,6 +18926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   overrideController: {fileID: 0}
+  weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 754407512}
 --- !u!1 &8464129030146034381
@@ -19318,6 +19393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   overrideController: {fileID: 0}
+  weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 512017577}
 --- !u!1 &8961318822070456593
@@ -19494,6 +19570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   overrideController: {fileID: 0}
+  weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 1974038158}
 --- !u!1 &9080313957065227600
@@ -19551,6 +19628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   overrideController: {fileID: 0}
+  weaponData: {fileID: 0}
   trailEffects:
   - {fileID: 896714679}
 --- !u!4 &9107747017999494441
