@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct Enemy_MeleeAttackData
+public struct AttackData_EnemyMelee
 {
     public string attackName;
     public float attackRange;
@@ -46,8 +46,8 @@ public class Enemy_Melee : Enemy
     public Transform axeStartPoint;
 
     [Header("Attack Data")]
-    public Enemy_MeleeAttackData attackData;
-    public List<Enemy_MeleeAttackData> attackList;
+    public AttackData_EnemyMelee attackData;
+    public List<AttackData_EnemyMelee> attackList;
 
     protected override void Awake()
     {
@@ -68,8 +68,9 @@ public class Enemy_Melee : Enemy
     {
         base.Start();
         stateMachine.Initialize(idleState);
+        ResetCooldown();
 
-        InitializeSpeciality();
+        InitializePerk();
         visuals.SetupLook();
         UpdateAttackData();
     }
@@ -104,14 +105,14 @@ public class Enemy_Melee : Enemy
     {
         Enemy_WeaponModel currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
 
-        if (currentWeapon != null)
+        if (currentWeapon.weaponData != null)
         {
-            attackList = new List<Enemy_MeleeAttackData>(currentWeapon.weaponData.attackData);
+            attackList = new List<AttackData_EnemyMelee>(currentWeapon.weaponData.attackData);
             turnSpeed = currentWeapon.weaponData.turnSpeed;
         }
     }
 
-    private void InitializeSpeciality()
+    private void InitializePerk()
     {
         if(meleeType == EnemyMelee_Type.AxeThrow)
         {
@@ -144,7 +145,6 @@ public class Enemy_Melee : Enemy
         visuals.currentWeaponModel.gameObject.SetActive(active);
     }
 
-    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackData.attackRange;
 
     public void ActivateDodgeRoll()
     {
@@ -171,13 +171,21 @@ public class Enemy_Melee : Enemy
         if (meleeType != EnemyMelee_Type.AxeThrow)
             return false;
 
-        if(Time.time > lastTimeAxeThrow + axeThrowCooldown)
+        float throwAxeAnimationDuration = GetAnimationClipDuration("Melee_Axe throw");
+
+        if (Time.time > lastTimeAxeThrow + throwAxeAnimationDuration + axeThrowCooldown)
         {
             lastTimeAxeThrow = Time.time;
             return true;
         }
 
         return false;
+    }
+
+    private void ResetCooldown()
+    {
+        lastTimeDodge -= dodgeCooldown;
+        lastTimeAxeThrow -= axeThrowCooldown;
     }
 
     private float GetAnimationClipDuration(string clipName)
@@ -192,6 +200,8 @@ public class Enemy_Melee : Enemy
 
         return 0;
     }
+
+    public bool PlayerInAttackRange() => Vector3.Distance(transform.position, player.position) < attackData.attackRange;
 
     protected override void OnDrawGizmos()
     {

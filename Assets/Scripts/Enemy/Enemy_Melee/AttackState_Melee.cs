@@ -78,9 +78,9 @@ public class AttackState_Melee : EnemyState
 
     private bool PlayerClose() => Vector3.Distance(enemy.transform.position, enemy.player.position) <= 1;
 
-    private Enemy_MeleeAttackData UpdatedAttackData()
+    private AttackData_EnemyMelee UpdatedAttackData()
     {
-        List<Enemy_MeleeAttackData> validAttacks = new List<Enemy_MeleeAttackData>(enemy.attackList);
+        List<AttackData_EnemyMelee> validAttacks = new List<AttackData_EnemyMelee>(enemy.attackList);
 
         if(PlayerClose())   
             validAttacks.RemoveAll(parameter => parameter.attackType == AttackType_Melee.Charge);
