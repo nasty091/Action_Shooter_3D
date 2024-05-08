@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float impactForce;
+    private float impactForce;
 
     private BoxCollider cd;
     private Rigidbody rb;
@@ -19,7 +20,7 @@ public class Bullet : MonoBehaviour
     private float flyDistance;
     private bool bulletDisabled;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         cd = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>();
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
-    public void BulletSetup(float flyDistance, float impactForce)
+    public void BulletSetup(float flyDistance = 100, float impactForce = 100)
     {
         this.impactForce = impactForce;
 
@@ -40,7 +41,7 @@ public class Bullet : MonoBehaviour
         this.flyDistance = flyDistance + .5f; // .5f is a length of tip of laser (check method UpdateAimVisuals())
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         FadeTrailIfNeeded();
 
@@ -49,14 +50,14 @@ public class Bullet : MonoBehaviour
         ReturnToPoolIfNeeded();
 
     }
-
-    private void ReturnToPoolIfNeeded()
+    
+    protected void ReturnToPoolIfNeeded()
     {
         if (trailRenderer.time < 0)
             ReturnBulletToPool();
     }
 
-    private void DisableBulletIfNeeded()
+    protected void DisableBulletIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance && !bulletDisabled)
         {
@@ -66,13 +67,13 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void FadeTrailIfNeeded()
+    protected void FadeTrailIfNeeded()
     {
         if (Vector3.Distance(startPosition, transform.position) > flyDistance - 1.5f)
             trailRenderer.time -= 4 * Time.deltaTime;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         CreateImpactFX(collision);
         ReturnBulletToPool();
@@ -97,9 +98,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
+    protected void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
 
-    private void CreateImpactFX(Collision collision)
+    protected void CreateImpactFX(Collision collision)
     {
         if (collision.contacts.Length > 0) // Find the first contact when bullet touch the other object
         {
