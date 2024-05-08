@@ -10,6 +10,8 @@ public class Enemy_Range : Enemy
     public GameObject bulletPrefab;
     public Transform gunPoint;
     public float bulletSpeed = 20;
+    public int bulletsToShoot = 5; // Bullets to shoot before weapon goes on cooldown
+    public float weaponCooldown = 1.5f; // Weapon cooldown after all bullets shot
 
     public IdleState_Range idleState {  get; private set; }
     public MoveState_Range moveState { get; private set; }  
