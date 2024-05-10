@@ -250,6 +250,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1665040794}
   m_LocalEulerAnglesHint: {x: -4.13, y: -75.328, z: 69.743}
+--- !u!1001 &43031432
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3286085636913828728, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3260906
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.256215
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
 --- !u!1 &45580214
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,6 +8917,7 @@ GameObject:
   - component: {fileID: 7923563110172962941}
   - component: {fileID: 5530200914656829130}
   - component: {fileID: 7218240124250944280}
+  - component: {fileID: 7923563110172962942}
   m_Layer: 11
   m_Name: weap_sniper_rifle
   m_TagString: Untagged
@@ -9214,6 +9272,7 @@ GameObject:
   - component: {fileID: 6551793732934248542}
   - component: {fileID: 4670797382137584285}
   - component: {fileID: 3688695330668898727}
+  - component: {fileID: 6551793732934248543}
   m_Layer: 11
   m_Name: weap_revolver
   m_TagString: Untagged
@@ -12492,6 +12551,7 @@ GameObject:
   - component: {fileID: 3902200359172920124}
   - component: {fileID: 5218377222349038577}
   - component: {fileID: 5321791710930646770}
+  - component: {fileID: 5321791710930646771}
   m_Layer: 11
   m_Name: weap_pistol
   m_TagString: Untagged
@@ -14456,13 +14516,14 @@ GameObject:
   - component: {fileID: 2656240553118918392}
   - component: {fileID: 3918355580910705224}
   - component: {fileID: 7319957341234641770}
+  - component: {fileID: 7319957341234641771}
   m_Layer: 11
   m_Name: weap_auto-rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &4777551661292015872
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15221,6 +15282,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5321791710930646771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465801067583827134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec9f3c5df7e4b4893069648d32d56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
 --- !u!4 &5328854468834748677
 Transform:
   m_ObjectHideFlags: 0
@@ -17198,6 +17272,19 @@ Transform:
   - {fileID: 7559729046110748137}
   m_Father: {fileID: 6254041727820500718}
   m_LocalEulerAnglesHint: {x: -85.444, y: 0.001, z: 104.345}
+--- !u!114 &6551793732934248543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193005215164841844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec9f3c5df7e4b4893069648d32d56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 1
 --- !u!1 &6582150172666891616
 GameObject:
   m_ObjectHideFlags: 0
@@ -18282,6 +18369,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7319957341234641771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756401391968881483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec9f3c5df7e4b4893069648d32d56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 3
 --- !u!4 &7321822395247068830
 Transform:
   m_ObjectHideFlags: 0
@@ -19358,6 +19458,19 @@ Transform:
   - {fileID: 8933732594677091560}
   m_Father: {fileID: 6254041727820500718}
   m_LocalEulerAnglesHint: {x: -85.444, y: 0.001, z: 104.345}
+--- !u!114 &7923563110172962942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064416215700280545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec9f3c5df7e4b4893069648d32d56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 4
 --- !u!1 &7923801456593856592
 GameObject:
   m_ObjectHideFlags: 0
@@ -20276,10 +20389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113cc489cbc64dd45bd201bb4f519d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponModels: []
-  weaponType: 0
   corruptionCrystals: []
-  corruptionAmount: 10
+  corruptionAmount: 7
   colorTextures:
   - {fileID: 2800000, guid: 51acf209e21122b43bbb623ff0adaa32, type: 3}
   - {fileID: 2800000, guid: 8da0980ef58bd0e42b8433444f92a758, type: 3}
@@ -20329,6 +20440,7 @@ MonoBehaviour:
   - {fileID: 3712210902046879031}
   - {fileID: 5274633378915708694}
   weaponHolder: {fileID: 6254041727820500718}
+  weaponType: 0
   fireRate: 10
   bulletPrefab: {fileID: 1201070655292555940, guid: 6c6c105f90ab6044ab228333e8251939, type: 3}
   gunPoint: {fileID: 2052543568}
@@ -20961,6 +21073,7 @@ GameObject:
   - component: {fileID: 2175070152379701426}
   - component: {fileID: 1806640336705986927}
   - component: {fileID: 4715658051409646654}
+  - component: {fileID: 9064992554672245926}
   m_Layer: 11
   m_Name: weap_shotgun
   m_TagString: Untagged
@@ -20968,6 +21081,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &9064992554672245926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064992554672245925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ec9f3c5df7e4b4893069648d32d56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 2
 --- !u!1 &9080313957065227600
 GameObject:
   m_ObjectHideFlags: 0
@@ -21205,3 +21331,4 @@ SceneRoots:
   - {fileID: 1303563588}
   - {fileID: 7050158148386632399}
   - {fileID: 1819913911625680948}
+  - {fileID: 43031432}
