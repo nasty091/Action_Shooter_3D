@@ -22,7 +22,7 @@ public class AbilityState_Melee : EnemyState
 
         enemy.EnableWeaponModel(true);
 
-        moveSpeed = enemy.moveSpeed;
+        moveSpeed = enemy.walkSpeed;
         movementDirection = enemy.transform.position + (enemy.transform.forward * MAX_MOVEMENT_DISTANCE);
     }
 
@@ -30,7 +30,7 @@ public class AbilityState_Melee : EnemyState
     {
         base.Exit();
 
-        enemy.moveSpeed = moveSpeed;
+        enemy.walkSpeed = moveSpeed;
         enemy.anim.SetFloat("RecoveryIndex", 0);
     }
 
