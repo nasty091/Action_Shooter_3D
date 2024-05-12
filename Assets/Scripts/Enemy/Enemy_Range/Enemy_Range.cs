@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Enemy_Range : Enemy
 {
-    public Transform weaponHolder;
+    [Header("Weapon details")]
     public Enemy_RangeWeaponType weaponType;
+    public Enemy_RangeWeaponData weaponData;
 
-    public float fireRate = 1; // Bullets per second
-    public GameObject bulletPrefab;
+    [Space]
     public Transform gunPoint;
-    public float bulletSpeed = 20;
-    public int bulletsToShoot = 5; // Bullets to shoot before weapon goes on cooldown
-    public float weaponCooldown = 1.5f; // Weapon cooldown after all bullets shot
+    public Transform weaponHolder;
+    public GameObject bulletPrefab;
+
+    [SerializeField] List<Enemy_RangeWeaponData> availableWeaponData;
 
     public IdleState_Range idleState {  get; private set; }
     public MoveState_Range moveState { get; private set; }  
@@ -33,6 +34,7 @@ public class Enemy_Range : Enemy
 
         stateMachine.Initialize(idleState);
         visuals.SetupLook();
+        SetupWeapon();
     }
 
     protected override void Update()
@@ -56,8 +58,10 @@ public class Enemy_Range : Enemy
 
         Rigidbody rbNewBullet = newBullet.GetComponent<Rigidbody>();
 
-        rbNewBullet.mass = 20 / bulletSpeed;
-        rbNewBullet.velocity = bulletsDirection * bulletSpeed;
+        Vector3 bulletDirectionWithSpread = weaponData.ApplyWeaponSpread(bulletsDirection);
+
+        rbNewBullet.mass = 20 / weaponData.bulletSpeed;
+        rbNewBullet.velocity = bulletDirectionWithSpread * weaponData.bulletSpeed;
     }
 
     public override void EnterBattleMode()
@@ -67,5 +71,26 @@ public class Enemy_Range : Enemy
 
         base.EnterBattleMode();
         stateMachine.ChangeState(battleState);
+    }
+
+    public void SetupWeapon()
+    {
+        List<Enemy_RangeWeaponData> fileredData = new List<Enemy_RangeWeaponData>();
+
+        foreach(var weaponData in availableWeaponData)
+        {
+            if(weaponData.weaponType == weaponType)
+                fileredData.Add(weaponData);
+        }
+
+        if (fileredData.Count > 0)
+        {
+            int random = Random.Range(0, fileredData.Count);
+            weaponData = fileredData[random];
+        }
+        else
+            Debug.Log("No available weapon data was found");
+
+        gunPoint = visuals.currentWeaponModel.GetComponent<Enemy_RangeWeaponModel>().gunPoint;
     }
 }
