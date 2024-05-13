@@ -1,18 +1,23 @@
 _Input System dùng để tạo các action cho đối tượng như người chơi...
 
+
 _Hàm magnitude dùng để tính độ lớn của vector = Căn bậc 2 của (x^2 + y^2 + z^2)
+
 
 _aimLayerMask: Đây là một layer mask được sử dụng để chỉ ra những layer nào sẽ được xem xét 
 khi kiểm tra va chạm. Chỉ các đối tượng thuộc các layer được chỉ định trong layer mask này mới sẽ được xem xét 
 trong quá trình kiểm tra va chạm
+
 
 _Chuẩn hóa vector: Ví dụ, nếu bạn có một vector có độ dài lớn hơn 1, ví dụ (2, 2, 2), 
 thì sau khi áp dụng hàm Normalize(), nó sẽ trở thành một vector có độ dài bằng 1 nhưng vẫn giữ nguyên hướng, 
 tức là (0.577, 0.577, 0.577). Nếu vector ban đầu đã có độ dài là 1 hoặc là một vector không đổi (0, 0, 0), 
 thì hàm Normalize() sẽ không làm thay đổi nó
 
+
 _float xVelocity = Vector3.Dot(moveDirection.normalized, transform.right);
 Dot dùng để tính tích vô hướng giữa 2 vector, transform.right = (1,0,0)
+
 
 _Has Exit Time: Khi bạn tạo một transition giữa hai trạng thái trong Animator Controller, 
 bạn có thể thiết lập exit time để xác định thời gian mà animator phải ở trong trạng thái hiện tại 
@@ -23,32 +28,41 @@ _Transition Duration là khoảng thời gian chuyển từ animation này sang 
 _Ví dụ khi chuyển từ tư thế lăn né đạn sang đứng dậy chạy nếu Transition Duration quá ngắn (dưới mức mặc định 0.25) thì sau khi lăn sẽ
 đứng dậy ngay lập tức trông rất kỳ. Cần điều chỉnh Transtion Duration phù hợp để sau khi lăn sẽ đứng dậy từ từ trong sẽ mượt hơn.
 
+
 _private enum GrabType { SideGrab, BackGrab}
 Console.Write(GrabType.SideGrab) => Kết quả: SideGrab
 Console.Write((float)GrabType.SideGrab) => Kết quả: 0
 
+
 _transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, turnSpeed * Time.deltaTime);
 _Hàm Slerp sử dụng nội suy tuyến tính để chuyển từ giá trị transform.rotation sang desiredRotation với bước nhảy là turnSpeed * Time.deltaTime
 **Xem Phần 5 (38. Smooth character rotation - Lerp & Slerp) 
+
 
 _float clampedDistance = Mathf.Clamp(distanceToDesiredPosition, minCameraDistance, maxCameraDistance);
 _Hàm này nhận ba đối số: giá trị cần hạn chế (distanceToDesiredPosition), giá trị tối thiểu (minCameraDistance), 
 và giá trị tối đa (maxCameraDistance). Nó trả về giá trị của distanceToDesiredPosition nhưng nếu nó nhỏ hơn minCameraDistance 
 thì trả về minCameraDistance, và nếu nó lớn hơn maxCameraDistance thì trả về maxCameraDistance.
 
+
 _Universal Render Pipeline is a modern and optimized rendering tool in unity that is designed to be 
 flexible, scalable, and provide high-quality graphics across a wide range of devices.
+
 
 _GameObject newImpact = Instantiate(bulletImpactFX, contact.point, Quaternion.LookRotation(contact.normal));
 Trong ngữ cảnh của đoạn code này, normal không phải là hàm normalize. Thay vào đó, normal là một vector được sử dụng 
 để biểu diễn pháp tuyến của bề mặt tại điểm va chạm.
 
+
 _Array có tốc độ truy cập nhanh hơn List vì Array có kích thước cố định còn List khi dùng phải thêm thư viện.
+
 
 _Rig thường được sử dụng để chỉ một cấu trúc hoặc bộ khung để điều khiển và hoạt động các phần tử trong một hoạt ảnh hoặc mô hình 3D.
 
+
 _poolDictionary.Add("BulletPool", bulletPool); (nếu tồn tại khóa BulletPool sẽ báo lỗi)
  poolDictionary["EffectPool"] = effectPool;    (nếu tồn tại khóa EffectPool sẽ thay thế giá trị khóa bằng effectPool)
+
 
 _Virtual
 _Tính đồng nhất (Consistency): Sử dụng hàm ảo và ghi đè giúp duy trì tính đồng nhất trong toàn bộ hệ thống. Nếu bạn muốn thay đổi hành vi của một phương thức, bạn chỉ cần thay đổi một lần trong lớp cha và các lớp con kế thừa sẽ tự động kế thừa thay đổi này.
@@ -60,6 +74,10 @@ _transform.rotation: Quaternion (0.707, 0.0, 0.0, 0.707) => (x,y,z,w)
 +Sử dụng quaternion thay vì Euler angles giúp tránh được các vấn đề như gimbal lock và cho phép các phép toán quay ổn định hơn trong không gian 3D.
 _transform.rotation.eulerAngles: Vector3 (45.0, 0.0, 0.0) => (x,y,z)
 
+
 _Nếu isKinematic được bật, Lực, va chạm hoặc khớp sẽ không ảnh hưởng đến vật thể cứng (rigibody) nữa. Phần cứng (rigibody) sẽ được kiểm soát hoàn toàn hoạt ảnh (animation) hoặc kiểm soát tập lệnh bằng cách thay đổi Transform.position.
 _Lúc enemy sống (isKinematic = true): enemy không chịu tác động lực và vật lý mà sẽ được kiểm soát bởi animation
 _Lúc enemy chết (isKinematic = false): enemy chỉ chịu tác động lực và vật lý
+
+
+_public List<Cover> allCovers = new List<Cover>(); có thể bỏ phần = new List<Cover>() vì List sẽ được từ động khởi tạo

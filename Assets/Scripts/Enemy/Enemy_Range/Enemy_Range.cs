@@ -6,7 +6,8 @@ public class Enemy_Range : Enemy
 {
     [Header("Cover system")]
     public bool canUseCovers = true;
-    public Transform lastCover;
+    public CoverPoint lastCover;
+    public List<Cover> allCovers = new List<Cover>();
 
     [Header("Weapon details")]
     public Enemy_RangeWeaponType weaponType;
@@ -41,6 +42,8 @@ public class Enemy_Range : Enemy
         stateMachine.Initialize(idleState);
         visuals.SetupLook();
         SetupWeapon();
+
+        allCovers.AddRange(CollectNearByCovers());
     }
 
     protected override void Update()
@@ -49,6 +52,57 @@ public class Enemy_Range : Enemy
 
         stateMachine.currentState.Update();
     }
+
+    #region Cover System
+
+    public Transform AttempToFindCover()
+    {
+        List<CoverPoint> collectedCoverPoints = new List<CoverPoint>();
+
+        foreach(Cover cover in allCovers)
+        {
+            collectedCoverPoints.AddRange(cover.GetCoverPoints());
+        }
+
+        CoverPoint closestCoverPoint = null;
+        float shortestDistance = float.MaxValue;
+
+        foreach(CoverPoint coverPoint in collectedCoverPoints)
+        {
+            float currentDistance = Vector3.Distance(transform.position, coverPoint.transform.position);
+            if(currentDistance < shortestDistance)
+            {
+                closestCoverPoint = coverPoint;
+                shortestDistance = currentDistance;
+            }
+        }
+
+        if(closestCoverPoint != null )
+        {
+            lastCover = closestCoverPoint;
+        }
+
+        return lastCover.transform;
+    }
+
+    private List<Cover> CollectNearByCovers()
+    {
+        float coverRadiusCheck = 30;
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, coverRadiusCheck);
+        List<Cover> collectedCovers = new List<Cover>();
+
+        foreach(Collider collider in hitColliders)
+        {
+            Cover cover = collider.GetComponent<Cover>();
+
+            if (cover != null && collectedCovers.Contains(cover) == false) 
+                collectedCovers.Add(cover);
+        }
+
+        return collectedCovers;
+    }
+    
+    #endregion
 
     public void FireSingleBullet()
     {
