@@ -12,6 +12,8 @@ public class BattleState_Range : EnemyState
     private int bulletsPerAttack;
     private float weaponCooldown;
 
+    private float coverCheckTimer;
+
     public BattleState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Range;
@@ -38,13 +40,15 @@ public class BattleState_Range : EnemyState
     {
         base.Update();
 
+        ChangeCoverIfShould();
+
         enemy.FaceTarget(enemy.player.position);
 
         if (WeaponOutOfBullets())
         {
-            if(WeaponOnCooldown())
+            if (WeaponOnCooldown())
                 AttemptToResetWeapon();
-            
+
             return;
         }
 
@@ -53,6 +57,48 @@ public class BattleState_Range : EnemyState
             Shoot();
         }
     }
+
+    private void ChangeCoverIfShould()
+    {
+        if (enemy.coverPerk != CoverPerk.CanTakeAndChangeCover)
+            return;
+
+        coverCheckTimer -= Time.deltaTime;
+
+        if (coverCheckTimer < 0)
+        {
+            coverCheckTimer = .5f;
+
+            if (IsPlayerInClearSight() || IsPlayerClose())
+            {
+                if (enemy.CanGetCover())
+                    stateMachine.ChangeState(enemy.runToCoverState);
+            }
+        }
+    }
+
+    #region Cover system reigon
+
+    private bool IsPlayerClose()
+    {
+        return Vector3.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.safeDistance;
+    }
+
+    private bool IsPlayerInClearSight()
+    {
+        Vector3 directionToPlayer = enemy.player.transform.position - enemy.transform.position;
+
+        if(Physics.Raycast(enemy.transform.position, directionToPlayer, out RaycastHit hit))
+        {
+            return hit.collider.gameObject.GetComponentInParent<Player>();
+        }
+
+        return false;
+    }
+
+    #endregion
+
+    #region Weapon reigon
 
     private void AttemptToResetWeapon() 
     { 
@@ -73,4 +119,6 @@ public class BattleState_Range : EnemyState
         lastTimeShot = Time.time;
         bulletsShot++;
     }
+
+    #endregion
 }
