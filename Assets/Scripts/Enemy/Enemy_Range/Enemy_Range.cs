@@ -29,6 +29,13 @@ public class Enemy_Range : Enemy
     public Transform weaponHolder;
     public GameObject bulletPrefab;
 
+    [Header("Aim details")]
+    public float slowAim = 4;
+    public float fastAim = 20;
+    public Transform aim;
+    public Transform playersBody;
+    public LayerMask whatToIgnore;
+
     [SerializeField] List<Enemy_RangeWeaponData> availableWeaponData;
 
     #region States
@@ -53,6 +60,9 @@ public class Enemy_Range : Enemy
     protected override void Start()
     {
         base.Start();
+
+        playersBody = player.GetComponent<Player>().playerBody;
+        aim.parent = null;
 
         stateMachine.Initialize(idleState);
         visuals.SetupLook();
@@ -141,7 +151,7 @@ public class Enemy_Range : Enemy
     {
         anim.SetTrigger("Shoot");
 
-        Vector3 bulletsDirection = ((player.position + Vector3.up) - gunPoint.position).normalized;
+        Vector3 bulletsDirection = (aim.position - gunPoint.position).normalized;
 
         GameObject newBullet = ObjectPool.instance.GetObject(bulletPrefab);
         newBullet.transform.position = gunPoint.position;
@@ -191,6 +201,38 @@ public class Enemy_Range : Enemy
         gunPoint = visuals.currentWeaponModel.GetComponent<Enemy_RangeWeaponModel>().gunPoint;
     }
 
+    #region Enemy's aim region
+    
+    public void UpdateAimPosition()
+    {
+        float aimSpeed = IsAimOnPlayer() ? fastAim : slowAim;
+        aim.position = Vector3.MoveTowards(aim.position, playersBody.position, aimSpeed * Time.deltaTime);
+    }
+
+    public bool IsAimOnPlayer()
+    {
+        float distanceAimToPlayer = Vector3.Distance(aim.position, player.position);
+
+        return distanceAimToPlayer < 2;
+    }
+
+    public bool IsSeeingPlayer()
+    {
+        Vector3 myPosition = transform.position + Vector3.up;
+        Vector3 directionToPlayer = playersBody.position - myPosition;
+
+        if(Physics.Raycast(myPosition, directionToPlayer, out RaycastHit hit, Mathf.Infinity, ~whatToIgnore)) //~whatToIgnore means what layer will be ignored
+        {
+            if(hit.transform == player)
+            {
+                UpdateAimPosition();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    #endregion
 
     //Draw a line from enemy to player
     //protected override void OnDrawGizmos()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Transform playerBody;
+
     public PlayerControlls controls { get; private set; } // (read-only) This variable is available for reading but not available for any changes 
     public PlayerAim aim { get; private set; } // (read-only) 
     public PlayerMovement movement { get; private set; }
