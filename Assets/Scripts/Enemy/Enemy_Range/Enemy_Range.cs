@@ -6,8 +6,13 @@ public enum CoverPerk { Unavailable, CanTakeCover, CanTakeAndChangeCover}
 
 public class Enemy_Range : Enemy
 {
+    //public List<CoverPoint> collectedCoverPoints2 = new List<CoverPoint>();
     [Header("Enemy perks")]
     public CoverPerk coverPerk;
+
+    [Header("Advance perk")]
+    public float advanceSpeed;
+    public float advanceStoppingDistance;
 
     [Header("Cover system")]
     public float safeDistance;
@@ -31,6 +36,7 @@ public class Enemy_Range : Enemy
     public MoveState_Range moveState { get; private set; }  
     public BattleState_Range battleState { get; private set; }
     public RunToCoverState_Range runToCoverState { get; private set; }
+    public AdvancePlayerState_Range advancePlayerState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -41,6 +47,7 @@ public class Enemy_Range : Enemy
         moveState = new MoveState_Range(this, stateMachine, "Move");
         battleState = new BattleState_Range(this, stateMachine, "Battle");
         runToCoverState = new RunToCoverState_Range(this, stateMachine, "Run");
+        advancePlayerState = new AdvancePlayerState_Range(this, stateMachine, "Advance");
     }
 
     protected override void Start()
@@ -83,7 +90,7 @@ public class Enemy_Range : Enemy
         {
             collectedCoverPoints.AddRange(cover.GetValidCoverPoints(transform));
         }
-
+        //collectedCoverPoints2 = collectedCoverPoints;
         CoverPoint closestCoverPoint = null;
         float shortestDistance = float.MaxValue;
 

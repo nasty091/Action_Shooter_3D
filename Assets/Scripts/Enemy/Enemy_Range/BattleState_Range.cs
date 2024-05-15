@@ -23,6 +23,9 @@ public class BattleState_Range : EnemyState
     {
         base.Enter();
 
+        enemy.agent.isStopped = true;
+        enemy.agent.velocity = Vector3.zero;
+
         bulletsPerAttack = enemy.weaponData.GetBulletsPerAttack();
         weaponCooldown = enemy.weaponData.GetWeaponCooldown();
 
@@ -39,6 +42,11 @@ public class BattleState_Range : EnemyState
     public override void Update()
     {
         base.Update();
+
+        if(enemy.IsPlayerInAgressionRange() == false)
+        {
+            stateMachine.ChangeState(enemy.advancePlayerState);
+        }
 
         ChangeCoverIfShould();
 
