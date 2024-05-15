@@ -43,10 +43,10 @@ public class BattleState_Range : EnemyState
     {
         base.Update();
 
-        if(enemy.IsSeeingPlayer())
+        if (enemy.IsSeeingPlayer())
             enemy.FaceTarget(enemy.aim.position);
 
-        if(enemy.IsPlayerInAgressionRange() == false)
+        if (enemy.IsPlayerInAgressionRange() == false && ReadyToLeaveCover())
         {
             stateMachine.ChangeState(enemy.advancePlayerState);
         }
@@ -67,6 +67,13 @@ public class BattleState_Range : EnemyState
         }
     }
 
+    #region Cover system reigon
+
+    private bool ReadyToLeaveCover()
+    {
+        return Time.time > enemy.minCoverTime + enemy.runToCoverState.lastTimeTookCover;
+    }
+
     private void ChangeCoverIfShould()
     {
         if (enemy.coverPerk != CoverPerk.CanTakeAndChangeCover)
@@ -78,7 +85,7 @@ public class BattleState_Range : EnemyState
         {
             coverCheckTimer = .5f;
 
-            if (IsPlayerInClearSight() || IsPlayerClose())
+            if (ReadyToChangeCover())
             {
                 if (enemy.CanGetCover())
                     stateMachine.ChangeState(enemy.runToCoverState);
@@ -86,7 +93,13 @@ public class BattleState_Range : EnemyState
         }
     }
 
-    #region Cover system reigon
+    private bool ReadyToChangeCover()
+    {
+        bool inDanger = IsPlayerInClearSight() || IsPlayerClose();
+        bool advanceTimeIsOver = Time.time > enemy.advancePlayerState.lastTimeAdvanced + enemy.advanceTime;
+
+        return inDanger && advanceTimeIsOver;
+    }
 
     private bool IsPlayerClose()
     {

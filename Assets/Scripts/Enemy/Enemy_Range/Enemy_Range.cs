@@ -13,8 +13,10 @@ public class Enemy_Range : Enemy
     [Header("Advance perk")]
     public float advanceSpeed;
     public float advanceStoppingDistance;
+    public float advanceTime = 2.5f;
 
     [Header("Cover system")]
+    public float minCoverTime;
     public float safeDistance;
 
     public CoverPoint currentCover { get; private set; }

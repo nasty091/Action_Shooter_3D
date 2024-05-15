@@ -5,8 +5,9 @@ using UnityEngine;
 public class AdvancePlayerState_Range : EnemyState
 {
     private Enemy_Range enemy;
-
     private Vector3 playerPos;
+
+    public float lastTimeAdvanced {  get; private set; }    
 
     public AdvancePlayerState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -21,6 +22,12 @@ public class AdvancePlayerState_Range : EnemyState
 
         enemy.agent.isStopped = false;
         enemy.agent.speed = enemy.advanceSpeed;
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        lastTimeAdvanced = Time.time;
     }
 
     public override void Update()

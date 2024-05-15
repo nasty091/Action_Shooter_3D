@@ -3309,7 +3309,7 @@ Transform:
   m_GameObject: {fileID: 959240735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0, z: -0.04}
+  m_LocalPosition: {x: -3.04, y: 0, z: -5.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18182,7 +18182,7 @@ Transform:
   m_GameObject: {fileID: 8599798027000346951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -0, z: -4.06}
+  m_LocalPosition: {x: -5.98, y: -0, z: -6.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20552,9 +20552,11 @@ MonoBehaviour:
   - {fileID: 5008938062245028261}
   - {fileID: 3712210902046879031}
   - {fileID: 5274633378915708694}
-  coverPerk: 0
+  coverPerk: 2
   advanceSpeed: 3
   advanceStoppingDistance: 4
+  advanceTime: 2.5
+  minCoverTime: 4
   safeDistance: 2
   weaponType: 4
   weaponData: {fileID: 0}
