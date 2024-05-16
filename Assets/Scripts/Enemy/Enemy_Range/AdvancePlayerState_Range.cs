@@ -9,6 +9,7 @@ public class AdvancePlayerState_Range : EnemyState
 
     public float lastTimeAdvanced {  get; private set; }    
 
+
     public AdvancePlayerState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Range;
@@ -22,6 +23,12 @@ public class AdvancePlayerState_Range : EnemyState
 
         enemy.agent.isStopped = false;
         enemy.agent.speed = enemy.advanceSpeed;
+
+        if (enemy.IsUnstoppable())
+        {
+            enemy.visuals.EnableIK(true, false);
+            stateTimer = enemy.advanceDuration;
+        }
     }
 
     public override void Exit()
@@ -40,13 +47,17 @@ public class AdvancePlayerState_Range : EnemyState
         enemy.agent.SetDestination(playerPos);
         enemy.FaceTarget(GetNextPathPoint());
 
-        if(CanEnterBattleState()) 
+        if(CanEnterBattleState() && enemy.IsSeeingPlayer()) 
             stateMachine.ChangeState(enemy.battleState);
     }
 
     private bool CanEnterBattleState()
     {
-        return Vector3.Distance(enemy.transform.position, playerPos) < enemy.advanceStoppingDistance
-            && enemy.IsSeeingPlayer();
+        bool closeEnoughToPlayer = Vector3.Distance(enemy.transform.position, playerPos) < enemy.advanceStoppingDistance;
+        
+        if(enemy.IsUnstoppable())
+            return closeEnoughToPlayer || stateTimer < 0;
+        else
+            return closeEnoughToPlayer;
     }
 }
