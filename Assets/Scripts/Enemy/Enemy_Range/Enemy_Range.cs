@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CoverPerk { Unavailable, CanTakeCover, CanTakeAndChangeCover}
-
 public enum UnStoppablePerk { Unavailable, Unstoppable}
+public enum GrenadePerk { Unavailable, CanThrowGrenade}
 
 public class Enemy_Range : Enemy
 {
@@ -12,6 +12,11 @@ public class Enemy_Range : Enemy
     [Header("Enemy perks")]
     public CoverPerk coverPerk;
     public UnStoppablePerk unstoppablePerk;
+    public GrenadePerk grenadePerk;
+
+    [Header("Grenade perk")]
+    public float grenadeCooldown;
+    private float lastTimeGrenadeThrown = -10;
 
     [Header("Advance perk")]
     public float advanceSpeed;
@@ -50,6 +55,7 @@ public class Enemy_Range : Enemy
     public BattleState_Range battleState { get; private set; }
     public RunToCoverState_Range runToCoverState { get; private set; }
     public AdvancePlayerState_Range advancePlayerState { get; private set; }
+    public ThrowGrenadeState_Range throwGrenadeState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -61,6 +67,7 @@ public class Enemy_Range : Enemy
         battleState = new BattleState_Range(this, stateMachine, "Battle");
         runToCoverState = new RunToCoverState_Range(this, stateMachine, "Run");
         advancePlayerState = new AdvancePlayerState_Range(this, stateMachine, "Advance");
+        throwGrenadeState = new ThrowGrenadeState_Range(this, stateMachine, "ThrowGrenade");
     }
 
     protected override void Start()
@@ -84,6 +91,26 @@ public class Enemy_Range : Enemy
         stateMachine.currentState.Update();
     }
 
+    public bool CanThrowGrenade()
+    {
+        if(grenadePerk == GrenadePerk.Unavailable)
+            return false;
+
+        if(Vector3.Distance(player.transform.position, transform.position) < safeDistance)
+            return false;
+
+        if (Time.time > grenadeCooldown + lastTimeGrenadeThrown)
+            return true;
+
+        return false;
+    }
+
+    public void ThrowGrenade()
+    {
+        lastTimeGrenadeThrown = Time.time;
+        Debug.Log("THROWING GRENADE!");
+    }
+
     protected override void InitializePerk()
     {
         if (IsUnstoppable())
@@ -91,6 +118,19 @@ public class Enemy_Range : Enemy
             advanceSpeed = 1;
             anim.SetFloat("AdvanceAnimIndex", 1); // 1 is slow walk animation
         }
+    }
+
+    public override void EnterBattleMode()
+    {
+        if (inBattleMode)
+            return;
+
+        base.EnterBattleMode();
+
+        if (CanGetCover())
+            stateMachine.ChangeState(runToCoverState);
+        else
+            stateMachine.ChangeState(battleState);
     }
 
     #region Cover System
@@ -183,20 +223,6 @@ public class Enemy_Range : Enemy
         rbNewBullet.mass = 20 / weaponData.bulletSpeed;
         rbNewBullet.velocity = bulletDirectionWithSpread * weaponData.bulletSpeed;
     }
-
-    public override void EnterBattleMode()
-    {
-        if(inBattleMode)
-            return;
-
-        base.EnterBattleMode();
-
-        if (CanGetCover())
-            stateMachine.ChangeState(runToCoverState);
-        else
-            stateMachine.ChangeState(battleState);
-    }
-
     public void SetupWeapon()
     {
         List<Enemy_RangeWeaponData> fileredData = new List<Enemy_RangeWeaponData>();

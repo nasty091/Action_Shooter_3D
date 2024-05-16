@@ -20553,7 +20553,9 @@ MonoBehaviour:
   - {fileID: 3712210902046879031}
   - {fileID: 5274633378915708694}
   coverPerk: 0
-  unstoppablePerk: 1
+  unstoppablePerk: 0
+  grenadePerk: 1
+  grenadeCooldown: 2
   advanceSpeed: 3
   advanceStoppingDistance: 4
   advanceDuration: 2.5
