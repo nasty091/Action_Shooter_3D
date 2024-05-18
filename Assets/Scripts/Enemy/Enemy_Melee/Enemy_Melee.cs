@@ -93,7 +93,7 @@ public class Enemy_Melee : Enemy
         base.AbilityTrigger();
 
         walkSpeed = walkSpeed * .6f;
-        EnableWeaponModel(false);
+        visuals.EnableWeaponModel(false);
     }
 
     public void UpdateAttackData()
@@ -135,10 +135,6 @@ public class Enemy_Melee : Enemy
             stateMachine.ChangeState(deadState);
     }
 
-    public void EnableWeaponModel(bool active)
-    {
-        visuals.currentWeaponModel.gameObject.SetActive(active);
-    }
 
 
     public void ActivateDodgeRoll()
