@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadState_Melee : EnemyState
+public class DeadState_Range : EnemyState
 {
-    private Enemy_Melee enemy;
+    private Enemy_Range enemy;
     private bool interactionDisabled;
 
-    public DeadState_Melee(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
+    public DeadState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
-        enemy = enemyBase as Enemy_Melee;
+        enemy = enemyBase as Enemy_Range;
     }
 
     public override void Enter()
     {
         base.Enter();
+
+        if (enemy.throwGrenadeState.finishedThrowingGrenade == false)
+            enemy.ThrowGrenade();
 
         interactionDisabled = false;
 
@@ -26,17 +29,12 @@ public class DeadState_Melee : EnemyState
         stateTimer = 1.5f;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();
 
         // uncomment to disable interaction when enmey is dead
-        //DisableInteractionIfShould();
+        DisableInteractionIfShould();
     }
 
     private void DisableInteractionIfShould()

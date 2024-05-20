@@ -10,6 +10,8 @@ public enum Enemy_RangeWeaponType { Pistol, Revolver, Shotgun, AutoRifle, Rifle}
 public class Enemy_Visuals : MonoBehaviour
 {
     public GameObject currentWeaponModel {  get; private set; }
+    public GameObject grenadeModel;
+
 
     [Header("Corruption visuals")]
     [SerializeField] private GameObject[] corruptionCrystals;
@@ -34,6 +36,8 @@ public class Enemy_Visuals : MonoBehaviour
         leftHandIKConstraint.weight = AdjustIKWeight(leftHandIKConstraint.weight, leftHandTargetWeight);
         weaponAimConstraint.weight = AdjustIKWeight(weaponAimConstraint.weight, weaponAimTargetWeigth);
     }
+
+    public void EnableGrenadeModel(bool active) => grenadeModel?.SetActive(active);
 
     public void EnableWeaponModel(bool active)
     {
