@@ -15,6 +15,13 @@ public class IdleState_Range : EnemyState
     {
         base.Enter();
 
+        enemy.anim.SetFloat("IdleAnimIndex", Random.Range(0, 2));
+
+        enemy.visuals.EnableIK(true, false);
+
+        if (enemy.weaponType == Enemy_RangeWeaponType.Pistol)
+            enemy.visuals.EnableIK(false, false);
+
         stateTimer = enemy.idleTime;
     }
 
