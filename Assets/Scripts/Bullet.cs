@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -36,6 +33,7 @@ public class Bullet : MonoBehaviour
         cd.enabled = true;
         meshRenderer.enabled = true;
 
+        trailRenderer.Clear();
         trailRenderer.time = .25f;
         startPosition = transform.position;
         this.flyDistance = flyDistance + .5f; // .5f is a length of tip of laser (check method UpdateAimVisuals())
@@ -50,7 +48,7 @@ public class Bullet : MonoBehaviour
         ReturnToPoolIfNeeded();
 
     }
-    
+
     protected void ReturnToPoolIfNeeded()
     {
         if (trailRenderer.time < 0)
@@ -75,13 +73,13 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        CreateImpactFX(collision);
+        CreateImpactFX();
         ReturnBulletToPool();
 
         Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
         Enemy_Shield shield = collision.collider.GetComponent<Enemy_Shield>();
 
-        if(shield != null)
+        if (shield != null)
         {
             shield.ReduceDurability();
             return;
@@ -100,16 +98,9 @@ public class Bullet : MonoBehaviour
 
     protected void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
 
-    protected void CreateImpactFX(Collision collision)
+    protected void CreateImpactFX()
     {
-        if (collision.contacts.Length > 0) // Find the first contact when bullet touch the other object
-        {
-            ContactPoint contact = collision.contacts[0];
-
-            GameObject newImpactFX = ObjectPool.instance.GetObject(bulletImpactFX);
-            newImpactFX.transform.position = contact.point;
-
-            ObjectPool.instance.ReturnObject(newImpactFX, 1);
-        }
+        GameObject newImpactFX = ObjectPool.instance.GetObject(bulletImpactFX, transform);
+        ObjectPool.instance.ReturnObject(newImpactFX, 1);
     }
 }

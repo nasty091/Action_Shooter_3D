@@ -21969,7 +21969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 10
   idleTime: 1.5
-  aggresionRange: 5
+  aggresionRange: 10
   walkSpeed: 1.5
   runSpeed: 3
   turnSpeed: 5
@@ -21977,9 +21977,9 @@ MonoBehaviour:
   - {fileID: 5008938062245028261}
   - {fileID: 3712210902046879031}
   - {fileID: 5274633378915708694}
-  coverPerk: 1
+  coverPerk: 0
   unstoppablePerk: 0
-  grenadePerk: 0
+  grenadePerk: 1
   grenadePrefab: {fileID: 493710386196750250, guid: 64ca9a29253ae4a44bb0356a1cfe3419, type: 3}
   impactPower: 5
   explosionTimer: 0.75
@@ -21987,7 +21987,7 @@ MonoBehaviour:
   grenadeCooldown: 10
   grenadeStartPoint: {fileID: 1477736004}
   advanceSpeed: 3
-  advanceStoppingDistance: 4
+  advanceStoppingDistance: 8
   advanceDuration: 2.5
   minCoverTime: 4
   safeDistance: 2
