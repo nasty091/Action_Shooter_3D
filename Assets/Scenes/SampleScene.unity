@@ -6349,6 +6349,7 @@ MonoBehaviour:
   - {fileID: 1876545483268900038}
   - {fileID: 6971003868578383591}
   attackRange: 1.5
+  flamethrowDuration: 3
   jumpAttackCooldown: 5
   travelTimeToTarget: 1
   minJumpDistanceRequired: 5
