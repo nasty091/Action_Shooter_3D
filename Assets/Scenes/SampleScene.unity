@@ -6349,6 +6349,12 @@ MonoBehaviour:
   - {fileID: 1876545483268900038}
   - {fileID: 6971003868578383591}
   attackRange: 1.5
+  jumpAttackCooldown: 5
+  travelTimeToTarget: 1
+  minJumpDistanceRequired: 5
+  whatIsIgnore:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!195 &1596843974
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8053,8 +8059,8 @@ Transform:
   m_GameObject: {fileID: 2133875787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.28516963, z: -0, w: 0.9584771}
-  m_LocalPosition: {x: -2.4578006, y: -0.61099994, z: 6.8914}
-  m_LocalScale: {x: 0.88040006, y: 3.2615, z: 2.3333566}
+  m_LocalPosition: {x: -2.2245, y: -0.2968, z: 7.2488}
+  m_LocalScale: {x: 0.88040006, y: 3.889786, z: 3.8538718}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 241358894}
