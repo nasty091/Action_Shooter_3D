@@ -5,6 +5,8 @@ public class MoveState_Boss : EnemyState
     private Enemy_Boss enemy;
     private Vector3 destination;
 
+    private float actionTimer;
+
     public MoveState_Boss(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Boss;
@@ -19,12 +21,15 @@ public class MoveState_Boss : EnemyState
 
         destination = enemy.GetPatrolDestination();
         enemy.agent.SetDestination(destination);
+
+        actionTimer = enemy.actionCooldown;
     }
 
     public override void Update()
     {
         base.Update();
 
+        actionTimer -= Time.deltaTime;
         enemy.FaceTarget(GetNextPathPoint());
 
         if (enemy.inBattleMode)
@@ -33,8 +38,10 @@ public class MoveState_Boss : EnemyState
 
             enemy.agent.SetDestination(playerPos);
 
-            if (enemy.CanDoJumpAttack())
-                stateMachine.ChangeState(enemy.jumpAttackState);
+            if(actionTimer < 0)
+            {
+                PerformRandomAction();
+            }
             else if (enemy.PlayerInAttackRange())
                 stateMachine.ChangeState(enemy.attackState);
 
@@ -44,6 +51,21 @@ public class MoveState_Boss : EnemyState
             if (Vector3.Distance(enemy.transform.position, destination) < .25f)
                 stateMachine.ChangeState(enemy.idleState);
         }
+    }
 
+    private void PerformRandomAction()
+    {
+        actionTimer = enemy.actionCooldown;
+
+        if(Random.Range(0, 2) == 0) // rolls number from 0 to 1
+        {
+            if (enemy.CanDoAbility()) 
+                stateMachine.ChangeState(enemy.abilityState);
+        }
+        else
+        {
+            if(enemy.CanDoJumpAttack())
+                stateMachine.ChangeState(enemy.jumpAttackState);
+        }
     }
 }
