@@ -135,8 +135,6 @@ public class Enemy_Melee : Enemy
             stateMachine.ChangeState(deadState);
     }
 
-
-
     public void ActivateDodgeRoll()
     {
         if(meleeType != EnemyMelee_Type.Dodge) 
