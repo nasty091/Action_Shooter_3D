@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_AnimationEvents : MonoBehaviour
 {
     private Enemy enemy;
+    private Enemy_Boss enemyBoss;
 
     private void Awake()
     {
@@ -23,5 +24,13 @@ public class Enemy_AnimationEvents : MonoBehaviour
     {
         enemy.visuals.EnableWeaponModel(true);
         enemy.visuals.EnableSecondaryWeaponModel(false);
+    }
+
+    public void BossJumpImpact()
+    {
+        if(enemyBoss == null)
+            enemyBoss = GetComponentInParent<Enemy_Boss>();
+
+        enemyBoss.JumpImpact();
     }
 }

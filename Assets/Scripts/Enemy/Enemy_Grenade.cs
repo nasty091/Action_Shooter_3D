@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy_Grenade : MonoBehaviour
 {
     [SerializeField] private GameObject explosionFx;
-    [SerializeField] private float impactRadius;
+    [SerializeField] private float impactRadius; // how far (X and Z axis) object will fly when it get explosions
     [SerializeField] private float upwardsMultiplier = 1; // how high object will fly when it get explosion
     private float impactPower;
     private Rigidbody rb;
