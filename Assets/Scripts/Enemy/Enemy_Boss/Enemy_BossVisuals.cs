@@ -5,6 +5,10 @@ using UnityEngine;
 public class Enemy_BossVisuals : MonoBehaviour
 {
     private Enemy_Boss enemy;
+
+    [SerializeField] private ParticleSystem landingZoneFx;    
+
+    [Header("Batteries")]     
     [SerializeField] private GameObject[] batteries;
     [SerializeField] private float initialBatteryScaleY = .2f;
 
@@ -16,12 +20,27 @@ public class Enemy_BossVisuals : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponent<Enemy_Boss>();
+
+        landingZoneFx.transform.parent = null;
+        landingZoneFx.Stop();
+
         ResetBatteries();
     }
 
     private void Update()
     {
         UpdateBatteriesScale();
+    }
+
+    public void PlaceLandingZone(Vector3 target)
+    {
+        landingZoneFx.transform.position = target;
+        landingZoneFx.Clear();
+
+        var mainModule = landingZoneFx.main;
+        mainModule.startLifetime = enemy.travelTimeToTarget * 2;
+
+        landingZoneFx.Play();
     }
 
     private void UpdateBatteriesScale()
