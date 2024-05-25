@@ -26,19 +26,18 @@ public class Enemy : MonoBehaviour
     public bool inBattleMode {  get; private set; }
 
     public Transform player { get; private set; }
-
     public Animator anim { get; private set; }
-
     public NavMeshAgent agent {  get; private set; }
-
     public EnemyStateMachine stateMachine { get; private set; }
     public Enemy_Visuals visuals { get; private set; }
+    public Enemy_Health health { get; private set; }
     public Enemy_Ragdoll ragdoll { get; private set; }
 
     protected virtual void Awake()
     {
         stateMachine = new EnemyStateMachine();
 
+        health = GetComponent<Enemy_Health>();
         ragdoll = GetComponent<Enemy_Ragdoll>();    
         visuals = GetComponent<Enemy_Visuals>();
         agent = GetComponent<NavMeshAgent>();
@@ -82,12 +81,23 @@ public class Enemy : MonoBehaviour
 
     public virtual void GetHit()
     {
+        health.ReduceHealth();
+
+        if (health.ShouldDie())
+            Die();
+
         EnterBattleMode();
     }
 
-    public virtual void DeathImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    public virtual void Die()
     {
-        StartCoroutine(DeathImpactCoroutine(force, hitPoint, rb));
+
+    }
+
+    public virtual void BulletImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    {
+        if(health.ShouldDie())
+            StartCoroutine(DeathImpactCoroutine(force, hitPoint, rb));
     }
     private IEnumerator DeathImpactCoroutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
     {

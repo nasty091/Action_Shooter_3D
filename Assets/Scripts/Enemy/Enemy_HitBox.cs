@@ -17,6 +17,6 @@ public class Enemy_HitBox : HitBox
     {
         base.TakeDamage();
 
-        enemy.healthPoints--;
+        enemy.GetHit();
     }
 }

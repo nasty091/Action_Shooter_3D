@@ -34,7 +34,7 @@ public class DeadState_Range : EnemyState
         base.Update();
 
         // uncomment to disable interaction when enmey is dead
-        DisableInteractionIfShould();
+        //DisableInteractionIfShould();
     }
 
     private void DisableInteractionIfShould()
