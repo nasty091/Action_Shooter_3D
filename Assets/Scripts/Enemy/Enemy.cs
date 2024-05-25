@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    public LayerMask whatIsAlly;
     public int healthPoints = 20;
 
     [Header("Idle data")]

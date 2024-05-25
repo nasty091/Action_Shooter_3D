@@ -12,10 +12,11 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] private GameObject bulletImpactFX;
 
-
     private Vector3 startPosition;
     private float flyDistance;
     private bool bulletDisabled;
+
+    private LayerMask allyLayerMask;
 
     protected virtual void Awake()
     {
@@ -25,8 +26,9 @@ public class Bullet : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
-    public void BulletSetup(float flyDistance = 100, float impactForce = 100)
+    public void BulletSetup(LayerMask allyLayerMask, float flyDistance = 100, float impactForce = 100)
     {
+        this.allyLayerMask = allyLayerMask;
         this.impactForce = impactForce;
 
         bulletDisabled = false;
@@ -73,6 +75,16 @@ public class Bullet : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        if(FriendlyFire() == false)
+        {
+            // Use a bitwise AND to check if the collision layer is in allyLayerMask
+            if ((allyLayerMask & (1 << collision.gameObject.layer)) > 0)
+            {
+                ReturnBulletToPool(10);
+                return;
+            }
+        }
+
         CreateImpactFX();
         ReturnBulletToPool();
 
@@ -102,11 +114,13 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected void ReturnBulletToPool() => ObjectPool.instance.ReturnObject(gameObject);
+    protected void ReturnBulletToPool(float delay = 0) => ObjectPool.instance.ReturnObject(gameObject, delay);
 
     protected void CreateImpactFX()
     {
         GameObject newImpactFX = ObjectPool.instance.GetObject(bulletImpactFX, transform);
         ObjectPool.instance.ReturnObject(newImpactFX, 1);
     }
+
+    private bool FriendlyFire() => GameManager.instance.friendlyFire;
 }
