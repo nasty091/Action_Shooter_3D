@@ -7991,7 +7991,7 @@ GameObject:
   - component: {fileID: 3134556022021496852}
   - component: {fileID: 7099764071075844685}
   m_Layer: 0
-  m_Name: Enemy_Boss
+  m_Name: Enemy_Boss_Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -76,18 +76,17 @@ public class MoveState_Boss : EnemyState
     private void PerformRandomAction()
     {
         actionTimer = enemy.actionCooldown;
-        if (enemy.CanDoJumpAttack())
-            stateMachine.ChangeState(enemy.jumpAttackState);
-        //if(Random.Range(0, 2) == 0) // rolls number from 0 to 1
-        //{
-        //    if (enemy.CanDoAbility()) 
-        //        stateMachine.ChangeState(enemy.abilityState);
-        //}
-        //else
-        //{
-        //    if(enemy.CanDoJumpAttack())
-        //        stateMachine.ChangeState(enemy.jumpAttackState);
-        //}
+
+        if (Random.Range(0, 2) == 0) // rolls number from 0 to 1
+        {
+            if (enemy.CanDoAbility())
+                stateMachine.ChangeState(enemy.abilityState);
+        }
+        else
+        {
+            if (enemy.CanDoJumpAttack())
+                stateMachine.ChangeState(enemy.jumpAttackState);
+        }
     }
 
     private bool ShouldSpeedUp()

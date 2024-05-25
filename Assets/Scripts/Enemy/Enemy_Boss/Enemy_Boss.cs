@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public enum BossWeaponType { Fist, Hammer}
+public enum BossWeaponType { Flamethrower, Hammer}
 
 public class Enemy_Boss : Enemy
 {
@@ -13,11 +13,18 @@ public class Enemy_Boss : Enemy
     public float attackRange;
 
     [Header("Ability")]
-    public ParticleSystem flamethrower;
+    public float minAbilityDistance;
     public float abilityCooldown;
     private float lastTimeUsedAbility;
+
+    [Header("Flamethrower")]
+    public ParticleSystem flamethrower;
     public float flamethrowDuration;
     public bool flamethrowActive {  get; private set; }
+
+    [Header("Hammer")]
+    public GameObject activationPrefab;
+
 
     [Header("Jump attack")]
     public float jumpAttackCooldown = 10;
@@ -111,8 +118,20 @@ public class Enemy_Boss : Enemy
         flamethrower.Play();
     }
 
+    public void ActivateHammer()
+    {
+        GameObject newActivation = ObjectPool.instance.GetObject(activationPrefab, impactPoint);
+
+        ObjectPool.instance.ReturnObject(newActivation, 1);
+    }
+
     public bool CanDoAbility()
     {
+        bool playerWithinDistance = Vector3.Distance(transform.position, player.position) < minAbilityDistance;
+
+        if(playerWithinDistance == false)
+            return false;
+
         if(Time.time > lastTimeUsedAbility + abilityCooldown)
         {
             return true;
@@ -196,5 +215,8 @@ public class Enemy_Boss : Enemy
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, impactRadius);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, minAbilityDistance);
     }
 }
