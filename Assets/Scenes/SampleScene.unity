@@ -9762,11 +9762,11 @@ MonoBehaviour:
   actionCooldown: 1
   attackRange: 1.6
   minAbilityDistance: 2.25
-  abilityCooldown: 4
+  abilityCooldown: 2
   flamethrower: {fileID: 8104291112646926025}
   flamethrowDuration: 3
   activationPrefab: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98, type: 3}
-  jumpAttackCooldown: 8
+  jumpAttackCooldown: 5
   travelTimeToTarget: 1
   minJumpDistanceRequired: 5
   impactRadius: 2.5

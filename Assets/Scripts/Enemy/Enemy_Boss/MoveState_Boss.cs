@@ -79,14 +79,21 @@ public class MoveState_Boss : EnemyState
 
         if (Random.Range(0, 2) == 0) // rolls number from 0 to 1
         {
-            if (enemy.CanDoAbility())
-                stateMachine.ChangeState(enemy.abilityState);
+            TryAbility();
         }
         else
         {
             if (enemy.CanDoJumpAttack())
                 stateMachine.ChangeState(enemy.jumpAttackState);
+            else if(enemy.bossWeaponType == BossWeaponType.Hammer)
+                TryAbility();
         }
+    }
+
+    private void TryAbility()
+    {
+        if (enemy.CanDoAbility())
+            stateMachine.ChangeState(enemy.abilityState);
     }
 
     private bool ShouldSpeedUp()
