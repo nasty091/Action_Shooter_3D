@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
+public enum BossWeaponType { Fist, Hammer}
+
 public class Enemy_Boss : Enemy
 {
     [Header("Boss details")]
+    public BossWeaponType bossWeaponType;
     public float actionCooldown = 10;
     public float attackRange;
 
@@ -24,6 +27,7 @@ public class Enemy_Boss : Enemy
     [Space]
     public float impactRadius = 2.5f;
     public float impactPower = 5; // how far (X and Z axis) object will fly when it get explosion
+    public Transform impactPoint;
     [SerializeField] private float upforceMultiplier = 10;// how high (Y axis) object will fly when it get explosion
 
     [Space]
@@ -121,7 +125,12 @@ public class Enemy_Boss : Enemy
 
     public void JumpImpact()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, impactRadius);
+        Transform impactPoint = this.impactPoint;
+
+        if (impactPoint == null)
+            impactPoint = transform;
+
+        Collider[] colliders = Physics.OverlapSphere(impactPoint.position, impactRadius);
 
         foreach (Collider hit in colliders)
         {
