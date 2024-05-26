@@ -48,6 +48,10 @@ public class Enemy_Melee : Enemy
     [Header("Attack Data")]
     public AttackData_EnemyMelee attackData;
     public List<AttackData_EnemyMelee> attackList;
+    private Enemy_WeaponModel currentWeapon;
+    private bool isAttackReady;
+    [Space]
+    [SerializeField] private GameObject meleeAttackFx;
 
     protected override void Awake()
     {
@@ -77,7 +81,37 @@ public class Enemy_Melee : Enemy
     {
         base.Update();
         stateMachine.currentState.Update();
+
+        AttackCheck();
     }
+
+    public void AttackCheck()
+    {
+        if (isAttackReady == false)
+            return;
+
+        foreach(Transform attackPoint in currentWeapon.damagePoints)
+        {
+            Collider[] detectedHits = Physics.OverlapSphere(attackPoint.position, currentWeapon.attackRadius, whatIsPlayer);
+
+            for(int i = 0; i < detectedHits.Length; i++)
+            {
+                IDamagable damagable = detectedHits[i].GetComponent<IDamagable>();
+
+                if(damagable != null)
+                {
+                    damagable?.TakeDamage();
+                    isAttackReady = false;
+                    GameObject newAttackFx = ObjectPool.instance.GetObject(meleeAttackFx, attackPoint);
+
+                    ObjectPool.instance.ReturnObject(newAttackFx, 1);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void EnableAttackCheck(bool enable) => isAttackReady = enable;
 
     public override void EnterBattleMode()
     {
@@ -98,7 +132,7 @@ public class Enemy_Melee : Enemy
 
     public void UpdateAttackData()
     {
-        Enemy_WeaponModel currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
+        currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
 
         if (currentWeapon.weaponData != null)
         {
@@ -127,11 +161,11 @@ public class Enemy_Melee : Enemy
         }
     }
 
-    public override void GetHit()
+    public override void Die()
     {
-        base.GetHit();
+        base.Die();
 
-        if(healthPoints <= 0 && stateMachine.currentState != deadState)
+        if(stateMachine.currentState != deadState)
             stateMachine.ChangeState(deadState);
     }
 
