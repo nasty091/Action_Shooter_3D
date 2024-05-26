@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy_Axe : MonoBehaviour
@@ -31,22 +29,22 @@ public class Enemy_Axe : MonoBehaviour
         if (timer > 0)
             direction = player.position + Vector3.up - transform.position;
 
-        rb.velocity = direction.normalized * flySpeed;
         transform.forward = rb.velocity;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void FixedUpdate() // make the trail smoother
     {
-        Bullet bullet = other.GetComponent<Bullet>();
-        Player player = other.GetComponent<Player>();
+        rb.velocity = direction.normalized * flySpeed; 
+    }
 
-        if (bullet != null || player != null)
-        {
-            GameObject newFx = ObjectPool.instance.GetObject(impactFx, transform);
-            newFx.transform.position = transform.position;
+    private void OnCollisionEnter(Collision collision)
+    {
+        IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
+        damagable?.TakeDamage();
 
-            ObjectPool.instance.ReturnObject(gameObject);
-            ObjectPool.instance.ReturnObject(newFx, 1);
-        }
+        GameObject newFx = ObjectPool.instance.GetObject(impactFx, transform);
+
+        ObjectPool.instance.ReturnObject(gameObject);
+        ObjectPool.instance.ReturnObject(newFx, 1);
     }
 }
