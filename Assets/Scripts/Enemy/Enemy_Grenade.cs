@@ -36,14 +36,20 @@ public class Enemy_Grenade : MonoBehaviour
 
         foreach (Collider hit in colliders)
         {
-            if (IsTargetValid(hit) == false)
-                continue;
+            IDamagable damagable = hit.GetComponent<IDamagable>();
 
-            GameObject rootEntity = hit.transform.root.gameObject;
-            if (uniqeEntities.Add(rootEntity) == false)
-                continue;
+            if (damagable != null)
+            {
+                if (IsTargetValid(hit) == false)
+                    continue;
 
-            ApplyDamageTo(hit);
+                GameObject rootEntity = hit.transform.root.gameObject;
+                if (uniqeEntities.Add(rootEntity) == false)
+                    continue;
+
+                damagable.TakeDamage();
+            }
+
             ApplyPhysicalForceTo(hit);
         }
     }
@@ -54,12 +60,6 @@ public class Enemy_Grenade : MonoBehaviour
 
         if (rb != null)
             rb.AddExplosionForce(impactPower, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse); // ForceMode.Impulse: how far object will fly when it get explosion based on it's mass
-    }
-
-    private static void ApplyDamageTo(Collider hit)
-    {
-        IDamagable damagable = hit.GetComponent<IDamagable>();
-        damagable?.TakeDamage();
     }
 
     private void PlayExplosionFx()
