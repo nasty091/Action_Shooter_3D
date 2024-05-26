@@ -12,39 +12,84 @@ public class Enemy_Grenade : MonoBehaviour
     private Rigidbody rb;
     private float timer;
 
+    private LayerMask allyLayerMask;
+    private bool canExplode = true;
+
     private void Awake() => rb = GetComponent<Rigidbody>();
 
     private void Update()
     {
         timer -= Time.deltaTime;
 
-        if (timer < 0)
+        if (timer < 0 && canExplode)
             Explode();
     }
 
     private void Explode()
     {
-        GameObject newFx = ObjectPool.instance.GetObject(explosionFx, transform);
+        canExplode = false;
 
-        ObjectPool.instance.ReturnObject(newFx, 1);
-        ObjectPool.instance.ReturnObject(gameObject);
+        PlayExplosionFx();
 
+        HashSet<GameObject> uniqeEntities = new HashSet<GameObject>();
         Collider[] colliders = Physics.OverlapSphere(transform.position, impactRadius);
 
-        foreach(Collider hit in colliders)
+        foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (IsTargetValid(hit) == false)
+                continue;
 
-            if (rb != null)
-                rb.AddExplosionForce(impactPower, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse); // ForceMode.Impulse: how far object will fly when it get explosion based on it's mass
+            GameObject rootEntity = hit.transform.root.gameObject;
+            if (uniqeEntities.Add(rootEntity) == false)
+                continue;
+
+            ApplyDamageTo(hit);
+            ApplyPhysicalForceTo(hit);
         }
     }
 
-    public void SetupGrenade(Vector3 target, float timeToTarget, float countdown, float impactPower)
+    private void ApplyPhysicalForceTo(Collider hit)
     {
+        Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+        if (rb != null)
+            rb.AddExplosionForce(impactPower, transform.position, impactRadius, upwardsMultiplier, ForceMode.Impulse); // ForceMode.Impulse: how far object will fly when it get explosion based on it's mass
+    }
+
+    private static void ApplyDamageTo(Collider hit)
+    {
+        IDamagable damagable = hit.GetComponent<IDamagable>();
+        damagable?.TakeDamage();
+    }
+
+    private void PlayExplosionFx()
+    {
+        GameObject newFx = ObjectPool.instance.GetObject(explosionFx, transform);
+        ObjectPool.instance.ReturnObject(newFx, 1);
+        ObjectPool.instance.ReturnObject(gameObject);
+    }
+
+    public void SetupGrenade(LayerMask allyLayerMask, Vector3 target, float timeToTarget, float countdown, float impactPower)
+    {
+        canExplode = true;
+
+        this.allyLayerMask = allyLayerMask;
         rb.velocity = CalculateLaunchVelocity(target, timeToTarget);
         timer = countdown + timeToTarget;
         this.impactPower = impactPower;
+    }
+
+    private bool IsTargetValid(Collider collider)
+    {
+        //If friendly fire is enabled, all colliders are valid targets
+        if (GameManager.instance.friendlyFire)
+            return true;
+
+        //If collider is on allyLater, target is not valid
+        if((allyLayerMask.value & (1 << collider.gameObject.layer)) > 0)
+            return false;
+
+        return true;
     }
 
     private Vector3 CalculateLaunchVelocity(Vector3 target, float timeToTarget)

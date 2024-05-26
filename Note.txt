@@ -81,3 +81,6 @@ _Lúc enemy chết (isKinematic = false): enemy chỉ chịu tác động lực 
 
 
 _public List<Cover> allCovers = new List<Cover>(); có thể bỏ phần = new List<Cover>() vì List sẽ được từ động khởi tạo
+
+
+_HashSet<> giống List nhưng chỉ chứa phần tử độc nhất, nó đảm bảo không có 2 element giống nhau.
