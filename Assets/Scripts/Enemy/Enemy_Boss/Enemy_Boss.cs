@@ -25,6 +25,7 @@ public class Enemy_Boss : Enemy
 
     [Header("Hammer")]
     public GameObject activationPrefab;
+    [SerializeField] private float hammerCheckRadius;
 
 
     [Header("Jump attack")]
@@ -130,6 +131,8 @@ public class Enemy_Boss : Enemy
         GameObject newActivation = ObjectPool.instance.GetObject(activationPrefab, impactPoint);
 
         ObjectPool.instance.ReturnObject(newActivation, 1);
+
+        MassDamage(damagePoints[0].position, hammerCheckRadius);
     }
 
     public bool CanDoAbility()
@@ -255,6 +258,9 @@ public class Enemy_Boss : Enemy
             {
                 Gizmos.DrawWireSphere(damagePoint.position, attackCheckRadius);
             }
+
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(damagePoints[0].position, hammerCheckRadius);
         }
     }
 }
