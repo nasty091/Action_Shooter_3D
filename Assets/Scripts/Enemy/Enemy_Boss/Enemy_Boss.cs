@@ -36,9 +36,13 @@ public class Enemy_Boss : Enemy
     public float impactPower = 5; // how far (X and Z axis) object will fly when it get explosion
     public Transform impactPoint;
     [SerializeField] private float upforceMultiplier = 10;// how high (Y axis) object will fly when it get explosion
-
     [Space]
     [SerializeField] private LayerMask whatIsIgnore;
+
+    [Header("Attack")]
+    [SerializeField] private Transform[] damagePoints;
+    [SerializeField] private float attackCheckRadius;
+    [SerializeField] private GameObject meleeAttackFx;
 
     public IdleState_Boss idleState {  get; private set; }
     public MoveState_Boss moveState { get; private set; }
@@ -78,6 +82,8 @@ public class Enemy_Boss : Enemy
 
         if(ShouldEnterBattleMode()) 
             EnterBattleMode();
+
+        MeleeAttackCheck(damagePoints, attackCheckRadius, meleeAttackFx);
     }
 
     public override void Die()
@@ -210,13 +216,21 @@ public class Enemy_Boss : Enemy
             Gizmos.DrawLine(myPos, playerPos);
         }
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, minJumpDistanceRequired);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, minAbilityDistance);
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, impactRadius);
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, minAbilityDistance);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, minJumpDistanceRequired);
+
+        if(damagePoints.Length > 0)
+        {
+            foreach(var damagePoint in damagePoints)
+            {
+                Gizmos.DrawWireSphere(damagePoint.position, attackCheckRadius);
+            }
+        }
     }
 }

@@ -36,11 +36,11 @@ public class Enemy_AnimationEvents : MonoBehaviour
 
     public void BeginMeleeAttackCheck()
     {
-        enemyMelee?.EnableAttackCheck(true);
+        enemy?.EnableMeleeAttackCheck(true);
     }
 
     public void FinishMeleeAttackCheck()
     {
-        enemyMelee?.EnableAttackCheck(false);
+        enemy?.EnableMeleeAttackCheck(false);
     }
 }
