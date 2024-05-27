@@ -156,15 +156,38 @@ public class Enemy_Boss : Enemy
         if (impactPoint == null)
             impactPoint = transform;
 
-        Collider[] colliders = Physics.OverlapSphere(impactPoint.position, impactRadius);
+        MassDamage(impactPoint.position, impactRadius);
+    }
+
+    private void MassDamage(Vector3 impactPoint, float impactRadius)
+    {
+        HashSet<GameObject> uniqeEntites = new HashSet<GameObject>();
+        Collider[] colliders = Physics.OverlapSphere(impactPoint, impactRadius, ~whatIsAlly);
 
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            IDamagable damagable = hit.GetComponent<IDamagable>();
 
-            if (rb != null)
-                rb.AddExplosionForce(impactPower, transform.position, impactRadius, upforceMultiplier, ForceMode.Impulse); // ForceMode.Impulse: how far object will fly when it get explosion based on it's mass
+            if (damagable != null)
+            {
+                GameObject rootEntity = hit.transform.root.gameObject;
+
+                if (uniqeEntites.Add(rootEntity) == false)
+                    continue;
+
+                damagable.TakeDamage();
+            }
+
+            ApplyPhysicalForceTo(impactPoint, impactRadius, hit);
         }
+    }
+
+    private void ApplyPhysicalForceTo(Vector3 impactPoint, float impactRadius, Collider hit)
+    {
+        Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+        if (rb != null)
+            rb.AddExplosionForce(impactPower, impactPoint, impactRadius, upforceMultiplier, ForceMode.Impulse); // ForceMode.Impulse: how far object will fly when it get explosion based on it's mass
     }
 
     public bool CanDoJumpAttack()
@@ -190,7 +213,7 @@ public class Enemy_Boss : Enemy
         Vector3 playerPos = player.position + Vector3.up;
         Vector3 directionToPlayer = (playerPos - myPos).normalized;
 
-        if(Physics.Raycast(myPos, directionToPlayer, out RaycastHit hit, 100, ~whatIsIgnore))
+        if(Physics.Raycast(myPos, directionToPlayer, out RaycastHit hit, 1000, ~whatIsIgnore))
         {
             if(hit.transform == player || hit.transform.parent == player) 
                 return true;

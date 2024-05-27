@@ -76,8 +76,8 @@ public class MoveState_Boss : EnemyState
     private void PerformRandomAction()
     {
         actionTimer = enemy.actionCooldown;
-
-        if (Random.Range(0, 2) == 0) // rolls number from 0 to 1
+        int randomNumer = Random.Range(0, 2);
+        if (randomNumer == 0) // rolls number from 0 to 1
         {
             TryAbility();
         }
