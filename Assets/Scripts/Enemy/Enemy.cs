@@ -83,9 +83,9 @@ public class Enemy : MonoBehaviour
         inBattleMode = true;
     }
 
-    public virtual void GetHit()
+    public virtual void GetHit(int damage)
     {
-        health.ReduceHealth();
+        health.ReduceHealth(damage);
 
         if (health.ShouldDie())
             Die();
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius, GameObject fx)
+    public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius, GameObject fx, int damage)
     {
         if (isMeleeAttackReady == false)
             return;
@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
 
                 if (damagable != null)
                 {
-                    damagable?.TakeDamage();
+                    damagable?.TakeDamage(damage);
                     isMeleeAttackReady = false;
                     GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private int bulletDamage;
     private float impactForce;
 
     private BoxCollider cd;
@@ -26,10 +27,11 @@ public class Bullet : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
     }
 
-    public void BulletSetup(LayerMask allyLayerMask, float flyDistance = 100, float impactForce = 100)
+    public void BulletSetup(LayerMask allyLayerMask, int bulletDamage, float flyDistance = 100, float impactForce = 100)
     {
         this.allyLayerMask = allyLayerMask;
         this.impactForce = impactForce;
+        this.bulletDamage = bulletDamage;
 
         bulletDisabled = false;
         cd.enabled = true;
@@ -89,7 +91,7 @@ public class Bullet : MonoBehaviour
         ReturnBulletToPool();
 
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-        damagable?.TakeDamage();
+        damagable?.TakeDamage(bulletDamage);
 
         ApplyBulletImpactToEnemy(collision);
     }

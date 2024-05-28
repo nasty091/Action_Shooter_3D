@@ -12,10 +12,13 @@ public class Enemy_Axe : MonoBehaviour
     private float rotationSpeed;
     private float timer = 1;
 
-    public void AxeSetup(float flySpeed, Transform player, float timer)
+    private int damage;
+
+    public void AxeSetup(float flySpeed, Transform player, float timer, int damage)
     {
         rotationSpeed = 1600;
 
+        this.damage = damage;
         this.flySpeed = flySpeed;
         this.player = player;
         this.timer = timer;
@@ -40,7 +43,7 @@ public class Enemy_Axe : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-        damagable?.TakeDamage();
+        damagable?.TakeDamage(damage);
 
         GameObject newFx = ObjectPool.instance.GetObject(impactFx, transform);
 

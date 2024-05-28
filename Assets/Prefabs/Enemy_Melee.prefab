@@ -1121,11 +1121,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4257356025098655984}
+  - component: {fileID: 7410959861792092314}
   - component: {fileID: 8040955097848914006}
   - component: {fileID: 1509887850102186185}
   - component: {fileID: 3185185239495193342}
   - component: {fileID: 2468427892778130428}
-  - component: {fileID: 7410959861792092314}
   m_Layer: 11
   m_Name: Enemy_Melee
   m_TagString: Untagged
@@ -1151,6 +1151,20 @@ Transform:
   - {fileID: 2605986940344710449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7410959861792092314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286085636913828728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!114 &8040955097848914006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,12 +1198,14 @@ MonoBehaviour:
   shieldDurability: 20
   shieldTransform: {fileID: 3912352375569720544}
   dodgeCooldown: 5
+  axeDamage: 0
   axePrefab: {fileID: 8961423484665760033, guid: d082f0fcec3133b43b1ad5419a7f7d8c, type: 3}
   axeFlySpeed: 6
   axeAimTimer: 1
   axeThrowCooldown: 0
   axeStartPoint: {fileID: 2605986940344710449}
   attackData:
+    attackDamage: 0
     attackName: 
     attackRange: 1.5
     moveSpeed: 0
@@ -1197,13 +1213,15 @@ MonoBehaviour:
     animationSpeed: 1.4
     attackType: 0
   attackList:
-  - attackName: Sword spin attack
+  - attackDamage: 25
+    attackName: Sword spin attack
     attackRange: 1.5
     moveSpeed: 2.5
     attackIndex: 0
     animationSpeed: 2
     attackType: 1
-  - attackName: Sword slash
+  - attackDamage: 21
+    attackName: Sword slash
     attackRange: 1
     moveSpeed: 0
     attackIndex: 1
@@ -1270,20 +1288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ragdollParent: {fileID: 8153848750860168357}
---- !u!114 &7410959861792092314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3286085636913828728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 0
 --- !u!1 &3460032134983344099
 GameObject:
   m_ObjectHideFlags: 0

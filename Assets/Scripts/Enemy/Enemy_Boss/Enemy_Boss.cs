@@ -18,17 +18,20 @@ public class Enemy_Boss : Enemy
     private float lastTimeUsedAbility;
 
     [Header("Flamethrower")]
+    public int flameDamage;
     public float flamwDamageCooldown;
     public ParticleSystem flamethrower;
     public float flamethrowDuration;
     public bool flamethrowActive {  get; private set; }
 
     [Header("Hammer")]
+    public int hammerActiveDamage;
     public GameObject activationPrefab;
     [SerializeField] private float hammerCheckRadius;
 
 
     [Header("Jump attack")]
+    public int jumpAttackDamage;
     public float jumpAttackCooldown = 10;
     private float lastTimeJumped;
     public float travelTimeToTarget = 1;
@@ -42,6 +45,7 @@ public class Enemy_Boss : Enemy
     [SerializeField] private LayerMask whatIsIgnore;
 
     [Header("Attack")]
+    [SerializeField] private int meleeAttackDamage;
     [SerializeField] private Transform[] damagePoints;
     [SerializeField] private float attackCheckRadius;
     [SerializeField] private GameObject meleeAttackFx;
@@ -85,7 +89,7 @@ public class Enemy_Boss : Enemy
         if(ShouldEnterBattleMode()) 
             EnterBattleMode();
 
-        MeleeAttackCheck(damagePoints, attackCheckRadius, meleeAttackFx);
+        MeleeAttackCheck(damagePoints, attackCheckRadius, meleeAttackFx, meleeAttackDamage);
     }
 
     public override void Die()
@@ -132,7 +136,7 @@ public class Enemy_Boss : Enemy
 
         ObjectPool.instance.ReturnObject(newActivation, 1);
 
-        MassDamage(damagePoints[0].position, hammerCheckRadius);
+        MassDamage(damagePoints[0].position, hammerCheckRadius, hammerActiveDamage);
     }
 
     public bool CanDoAbility()
@@ -159,10 +163,10 @@ public class Enemy_Boss : Enemy
         if (impactPoint == null)
             impactPoint = transform;
 
-        MassDamage(impactPoint.position, impactRadius);
+        MassDamage(impactPoint.position, impactRadius, jumpAttackDamage);
     }
 
-    private void MassDamage(Vector3 impactPoint, float impactRadius)
+    private void MassDamage(Vector3 impactPoint, float impactRadius, int damage)
     {
         HashSet<GameObject> uniqeEntites = new HashSet<GameObject>();
         Collider[] colliders = Physics.OverlapSphere(impactPoint, impactRadius, ~whatIsAlly);
@@ -178,7 +182,7 @@ public class Enemy_Boss : Enemy
                 if (uniqeEntites.Add(rootEntity) == false)
                     continue;
 
-                damagable.TakeDamage();
+                damagable.TakeDamage(damage);
             }
 
             ApplyPhysicalForceTo(impactPoint, impactRadius, hit);
