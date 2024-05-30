@@ -10153,6 +10153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &3432270401779337287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3432270400322829208, guid: e617c0d5cd6b2cc45b8fba5307df193b, type: 3}
@@ -10795,6 +10796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &4157123408757036391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11061,6 +11063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!4 &4438541688209965844
 Transform:
   m_ObjectHideFlags: 0
@@ -11183,6 +11186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!4 &4464861596195134009
 Transform:
   m_ObjectHideFlags: 0
@@ -11664,6 +11668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &5058902807592649614
 GameObject:
   m_ObjectHideFlags: 0
@@ -12315,6 +12320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!4 &5763091596517623935
 Transform:
   m_ObjectHideFlags: 0
@@ -12439,6 +12445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!33 &5763382366110163309
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13186,6 +13193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &6582150172666891616
 GameObject:
   m_ObjectHideFlags: 0
@@ -13630,6 +13638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!23 &7179140335573654377
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14306,6 +14315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!4 &7983194688656471363
 Transform:
   m_ObjectHideFlags: 0
@@ -14697,6 +14707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da8117790dbc2e42a9ebac76b4148e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!4 &8775674554210330703
 Transform:
   m_ObjectHideFlags: 0

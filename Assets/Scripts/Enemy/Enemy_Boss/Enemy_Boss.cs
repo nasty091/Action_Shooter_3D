@@ -186,6 +186,7 @@ public class Enemy_Boss : Enemy
             }
 
             ApplyPhysicalForceTo(impactPoint, impactRadius, hit);
+            //return; // To hit only one collider
         }
     }
 

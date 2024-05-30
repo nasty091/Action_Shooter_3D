@@ -998,6 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &1067269729930212812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +1999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &2247198760878486584
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,6 +3052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &2914221189478721213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5032,6 +5035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &4863643145392580130
 GameObject:
   m_ObjectHideFlags: 0
@@ -6162,6 +6166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &6622447681879228690
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,6 +6311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &6649994437276732824
 GameObject:
   m_ObjectHideFlags: 0
@@ -7153,6 +7159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1.5
 --- !u!1 &7624967613041621585
 GameObject:
   m_ObjectHideFlags: 0
@@ -8159,6 +8166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &8569659959003192420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8303,6 +8311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &8589160678644048255
 GameObject:
   m_ObjectHideFlags: 0
@@ -8947,6 +8956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824dbb5801fe1a944a62ed238cbc445f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!1 &9043149543582807887
 GameObject:
   m_ObjectHideFlags: 0
