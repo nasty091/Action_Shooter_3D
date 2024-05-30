@@ -1913,10 +1913,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Melee
       objectReference: {fileID: 0}
-    - target: {fileID: 3286085636913828728, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0024948
@@ -1956,10 +1952,6 @@ PrefabInstance:
     - target: {fileID: 4257356025098655984, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040955097848914006, guid: 09ca6107f76027d49b10328a9c4afb33, type: 3}
-      propertyPath: runSpeed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10845,9 +10837,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.07
-  m_Height: 0.3204272
+  m_Height: 0.29617602
   m_Direction: 1
-  m_Center: {x: 0, y: 0.1602136, z: 0}
+  m_Center: {x: -0.000000026354263, y: 0.14808765, z: 0.000000032841825}
 --- !u!114 &4130983298890711803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11234,7 +11226,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.08
   m_Center: {x: 0, y: 0.09100207, z: 0.04}
 --- !u!114 &4438541688209965848
 MonoBehaviour:
@@ -12489,9 +12481,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.07
-  m_Height: 0.32008123
+  m_Height: 0.3018457
   m_Direction: 1
-  m_Center: {x: 0, y: 0.16004062, z: 0}
+  m_Center: {x: 0.0000000012001127, y: 0.15092239, z: -0.00000005705632}
 --- !u!114 &5763091596517623939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13681,8 +13673,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.17499822, y: 0.116895825, z: 0.18115948}
-  m_Center: {x: -0.0026085516, y: 0.016732601, z: -0.009416424}
+  m_Size: {x: 0.17499822, y: 0.06716292, z: 0.18115948}
+  m_Center: {x: -0.0026085516, y: 0.0061298306, z: -0.009416424}
 --- !u!114 &7168592822479628409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14748,8 +14740,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23793766, y: 0.28611696, z: 0.2019172}
-  m_Center: {x: -0.0011278363, y: 0.14305922, z: 0.043589994}
+  m_Size: {x: 0.20992263, y: 0.28611696, z: 0.2019172}
+  m_Center: {x: -0.0021139279, y: 0.14305964, z: 0.043589994}
 --- !u!114 &8775152010051459787
 MonoBehaviour:
   m_ObjectHideFlags: 0

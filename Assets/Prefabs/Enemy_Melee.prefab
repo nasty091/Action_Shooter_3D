@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 80
   currentHealth: 0
 --- !u!114 &8040955097848914006
 MonoBehaviour:
@@ -1187,22 +1187,22 @@ MonoBehaviour:
   idleTime: 2
   aggresionRange: 2
   walkSpeed: 1.5
-  runSpeed: 3
+  runSpeed: 4
   turnSpeed: 5
   patrolPoints:
   - {fileID: 2252161987150252954}
   - {fileID: 7585882433445218056}
   - {fileID: 1437027443998623017}
-  meleeType: 0
+  meleeType: 3
   weaponType: 0
-  shieldDurability: 20
+  shieldDurability: 400
   shieldTransform: {fileID: 3912352375569720544}
   dodgeCooldown: 5
-  axeDamage: 0
+  axeDamage: 70
   axePrefab: {fileID: 8961423484665760033, guid: d082f0fcec3133b43b1ad5419a7f7d8c, type: 3}
   axeFlySpeed: 6
-  axeAimTimer: 1
-  axeThrowCooldown: 0
+  axeAimTimer: 1.25
+  axeThrowCooldown: 10
   axeStartPoint: {fileID: 2605986940344710449}
   attackData:
     attackDamage: 0
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   - attackDamage: 25
     attackName: Sword spin attack
     attackRange: 1.5
-    moveSpeed: 2.5
+    moveSpeed: 3.5
     attackIndex: 0
     animationSpeed: 2
     attackType: 1
@@ -1225,7 +1225,7 @@ MonoBehaviour:
     attackRange: 1
     moveSpeed: 0
     attackIndex: 1
-    animationSpeed: 2
+    animationSpeed: 1.7
     attackType: 0
   meleeAttackFx: {fileID: 1108487948572216230, guid: d8f385aa0097e7f419ea8ed43281a1e9, type: 3}
 --- !u!195 &1509887850102186185
@@ -2101,9 +2101,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
-  m_Height: 0.31971768
+  m_Height: 0.27662498
   m_Direction: 1
-  m_Center: {x: 0, y: 0.15985884, z: 0}
+  m_Center: {x: 0.0000000070129853, y: 0.16733132, z: -9.062603e-10}
 --- !u!54 &8054497808657043877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2779,9 +2779,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
-  m_Height: 0.31993553
+  m_Height: 0.27098942
   m_Direction: 1
-  m_Center: {x: 0, y: 0.15996777, z: 0}
+  m_Center: {x: -0.0000000010778298, y: 0.16236597, z: -0.000000045081286}
 --- !u!54 &2909942844561370170
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4770,7 +4770,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.119923905
+  m_Radius: 0.1
   m_Center: {x: 0, y: 0.06763338, z: 0.0070821336}
 --- !u!54 &3593477954356966785
 Rigidbody:
@@ -4977,9 +4977,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
-  m_Height: 0.21807654
+  m_Height: 0.20559436
   m_Direction: 1
-  m_Center: {x: -0.000000014514681, y: 0.06995802, z: 0.000000036870148}
+  m_Center: {x: -0.00000001516717, y: 0.063716896, z: 0.00000004698342}
 --- !u!54 &3493376242013921449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5217,9 +5217,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.05
-  m_Height: 0.20976755
+  m_Height: 0.19634785
   m_Direction: 1
-  m_Center: {x: -0.0000000016512778, y: 0.074342705, z: 0.000000075704875}
+  m_Center: {x: -0.0000000029733986, y: 0.067632884, z: 0.00000012650443}
 --- !u!54 &458370076130455313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6145,8 +6145,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.26629025, y: 0.3005825, z: 0.18647355}
-  m_Center: {x: -0.004761249, y: 0.13396296, z: -0.00619612}
+  m_Size: {x: 0.2033124, y: 0.3005825, z: 0.18647355}
+  m_Center: {x: -0.0011863708, y: 0.13396296, z: -0.00619612}
 --- !u!54 &3483862393882995749
 Rigidbody:
   m_ObjectHideFlags: 0
