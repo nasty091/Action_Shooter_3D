@@ -7913,7 +7913,7 @@ MonoBehaviour:
   idleTime: 3
   aggresionRange: 15
   walkSpeed: 1.25
-  runSpeed: 3
+  runSpeed: 4
   turnSpeed: 8
   patrolPoints:
   - {fileID: 4484649249456109130}
@@ -7924,13 +7924,16 @@ MonoBehaviour:
   attackRange: 1.6
   minAbilityDistance: 3
   abilityCooldown: 1
+  flameDamage: 0
   flamwDamageCooldown: 0
   flamethrower: {fileID: 5226990753229051064}
   flamethrowDuration: 3
+  hammerActiveDamage: 25
   activationPrefab: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98, type: 3}
-  hammerCheckRadius: 1.6
+  hammerCheckRadius: 1.25
+  jumpAttackDamage: 25
   jumpAttackCooldown: 55555
-  travelTimeToTarget: 1
+  travelTimeToTarget: 0.6
   minJumpDistanceRequired: 5
   impactRadius: 2.5
   impactPower: 15
@@ -7939,6 +7942,7 @@ MonoBehaviour:
   whatIsIgnore:
     serializedVersion: 2
     m_Bits: 6144
+  meleeAttackDamage: 40
   damagePoints:
   - {fileID: 4541306112807147913}
   attackCheckRadius: 0.6
@@ -7986,7 +7990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 2000
   currentHealth: 0
 --- !u!1 &5573324828730735147
 GameObject:

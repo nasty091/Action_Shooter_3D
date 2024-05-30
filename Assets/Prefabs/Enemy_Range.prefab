@@ -2053,6 +2053,9 @@ MonoBehaviour:
   whatIsAlly:
     serializedVersion: 2
     m_Bits: 2048
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
   healthPoints: 10
   idleTime: 1.5
   aggresionRange: 10
@@ -2066,11 +2069,12 @@ MonoBehaviour:
   coverPerk: 0
   unstoppablePerk: 0
   grenadePerk: 0
+  grenadeDamage: 50
   grenadePrefab: {fileID: 493710386196750250, guid: 64ca9a29253ae4a44bb0356a1cfe3419, type: 3}
   impactPower: 5
   explosionTimer: 0.75
   timeToTarget: 1.2
-  grenadeCooldown: 10
+  grenadeCooldown: 1
   grenadeStartPoint: {fileID: 1711176787946996434}
   advanceSpeed: 3
   advanceStoppingDistance: 8
