@@ -57,6 +57,12 @@ public class LevelGenerator : MonoBehaviour
         LevelPart levelPartScript = newPart.GetComponent<LevelPart>();
 
         levelPartScript.SnapAlignPartTo(nextSnapPoint);
+
+        if (levelPartScript.IntersectionDetected())
+        {
+            Debug.Log("intersection between level parts");
+        }
+
         nextSnapPoint = levelPartScript.GetExitPoint();
     }
 

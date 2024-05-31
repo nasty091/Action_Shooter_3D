@@ -4,6 +4,32 @@ using UnityEngine;
 
 public class LevelPart : MonoBehaviour
 {
+    [Header("Intersection check")]
+    [SerializeField] private LayerMask intersectionLayer;
+    [SerializeField] private Collider[] intersectionCheckColliders;
+    [SerializeField] private Transform interactionCheckParent;
+
+    public bool IntersectionDetected()
+    {
+        Physics.SyncTransforms(); // Physic update can be called after update so this code will Perform physic check immediately
+    
+        foreach (var colliders in intersectionCheckColliders)
+        {
+            Collider[] hitColliders = 
+                Physics.OverlapBox(colliders.bounds.center, colliders.bounds.extents, Quaternion.identity, intersectionLayer);
+            
+            foreach(var hit in hitColliders)
+            {
+                IntersectionCheck intersectionCheck = hit.GetComponentInParent<IntersectionCheck>();
+
+                if (intersectionCheck != null && interactionCheckParent != intersectionCheck.transform)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     public void SnapAlignPartTo(SnapPoint targetSnapPoint)
     {
         SnapPoint entrancePoint = GetEntrancePoint();

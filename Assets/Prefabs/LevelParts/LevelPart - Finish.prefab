@@ -272,6 +272,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7371240ecfbaf84081be2ef7a2b14e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intersectionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  intersectionCheckColliders: []
+  interactionCheckParent: {fileID: 0}
 --- !u!1 &8675248896420310415
 GameObject:
   m_ObjectHideFlags: 0

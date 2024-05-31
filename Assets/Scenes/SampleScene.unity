@@ -4200,10 +4200,11 @@ MonoBehaviour:
   lastLevelPart: {fileID: 3964396078071622170, guid: 981534b63560b1647afbdcb82cd5bb9f, type: 3}
   levelParts:
   - {fileID: 7662311772590423218, guid: 22088c5e1b0657a4fb3a7a7a7817e128, type: 3}
-  - {fileID: 8706752983414088278, guid: 1bacb3c421aa9f2409d42d6c007458ad, type: 3}
-  - {fileID: 8706752983414088278, guid: 1bacb3c421aa9f2409d42d6c007458ad, type: 3}
+  - {fileID: 7662311772590423218, guid: 22088c5e1b0657a4fb3a7a7a7817e128, type: 3}
+  - {fileID: 7662311772590423218, guid: 22088c5e1b0657a4fb3a7a7a7817e128, type: 3}
+  - {fileID: 7662311772590423218, guid: 22088c5e1b0657a4fb3a7a7a7817e128, type: 3}
   nextSnapPoint: {fileID: 772214064}
-  generationCooldown: 0
+  generationCooldown: 0.25
 --- !u!4 &1155789031
 Transform:
   m_ObjectHideFlags: 0
