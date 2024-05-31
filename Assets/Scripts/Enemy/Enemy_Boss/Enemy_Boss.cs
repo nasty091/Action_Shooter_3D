@@ -223,7 +223,7 @@ public class Enemy_Boss : Enemy
 
         if(Physics.Raycast(myPos, directionToPlayer, out RaycastHit hit, 1000, ~whatIsIgnore))
         {
-            if(hit.transform == player || hit.transform.parent == player) 
+            if(hit.transform.root == player.root)
                 return true;
         }
 

@@ -293,7 +293,7 @@ public class Enemy_Range : Enemy
 
         if(Physics.Raycast(myPosition, directionToPlayer, out RaycastHit hit, Mathf.Infinity, ~whatToIgnore)) //~whatToIgnore means what layer will be ignored
         {
-            if(hit.transform == player)
+            if(hit.transform.root == player.root)
             {
                 UpdateAimPosition();
                 return true;
