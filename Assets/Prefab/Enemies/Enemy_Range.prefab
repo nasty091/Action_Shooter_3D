@@ -2009,10 +2009,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3976623202635934233}
+  - component: {fileID: 6524540395458887555}
   - component: {fileID: 3767167480493122969}
   - component: {fileID: 8446911979792677165}
   - component: {fileID: 4470211502395750032}
-  - component: {fileID: 6524540395458887555}
   - component: {fileID: 1906103412338104034}
   m_Layer: 11
   m_Name: Enemy_Range
@@ -2040,6 +2040,20 @@ Transform:
   - {fileID: 5606183986788763807}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6524540395458887555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247198760878486584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!114 &3767167480493122969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2057,8 +2071,7 @@ MonoBehaviour:
     m_Bits: 2048
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
-  healthPoints: 10
+    m_Bits: 256
   idleTime: 1.5
   aggresionRange: 10
   walkSpeed: 1.5
@@ -2068,6 +2081,7 @@ MonoBehaviour:
   - {fileID: 3176478279417984021}
   - {fileID: 6826388726817071359}
   - {fileID: 8705960406954946912}
+  weaponType: 0
   coverPerk: 0
   unstoppablePerk: 0
   grenadePerk: 0
@@ -2084,7 +2098,6 @@ MonoBehaviour:
   minCoverTime: 4
   safeDistance: 2
   attackDelay: 1
-  weaponType: 0
   weaponData: {fileID: 0}
   gunPoint: {fileID: 8320121689586521723}
   weaponHolder: {fileID: 6118806907604165302}
@@ -2138,7 +2151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grenadeModel: {fileID: 3794144118099867900}
   corruptionCrystals: []
-  corruptionAmount: 0
+  corruptionAmount: 7
   colorTextures:
   - {fileID: 2800000, guid: 51acf209e21122b43bbb623ff0adaa32, type: 3}
   - {fileID: 2800000, guid: 8da0980ef58bd0e42b8433444f92a758, type: 3}
@@ -2149,20 +2162,6 @@ MonoBehaviour:
   leftElbowIK: {fileID: 4683930892960084817}
   leftHandIKConstraint: {fileID: 3014106425955270454}
   weaponAimConstraint: {fileID: 3208426724092547303}
---- !u!114 &6524540395458887555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247198760878486584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  currentHealth: 0
 --- !u!114 &1906103412338104034
 MonoBehaviour:
   m_ObjectHideFlags: 0

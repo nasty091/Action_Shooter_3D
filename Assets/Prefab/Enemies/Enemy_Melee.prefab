@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1dfb9738365ac42b0d6a03bc00758c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 80
+  maxHealth: 100
   currentHealth: 0
 --- !u!114 &8040955097848914006
 MonoBehaviour:
@@ -1184,9 +1184,8 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  healthPoints: 20
-  idleTime: 2
-  aggresionRange: 2
+  idleTime: 60
+  aggresionRange: 10
   walkSpeed: 1.5
   runSpeed: 4
   turnSpeed: 5
