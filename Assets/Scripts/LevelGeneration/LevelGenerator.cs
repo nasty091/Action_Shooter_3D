@@ -6,8 +6,10 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Transform lastLevelPart;
     [SerializeField] private List<Transform> levelParts;
     private List<Transform> currentLevelParts;
-    [SerializeField] private SnapPoint nextSnapPoint;
+    private List<Transform> generatedLevelParts = new List<Transform>();
 
+    [SerializeField] private SnapPoint nextSnapPoint;
+    private SnapPoint defaultSnapPoint;
 
     [Space]
     [SerializeField] private float generationCooldown;
@@ -16,7 +18,8 @@ public class LevelGenerator : MonoBehaviour
 
     private void Start()
     {
-        currentLevelParts = new List<Transform>(levelParts);
+        defaultSnapPoint = nextSnapPoint;
+        InitializeGeneration();
     }
 
     private void Update()
@@ -40,27 +43,53 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    [ContextMenu("Restart generation")]
+    private void InitializeGeneration()
+    {
+        nextSnapPoint = defaultSnapPoint;
+        generationOver = false;
+        currentLevelParts = new List<Transform>(levelParts);
+
+        DestroyOldLevelParts();
+    }
+
+    private void DestroyOldLevelParts()
+    {
+        foreach (Transform t in generatedLevelParts)
+        {
+            Destroy(t.gameObject);
+        }
+
+        generatedLevelParts = new List<Transform>();
+    }
+
     private void FinishGeneration()
     {
         generationOver = true;
 
-        Transform levelPart = Instantiate(lastLevelPart);
-        LevelPart levelPartScript = levelPart.GetComponent<LevelPart>();
-
-        levelPartScript.SnapAlignPartTo(nextSnapPoint);
+        GenerateNextLevelPart();
     }
 
     [ContextMenu("Create next level part")]
     private void GenerateNextLevelPart()
     {
-        Transform newPart = Instantiate(ChooseRandomPart());
+        Transform newPart = null;
+
+        if(generationOver)
+            newPart = Instantiate(lastLevelPart);
+        else
+            newPart = Instantiate(ChooseRandomPart());
+        
+        generatedLevelParts.Add(newPart);
+
         LevelPart levelPartScript = newPart.GetComponent<LevelPart>();
 
         levelPartScript.SnapAlignPartTo(nextSnapPoint);
 
         if (levelPartScript.IntersectionDetected())
         {
-            Debug.Log("intersection between level parts");
+            InitializeGeneration();
+            return;
         }
 
         nextSnapPoint = levelPartScript.GetExitPoint();
