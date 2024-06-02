@@ -9,6 +9,26 @@ public class LevelPart : MonoBehaviour
     [SerializeField] private Collider[] intersectionCheckColliders;
     [SerializeField] private Transform interactionCheckParent;
 
+    [ContextMenu("Set static to environment layer")]
+    private void AdjustLayerForStaticObjets()
+    {
+        foreach(Transform childTransform in transform.GetComponentsInChildren<Transform>())
+        {
+            if (childTransform.gameObject.isStatic)
+            {
+                childTransform.gameObject.layer = LayerMask.NameToLayer("Environment");
+            }
+        }
+    }
+
+    private void Start()
+    {
+        if(intersectionCheckColliders.Length <= 0)
+        {
+            intersectionCheckColliders = interactionCheckParent.GetComponentsInChildren<Collider>();
+        }
+    }
+
     public bool IntersectionDetected()
     {
         Physics.SyncTransforms(); // Physic update can be called after update so this code will Perform physic check immediately

@@ -85,14 +85,19 @@ _public List<Cover> allCovers = new List<Cover>(); có thể bỏ phần = new L
 
 _HashSet<> giống List nhưng chỉ chứa phần tử độc nhất, nó đảm bảo không có 2 element giống nhau.
 
+
 _OnCollisionEnter:
 +Mục đích: Được gọi khi một va chạm xảy ra giữa hai đối tượng với collider có thuộc tính isTrigger đặt thành false.
 +Yêu cầu: Ít nhất một trong hai đối tượng va chạm phải có thành phần Rigidbody và cả hai collider đều không được đặt thuộc tính isTrigger là true.
 +Chức năng: Phương thức này thường được sử dụng để xử lý các va chạm vật lý thực sự, nơi mà phản ứng vật lý (như đẩy lùi) là cần thiết.
 +Ví dụ: Khi một nhân vật đi vào tường hoặc khi một quả bóng va chạm với mặt đất
 
+
 _OnTriggerEnter:
 +Mục đích: Được gọi khi một collider với thuộc tính isTrigger là true đi vào một collider khác.
 +Yêu cầu: Ít nhất một trong hai collider phải có thuộc tính isTrigger đặt thành true, và ít nhất một trong hai đối tượng phải có thành phần Rigidbody.
 +Chức năng: Phương thức này thường được sử dụng để xử lý các sự kiện không yêu cầu phản ứng vật lý thực sự, như mở cửa khi một nhân vật đến gần hoặc thu thập vật phẩm.
 +Ví dụ: Khi một nhân vật đi vào vùng kích hoạt của một cửa để mở cửa tự động hoặc khi nhân vật chạm vào một vật phẩm để thu thập.
+
+
+_Khi bạn chọn một đối tượng và đánh dấu tùy chọn "Static" trong Inspector, bạn đang thông báo cho Unity rằng đối tượng này sẽ không thay đổi vị trí, quay hoặc tỷ lệ trong suốt quá trình chơi game. Điều này có thể có một số tác dụng quan trọng đối với hiệu suất và tính năng của game
