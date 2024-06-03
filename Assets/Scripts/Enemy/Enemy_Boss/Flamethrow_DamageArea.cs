@@ -13,25 +13,27 @@ public class Flamethrow_DamageArea : MonoBehaviour
     private void Awake()
     {
         enemy = GetComponentInParent<Enemy_Boss>();
-        damageCooldown = enemy.flamwDamageCooldown;
+        damageCooldown = enemy.flameDamageCooldown;
         flameDamage = enemy.flameDamage;
     }
 
-    private void OnTriggerStay(Collider other) // OnTriggerStay is called as long as object stays inside of the collider
+    private void OnTriggerStay(Collider other)
     {
-        if(enemy.flamethrowActive == false)
+        if (enemy.flamethrowActive == false)
             return;
 
         if (Time.time - lastTimeDamaged < damageCooldown)
             return;
 
+
         IDamagable damagable = other.GetComponent<IDamagable>();
 
-        if(damagable != null)
+        if (damagable != null)
         {
-            damagable?.TakeDamage(flameDamage);
-            lastTimeDamaged = Time.time; // Update the last time damage was applied
-            damageCooldown = enemy.flamwDamageCooldown; // For easier testing I'm updating cooldown everytime we damage enemy
+            damagable.TakeDamage(flameDamage);
+            lastTimeDamaged = Time.time; // Update the last tiem damage was applied
+            damageCooldown = enemy.flameDamageCooldown; // For easier testing I'm updating
+                                                        // cooldown everytime we damage enemy
         }
 
     }

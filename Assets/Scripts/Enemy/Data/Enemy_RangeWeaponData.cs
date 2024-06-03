@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(fileName = "New Weapon Data", menuName = "Enemy data/Range weapon Data")]
+
 public class Enemy_RangeWeaponData : ScriptableObject
 {
     [Header("Weapon details")]
     public Enemy_RangeWeaponType weaponType;
-    public float fireRate = 1; // bullets per second
+    public float fireRate = 1f; // bullets per second
 
     public int minBulletsPerAttack = 1;
     public int maxBulletsPerAttack = 1;
@@ -22,14 +24,14 @@ public class Enemy_RangeWeaponData : ScriptableObject
     public float weaponSpread = .1f;
 
     public int GetBulletsPerAttack() => Random.Range(minBulletsPerAttack, maxBulletsPerAttack + 1); // we do +1 because random.range max number is exclusive
-    public float GetWeaponCooldown() => Random.Range(minWeaponCooldown, maxWeaponCooldown + 1);
+    public float GetWeaponCooldown() => Random.Range(minWeaponCooldown,maxWeaponCooldown);
 
-    public Vector3 ApplyWeaponSpread(Vector3 oringinalDirection)
+    public Vector3 ApplyWeaponSpread(Vector3 originalDirection)
     {
-        float randomizedValue = Random.Range(-weaponSpread, weaponSpread);
-
+        float randomizedValue = Random.Range(-weaponSpread,weaponSpread);
         Quaternion spreadRotation = Quaternion.Euler(randomizedValue, randomizedValue / 2, randomizedValue);
 
-        return spreadRotation * oringinalDirection;
+
+        return spreadRotation * originalDirection;
     }
 }

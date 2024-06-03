@@ -33,8 +33,9 @@ public class DeadState_Range : EnemyState
     {
         base.Update();
 
-        // uncomment to disable interaction when enmey is dead
-        //DisableInteractionIfShould();
+
+        // Uncoment this if you wnat to disable interaction after death
+        DisableInteractionIfShould();
     }
 
     private void DisableInteractionIfShould()
@@ -43,7 +44,7 @@ public class DeadState_Range : EnemyState
         {
             interactionDisabled = true;
             enemy.ragdoll.RagdollActive(false);
-            enemy.ragdoll.ColliderActive(false);
+            enemy.ragdoll.CollidersActive(false);
         }
     }
 }

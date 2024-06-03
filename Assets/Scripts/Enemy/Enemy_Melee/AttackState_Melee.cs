@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class AttackState_Melee : EnemyState
@@ -9,7 +8,7 @@ public class AttackState_Melee : EnemyState
     private Vector3 attackDirection;
     private float attackMoveSpeed;
 
-    private const float MAX_ATTACK_DISTANCE = 50;
+    private const float MAX_ATTACK_DISTANCE = 50f;
 
     public AttackState_Melee(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -38,16 +37,16 @@ public class AttackState_Melee : EnemyState
     public override void Exit()
     {
         base.Exit();
-
         SetupNextAttack();
+
         enemy.visuals.EnableWeaponTrail(false);
     }
 
     private void SetupNextAttack()
     {
         int recoveryIndex = PlayerClose() ? 1 : 0;
-        enemy.anim.SetFloat("RecoveryIndex", recoveryIndex);
 
+        enemy.anim.SetFloat("RecoveryIndex", recoveryIndex);
         enemy.attackData = UpdatedAttackData();
     }
 
@@ -60,6 +59,7 @@ public class AttackState_Melee : EnemyState
             enemy.FaceTarget(enemy.player.position);
             attackDirection = enemy.transform.position + (enemy.transform.forward * MAX_ATTACK_DISTANCE);
         }
+        
 
         if (enemy.ManualMovementActive())
         {
@@ -67,9 +67,11 @@ public class AttackState_Melee : EnemyState
                 Vector3.MoveTowards(enemy.transform.position, attackDirection, attackMoveSpeed * Time.deltaTime);
         }
 
-        if (triggerCalled) 
-        { 
-            if(enemy.PlayerInAttackRange())
+        if (triggerCalled)
+        {
+            if (enemy.CanThrowAxe())
+                stateMachine.ChangeState(enemy.abilityState);
+            else if (enemy.PlayerInAttackRange())
                 stateMachine.ChangeState(enemy.recoveryState);
             else
                 stateMachine.ChangeState(enemy.chaseState);
@@ -82,11 +84,10 @@ public class AttackState_Melee : EnemyState
     {
         List<AttackData_EnemyMelee> validAttacks = new List<AttackData_EnemyMelee>(enemy.attackList);
 
-        if(PlayerClose())   
+        if (PlayerClose())
             validAttacks.RemoveAll(parameter => parameter.attackType == AttackType_Melee.Charge);
 
-        int random = Random.Range(0, validAttacks.Count);
-        
+        int random = Random.Range(0,validAttacks.Count);
         return validAttacks[random];
     }
 }

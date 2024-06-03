@@ -8,17 +8,18 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] private int poolSize = 10;
 
-    private Dictionary<GameObject, Queue<GameObject>> poolDictionary = new Dictionary<GameObject, Queue<GameObject>>();
+    private Dictionary<GameObject, Queue<GameObject>> poolDictionary = 
+        new Dictionary<GameObject, Queue<GameObject>>();
+
 
     [Header("To Initialize")]
     [SerializeField] private GameObject weaponPickup;
     [SerializeField] private GameObject ammoPickup;
-
     private void Awake()
     {
         if (instance == null)
             instance = this;
-        else
+        else 
             Destroy(gameObject);
     }
 
@@ -28,7 +29,7 @@ public class ObjectPool : MonoBehaviour
         InitializeNewPool(ammoPickup);
     }
 
-    public GameObject GetObject(GameObject prefab, Transform target)
+    public GameObject GetObject(GameObject prefab,Transform target)
     {
         if (poolDictionary.ContainsKey(prefab) == false)
         {
@@ -36,7 +37,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         if (poolDictionary[prefab].Count == 0)
-            CreateNewObject(prefab); //if objects of this type are in use, create new one
+            CreateNewObject(prefab); // if all objects of this type are in uise, create a new one.
 
         GameObject objectToGet = poolDictionary[prefab].Dequeue();
 
@@ -53,9 +54,9 @@ public class ObjectPool : MonoBehaviour
         StartCoroutine(DelayReturn(delay, objectToReturn));
     }
 
-    private IEnumerator DelayReturn(float delay, GameObject objectToReturn)
+    private IEnumerator DelayReturn(float delay,GameObject objectToReturn)
     {
-        yield return new WaitForSeconds(delay); 
+        yield return new WaitForSeconds(delay);
 
         ReturnToPool(objectToReturn);
     }
@@ -63,7 +64,7 @@ public class ObjectPool : MonoBehaviour
     private void ReturnToPool(GameObject objectToReturn)
     {
         GameObject originalPrefab = objectToReturn.GetComponent<PooledObject>().originalPrefab;
-        
+
         objectToReturn.SetActive(false);
         objectToReturn.transform.parent = transform;
         
@@ -74,7 +75,7 @@ public class ObjectPool : MonoBehaviour
     {
         poolDictionary[prefab] = new Queue<GameObject>();
 
-        for(int i = 0; i < poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             CreateNewObject(prefab);
         }

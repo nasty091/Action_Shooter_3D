@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+
     public LayerMask whatIsAlly;
     public LayerMask whatIsPlayer;
-
+    
     [Header("Idle data")]
     public float idleTime;
     public float aggresionRange;
@@ -24,15 +24,17 @@ public class Enemy : MonoBehaviour
     private Vector3[] patrolPointsPosition;
     private int currentPatrolIndex;
 
-    public bool inBattleMode {  get; private set; }
+    public bool inBattleMode { get; private set; }
     protected bool isMeleeAttackReady;
 
-    public Transform player { get; private set; }
+    public Transform player {  get; private set; }
     public Animator anim { get; private set; }
-    public NavMeshAgent agent {  get; private set; }
+    public NavMeshAgent agent { get; private set; }
     public EnemyStateMachine stateMachine { get; private set; }
     public Enemy_Visuals visuals { get; private set; }
+
     public Enemy_Health health { get; private set; }
+
     public Ragdoll ragdoll { get; private set; }
 
     protected virtual void Awake()
@@ -40,11 +42,11 @@ public class Enemy : MonoBehaviour
         stateMachine = new EnemyStateMachine();
 
         health = GetComponent<Enemy_Health>();
-        ragdoll = GetComponent<Ragdoll>();    
+        ragdoll = GetComponent<Ragdoll>();
         visuals = GetComponent<Enemy_Visuals>();
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
-        player = GameObject.Find("Player").GetComponent<Transform>();  
+        player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     protected virtual void Start()
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
         InitializePatrolPoints();
     }
 
+  
 
     protected virtual void Update()
     {
@@ -64,10 +67,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-
     protected bool ShouldEnterBattleMode()
     {
-        if(IsPlayerInAgressionRange() && !inBattleMode)
+        if (IsPlayerInAgrresionRange() && !inBattleMode)
         {
             EnterBattleMode();
             return true;
@@ -88,6 +90,7 @@ public class Enemy : MonoBehaviour
         if (health.ShouldDie())
             Die();
 
+
         EnterBattleMode();
     }
 
@@ -96,14 +99,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius, GameObject fx, int damage)
+    public virtual void MeleeAttackCheck(Transform[] damagePoints, float attackCheckRadius,GameObject fx,int damage)
     {
         if (isMeleeAttackReady == false)
             return;
 
         foreach (Transform attackPoint in damagePoints)
         {
-            Collider[] detectedHits = Physics.OverlapSphere(attackPoint.position, attackCheckRadius, whatIsPlayer);
+            Collider[] detectedHits =
+                Physics.OverlapSphere(attackPoint.position, attackCheckRadius, whatIsPlayer);
+
 
             for (int i = 0; i < detectedHits.Length; i++)
             {
@@ -111,7 +116,8 @@ public class Enemy : MonoBehaviour
 
                 if (damagable != null)
                 {
-                    damagable?.TakeDamage(damage);
+
+                    damagable.TakeDamage(damage);
                     isMeleeAttackReady = false;
                     GameObject newAttackFx = ObjectPool.instance.GetObject(fx, attackPoint);
 
@@ -119,62 +125,72 @@ public class Enemy : MonoBehaviour
                     return;
                 }
             }
+
         }
+
     }
 
     public void EnableMeleeAttackCheck(bool enable) => isMeleeAttackReady = enable;
 
-    public virtual void BulletImpact(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+
+    public virtual void BulletImpact( Vector3 force,Vector3 hitPoint,Rigidbody rb)
     {
         if(health.ShouldDie())
-            StartCoroutine(DeathImpactCoroutine(force, hitPoint, rb));
+            StartCoroutine(DeathImpactCourutine(force,hitPoint,rb));
     }
-    private IEnumerator DeathImpactCoroutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
+    private IEnumerator DeathImpactCourutine(Vector3 force, Vector3 hitPoint, Rigidbody rb)
     {
         yield return new WaitForSeconds(.1f);
 
         rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 
-    public void FaceTarget(Vector3 target, float turnSpeed = 0)
+    public void FaceTarget(Vector3 target,float turnSpeed = 0)
     {
         Quaternion targetRotation = Quaternion.LookRotation(target - transform.position);
 
-        Vector3 currentEulerAngles = transform.rotation.eulerAngles;
+        Vector3 currentEulerAngels = transform.rotation.eulerAngles;
 
-        if(turnSpeed == 0)
+        if (turnSpeed == 0)
             turnSpeed = this.turnSpeed;
 
-        float yRotation = Mathf.LerpAngle(currentEulerAngles.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
+        float yRotation = 
+            Mathf.LerpAngle(currentEulerAngels.y, targetRotation.eulerAngles.y, turnSpeed * Time.deltaTime);
 
-        transform.rotation = Quaternion.Euler(currentEulerAngles.x, yRotation, currentEulerAngles.z);
+        transform.rotation = Quaternion.Euler(currentEulerAngels.x, yRotation, currentEulerAngels.z);
     }
+
+    
 
     #region Animation events
     public void ActivateManualMovement(bool manualMovement) => this.manualMovement = manualMovement;
-    public bool ManualMovementActive() => manualMovement;  
+    public bool ManualMovementActive() => manualMovement;
+
     public void ActivateManualRotation(bool manualRotation) => this.manualRotation = manualRotation;
     public bool ManualRotationActive() => manualRotation;
     public void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
+
+
 
     public virtual void AbilityTrigger()
     {
         stateMachine.currentState.AbilityTrigger();
     }
+
     #endregion
 
     #region Patrol logic
     public Vector3 GetPatrolDestination()
     {
         Vector3 destination = patrolPointsPosition[currentPatrolIndex];
+
         currentPatrolIndex++;
 
-        if(currentPatrolIndex >= patrolPoints.Length) 
+        if (currentPatrolIndex >= patrolPoints.Length)
             currentPatrolIndex = 0;
 
         return destination;
     }
-
     private void InitializePatrolPoints()
     {
         patrolPointsPosition = new Vector3[patrolPoints.Length];
@@ -185,10 +201,10 @@ public class Enemy : MonoBehaviour
             patrolPoints[i].gameObject.SetActive(false);
         }
     }
+
     #endregion
 
-    public bool IsPlayerInAgressionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
-
+    public bool IsPlayerInAgrresionRange() => Vector3.Distance(transform.position, player.position) < aggresionRange;
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, aggresionRange);

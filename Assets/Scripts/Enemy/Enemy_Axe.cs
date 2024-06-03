@@ -6,15 +6,16 @@ public class Enemy_Axe : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform axeVisual;
 
+
+    private Vector3 direction;
     private Transform player;
     private float flySpeed;
-    private Vector3 direction;
     private float rotationSpeed;
     private float timer = 1;
 
     private int damage;
 
-    public void AxeSetup(float flySpeed, Transform player, float timer, int damage)
+    public void AxeSetup(float flySpeed, Transform player, float timer,int damage)
     {
         rotationSpeed = 1600;
 
@@ -32,22 +33,25 @@ public class Enemy_Axe : MonoBehaviour
         if (timer > 0)
             direction = player.position + Vector3.up - transform.position;
 
+
         transform.forward = rb.velocity;
     }
 
-    private void FixedUpdate() // make the trail smoother
+    private void FixedUpdate()
     {
-        rb.velocity = direction.normalized * flySpeed; 
+        rb.velocity = direction.normalized * flySpeed;
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
         damagable?.TakeDamage(damage);
 
+
         GameObject newFx = ObjectPool.instance.GetObject(impactFx, transform);
 
         ObjectPool.instance.ReturnObject(gameObject);
-        ObjectPool.instance.ReturnObject(newFx, 1);
+        ObjectPool.instance.ReturnObject(newFx, 1f);
     }
 }

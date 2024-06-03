@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8953938631562222385
+--- !u!1001 &2617701521307328762
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,60 +8,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4753313591810196390, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 7138982960614985272, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
+      propertyPath: m_Name
+      value: Enemy_Range - Advance + Grenade Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239057773979472322, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: grenadePerk
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4753313591810196390, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 7239057773979472322, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: grenadeCooldown
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4934719
+      value: 7.77
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000047683716
+      value: 0.09
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.644686
+      value: -3.13
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4800642460292271142, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+    - target: {fileID: 8311396203126909468, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682899105089851911, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
-      propertyPath: m_Name
-      value: Enemy_Range - Advance + Grenade Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1e5f0a9add3d22b4eabaac09e3b532ca, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ac9d6c026beb0c945bdff63e080cf3f9, type: 3}

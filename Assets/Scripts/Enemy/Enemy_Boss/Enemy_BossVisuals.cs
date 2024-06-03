@@ -7,12 +7,12 @@ public class Enemy_BossVisuals : MonoBehaviour
     private Enemy_Boss enemy;
 
     [SerializeField] private float landingOffset = 1;
-    [SerializeField] private ParticleSystem landingZoneFx;
+    [SerializeField] private ParticleSystem landindZoneFx;
     [SerializeField] private GameObject[] weaponTrails;
 
-    [Header("Batteries")]     
+    [Header("Batteries")]
     [SerializeField] private GameObject[] batteries;
-    [SerializeField] private float initialBatteryScaleY = .2f;
+    [SerializeField] private float initalBatterySclaeY = .2f;
 
     private float dischargeSpeed;
     private float rechargeSpeed;
@@ -23,11 +23,10 @@ public class Enemy_BossVisuals : MonoBehaviour
     {
         enemy = GetComponent<Enemy_Boss>();
 
-        landingZoneFx.transform.parent = null;
-        landingZoneFx.Stop();
+        landindZoneFx.transform.parent = null;
+        landindZoneFx.Stop();
 
         ResetBatteries();
-        EnableWeaponTrail(false);
     }
 
     private void Update()
@@ -37,7 +36,7 @@ public class Enemy_BossVisuals : MonoBehaviour
 
     public void EnableWeaponTrail(bool active)
     {
-        if(weaponTrails.Length <= 0)
+        if (weaponTrails.Length <= 0)
         {
             Debug.LogWarning("No weapon trails assigned");
             return;
@@ -49,18 +48,18 @@ public class Enemy_BossVisuals : MonoBehaviour
         }
     }
 
-    public void PlaceLandingZone(Vector3 target)
+    public void PlaceLandindZone(Vector3 target)
     {
+
         Vector3 dir = target - transform.position;
-        Vector3 offset = dir.normalized * landingOffset; 
+        Vector3 offset = dir.normalized * landingOffset;
+        landindZoneFx.transform.position = target + offset;
+        landindZoneFx.Clear();
 
-        landingZoneFx.transform.position = target + offset;
-        landingZoneFx.Clear();
-
-        var mainModule = landingZoneFx.main;
+        var mainModule = landindZoneFx.main;
         mainModule.startLifetime = enemy.travelTimeToTarget * 2;
 
-        landingZoneFx.Play();
+        landindZoneFx.Play();
     }
 
     private void UpdateBatteriesScale()
@@ -68,30 +67,32 @@ public class Enemy_BossVisuals : MonoBehaviour
         if (batteries.Length <= 0)
             return;
 
-        foreach(GameObject battery in batteries)
+        foreach (GameObject battery in batteries)
         {
             if (battery.activeSelf)
             {
                 float scaleChange = (isRecharging ? rechargeSpeed : -dischargeSpeed) * Time.deltaTime;
-                float newScaleY = 
-                    Mathf.Clamp(battery.transform.localScale.y + scaleChange, 0, initialBatteryScaleY);
+                float newScaleY =
+                    Mathf.Clamp(battery.transform.localScale.y + scaleChange, 0, initalBatterySclaeY);
 
                 battery.transform.localScale = new Vector3(0.15f, newScaleY, 0.15f);
-                
+
                 if(battery.transform.localScale.y <= 0)
                     battery.SetActive(false);
+
             }
         }
     }
+
 
     public void ResetBatteries()
     {
         isRecharging = true;
 
-        rechargeSpeed = initialBatteryScaleY / enemy.abilityCooldown;
-        dischargeSpeed = initialBatteryScaleY / (enemy.flamethrowDuration * .75f);
+        rechargeSpeed = initalBatterySclaeY / enemy.abilityCooldown;
+        dischargeSpeed = initalBatterySclaeY / (enemy.flamethrowDuration * .75f);
 
-        foreach(GameObject battery in batteries)
+        foreach (GameObject battery in batteries)
         {
             battery.SetActive(true);
         }

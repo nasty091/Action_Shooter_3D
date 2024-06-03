@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class AttackState_Boss : EnemyState
 {
     private Enemy_Boss enemy;
-
-    public float lastTimeAttacked {  get; private set; }    
-
+    public float lastTimeAttacked { get; private set; }
     public AttackState_Boss(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Boss;
@@ -20,10 +15,10 @@ public class AttackState_Boss : EnemyState
 
         enemy.bossVisuals.EnableWeaponTrail(true);
 
-        enemy.anim.SetFloat("AttackAnimIndex", Random.Range(0, 2)); // We have 2 attacks with index 0 and 1
+        enemy.anim.SetFloat("AttackAnimIndex", Random.Range(0, 2)); // We have two attacks with index 0 and 1
         enemy.agent.isStopped = true;
 
-        stateTimer = 1;
+        stateTimer = 1f;
     }
 
     public override void Update()
@@ -35,11 +30,12 @@ public class AttackState_Boss : EnemyState
 
         if (triggerCalled)
         {
-            if(enemy.PlayerInAttackRange())
+            if (enemy.PlayerInAttackRange())
                 stateMachine.ChangeState(enemy.idleState);
             else
                 stateMachine.ChangeState(enemy.moveState);
         }
+
     }
 
     public override void Exit()

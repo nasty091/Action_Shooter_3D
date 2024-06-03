@@ -7,7 +7,7 @@ public class RunToCoverState_Range : EnemyState
     private Enemy_Range enemy;
     private Vector3 destination;
 
-    public float lastTimeTookCover {  get; private set; }
+    public float lastTimeTookCover { get; private set; }
 
     public RunToCoverState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -19,7 +19,7 @@ public class RunToCoverState_Range : EnemyState
         base.Enter();
         destination = enemy.currentCover.transform.position;
 
-        enemy.visuals.EnableIK(true, false);
+        enemy.visuals.EnableIK(true,false);
 
         enemy.agent.isStopped = false;
         enemy.agent.speed = enemy.runSpeed;
@@ -38,8 +38,8 @@ public class RunToCoverState_Range : EnemyState
         base.Update();
 
         enemy.FaceTarget(GetNextPathPoint());
-        Debug.Log(Vector3.Distance(enemy.transform.position, destination));
-        if(Vector3.Distance(enemy.transform.position, destination) < .35f)
+
+        if (Vector3.Distance(enemy.transform.position, destination) < .8f)
             stateMachine.ChangeState(enemy.battleState);
     }
 }

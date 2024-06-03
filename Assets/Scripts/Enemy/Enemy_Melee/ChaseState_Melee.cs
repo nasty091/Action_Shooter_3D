@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChaseState_Melee : EnemyState
 {
     private Enemy_Melee enemy;
-    private float lastTimeUpdateDestination;
+    private float lastTimeUpdatedDistanation;
 
     public ChaseState_Melee(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -16,10 +16,11 @@ public class ChaseState_Melee : EnemyState
     {
         base.Enter();
 
+
         enemy.agent.speed = enemy.runSpeed;
         enemy.agent.isStopped = false;
-    }
 
+    }
     public override void Exit()
     {
         base.Exit();
@@ -40,11 +41,12 @@ public class ChaseState_Melee : EnemyState
         }
     }
 
+
     private bool CanUpdateDestination()
     {
-        if(Time.time > lastTimeUpdateDestination + .25f)
+        if (Time.time > lastTimeUpdatedDistanation + .25f)
         {
-            lastTimeUpdateDestination = Time.time;
+            lastTimeUpdatedDistanation = Time.time;
             return true;
         }
 

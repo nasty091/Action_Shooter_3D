@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyState
+public class EnemyState 
 {
     protected Enemy enemyBase;
     protected EnemyStateMachine stateMachine;
@@ -34,6 +34,7 @@ public class EnemyState
 
     public virtual void Exit()
     {
+
         enemyBase.anim.SetBool(animBoolName, false);
     }
 

@@ -9,7 +9,6 @@ public class MoveState_Boss : EnemyState
     private float timeBeforeSpeedUp = 5;
 
     private bool speedUpActivated;
-
     public MoveState_Boss(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Boss;
@@ -20,7 +19,6 @@ public class MoveState_Boss : EnemyState
         base.Enter();
 
         SpeedReset();
-
         enemy.agent.isStopped = false;
 
         destination = enemy.GetPatrolDestination();
@@ -52,13 +50,12 @@ public class MoveState_Boss : EnemyState
             Vector3 playerPos = enemy.player.position;
             enemy.agent.SetDestination(playerPos);
 
-            if(actionTimer < 0)
+            if (actionTimer < 0)
             {
                 PerformRandomAction();
             }
             else if (enemy.PlayerInAttackRange())
                 stateMachine.ChangeState(enemy.attackState);
-
         }
         else
         {
@@ -78,8 +75,8 @@ public class MoveState_Boss : EnemyState
     private void PerformRandomAction()
     {
         actionTimer = enemy.actionCooldown;
-        int randomNumer = Random.Range(0, 2);
-        if (randomNumer == 0) // rolls number from 0 to 1
+
+        if (Random.Range(0, 2) == 0) // rolls number from 0 to 1
         {
             TryAbility();
         }
@@ -87,7 +84,7 @@ public class MoveState_Boss : EnemyState
         {
             if (enemy.CanDoJumpAttack())
                 stateMachine.ChangeState(enemy.jumpAttackState);
-            else if(enemy.bossWeaponType == BossWeaponType.Hammer)
+            else if (enemy.bossWeaponType == BossWeaponType.Hummer)
                 TryAbility();
         }
     }
@@ -100,14 +97,15 @@ public class MoveState_Boss : EnemyState
 
     private bool ShouldSpeedUp()
     {
-        if(speedUpActivated)
+        if (speedUpActivated)
             return false;
 
-        if(Time.time > enemy.attackState.lastTimeAttacked + timeBeforeSpeedUp)
+        if (Time.time > enemy.attackState.lastTimeAttacked + timeBeforeSpeedUp)
         {
             return true;
         }
 
         return false;
     }
+
 }

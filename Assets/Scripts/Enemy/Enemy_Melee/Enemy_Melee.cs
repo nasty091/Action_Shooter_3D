@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,20 +13,22 @@ public struct AttackData_EnemyMelee
     public float animationSpeed;
     public AttackType_Melee attackType;
 }
-
-public enum AttackType_Melee { Close, Charge}
-public enum EnemyMelee_Type { Regular, Shield, Dodge, AxeThrow}
+public enum AttackType_Melee { Close, Charge }
+public enum EnemyMelee_Type { Regular, Shield, Dodge, AxeThrow }
 
 public class Enemy_Melee : Enemy
 {
+
+
     #region States
-    public IdleState_Melee idleState {  get; private set; }
+    public IdleState_Melee idleState { get; private set; }
     public MoveState_Melee moveState { get; private set; }
     public RecoveryState_Melee recoveryState { get; private set; }
     public ChaseState_Melee chaseState { get; private set; }
     public AttackState_Melee attackState { get; private set; }
     public DeadState_Melee deadState { get; private set; }
     public AbilityState_Melee abilityState { get; private set; }
+
     #endregion
 
     [Header("Enemy Settings")]
@@ -39,8 +40,8 @@ public class Enemy_Melee : Enemy
     public Transform shieldTransform;
 
     [Header("Dodge")]
-    public float dodgeCooldown = -10;
-    private float lastTimeDodge;
+    public float dodgeCooldown;
+    private float lastTimeDodge = -10;
 
     [Header("Axe throw ability")]
     public int axeDamage;
@@ -48,7 +49,7 @@ public class Enemy_Melee : Enemy
     public float axeFlySpeed;
     public float axeAimTimer;
     public float axeThrowCooldown;
-    private float lastTimeAxeThrow;
+    private float lastTimeAxeThrown;
     public Transform axeStartPoint;
 
     [Header("Attack Data")]
@@ -68,7 +69,7 @@ public class Enemy_Melee : Enemy
         recoveryState = new RecoveryState_Melee(this, stateMachine, "Recovery");
         chaseState = new ChaseState_Melee(this, stateMachine, "Chase");
         attackState = new AttackState_Melee(this, stateMachine, "Attack");
-        deadState = new DeadState_Melee(this, stateMachine, "Idle"); // Idle anim is just a place holder, we use ragdoll
+        deadState = new DeadState_Melee(this, stateMachine, "Idle"); // Idle anim is just a place holder,we use ragdoll
         abilityState = new AbilityState_Melee(this, stateMachine, "AxeThrow");
     }
 
@@ -83,13 +84,17 @@ public class Enemy_Melee : Enemy
         UpdateAttackData();
     }
 
+
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
 
+
         MeleeAttackCheck(currentWeapon.damagePoints, currentWeapon.attackRadius, meleeAttackFx, attackData.attackDamage);
     }
+
+
 
     public override void EnterBattleMode()
     {
@@ -108,6 +113,7 @@ public class Enemy_Melee : Enemy
         visuals.EnableWeaponModel(false);
     }
 
+
     public void UpdateAttackData()
     {
         currentWeapon = visuals.currentWeaponModel.GetComponent<Enemy_WeaponModel>();
@@ -121,19 +127,20 @@ public class Enemy_Melee : Enemy
 
     protected override void InitializePerk()
     {
-        if(meleeType == EnemyMelee_Type.AxeThrow)
+        if (meleeType == EnemyMelee_Type.AxeThrow)
         {
             weaponType = Enemy_MeleeWeaponType.Throw;
         }
 
-        if(meleeType == EnemyMelee_Type.Shield)
+
+        if (meleeType == EnemyMelee_Type.Shield)
         {
             anim.SetFloat("ChaseIndex", 1);
             shieldTransform.gameObject.SetActive(true);
             weaponType = Enemy_MeleeWeaponType.OneHand;
         }
 
-        if(meleeType == EnemyMelee_Type.Dodge)
+        if (meleeType == EnemyMelee_Type.Dodge)
         {
             weaponType = Enemy_MeleeWeaponType.Unarmed;
         }
@@ -147,9 +154,10 @@ public class Enemy_Melee : Enemy
             stateMachine.ChangeState(deadState);
     }
 
+
     public void ActivateDodgeRoll()
     {
-        if(meleeType != EnemyMelee_Type.Dodge) 
+        if (meleeType != EnemyMelee_Type.Dodge)
             return;
 
         if (stateMachine.currentState != chaseState)
@@ -160,10 +168,10 @@ public class Enemy_Melee : Enemy
 
         float dodgeAnimationDuration = GetAnimationClipDuration("Dodge roll");
 
-        if(Time.time > lastTimeDodge + dodgeAnimationDuration + dodgeCooldown)
+        if (Time.time > dodgeCooldown + dodgeAnimationDuration + lastTimeDodge)
         {
             lastTimeDodge = Time.time;
-            anim.SetTrigger("Dodge");         
+            anim.SetTrigger("Dodge");
         }
     }
 
@@ -171,41 +179,39 @@ public class Enemy_Melee : Enemy
     {
         GameObject newAxe = ObjectPool.instance.GetObject(axePrefab, axeStartPoint);
 
-        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer, axeDamage);
+        newAxe.GetComponent<Enemy_Axe>().AxeSetup(axeFlySpeed, player, axeAimTimer,axeDamage);
     }
-
     public bool CanThrowAxe()
     {
         if (meleeType != EnemyMelee_Type.AxeThrow)
             return false;
 
-        float throwAxeAnimationDuration = GetAnimationClipDuration("Melee_Axe throw");
-
-        if (Time.time > lastTimeAxeThrow + throwAxeAnimationDuration + axeThrowCooldown)
+        if (Time.time > axeThrowCooldown + lastTimeAxeThrown)
         {
-            lastTimeAxeThrow = Time.time;
+            lastTimeAxeThrown = Time.time;
             return true;
         }
-
         return false;
     }
-
     private void ResetCooldown()
     {
         lastTimeDodge -= dodgeCooldown;
-        lastTimeAxeThrow -= axeThrowCooldown;
+        lastTimeAxeThrown -= axeThrowCooldown;
     }
+
+    
 
     private float GetAnimationClipDuration(string clipName)
     {
         AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
 
-        foreach(AnimationClip clip in clips)
+        foreach (AnimationClip clip in clips)
         {
-            if(clip.name == clipName)
+            if (clip.name == clipName)
                 return clip.length;
         }
 
+        Debug.Log(clipName + "animation not found!");
         return 0;
     }
 
@@ -217,5 +223,6 @@ public class Enemy_Melee : Enemy
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackData.attackRange);
+
     }
 }

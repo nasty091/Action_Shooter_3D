@@ -7,6 +7,7 @@ public class JumpAttackState_Boss : EnemyState
     private Enemy_Boss enemy;
     private Vector3 lastPlayerPos;
 
+
     private float jumpAttackMovementSpeed;
     public JumpAttackState_Boss(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -21,7 +22,7 @@ public class JumpAttackState_Boss : EnemyState
         enemy.agent.isStopped = true;
         enemy.agent.velocity = Vector3.zero;
 
-        enemy.bossVisuals.PlaceLandingZone(lastPlayerPos);
+        enemy.bossVisuals.PlaceLandindZone(lastPlayerPos);
         enemy.bossVisuals.EnableWeaponTrail(true);
 
         float distanceToPlayer = Vector3.Distance(lastPlayerPos, enemy.transform.position);
@@ -30,7 +31,8 @@ public class JumpAttackState_Boss : EnemyState
 
         enemy.FaceTarget(lastPlayerPos, 1000);
 
-        if(enemy.bossWeaponType == BossWeaponType.Hammer)
+        
+        if (enemy.bossWeaponType == BossWeaponType.Hummer)
         {
             enemy.agent.isStopped = false;
             enemy.agent.speed = enemy.runSpeed;
@@ -41,16 +43,17 @@ public class JumpAttackState_Boss : EnemyState
     public override void Update()
     {
         base.Update();
-
         Vector3 myPos = enemy.transform.position;
         enemy.agent.enabled = !enemy.ManualMovementActive();
 
         if (enemy.ManualMovementActive())
         {
-            enemy.transform.position = Vector3.MoveTowards(myPos, lastPlayerPos, jumpAttackMovementSpeed * Time.deltaTime);
+            enemy.agent.velocity = Vector3.zero;
+         enemy.transform.position = 
+                Vector3.MoveTowards(myPos, lastPlayerPos, jumpAttackMovementSpeed * Time.deltaTime);
         }
 
-        if(triggerCalled)
+        if (triggerCalled)
             stateMachine.ChangeState(enemy.moveState);
     }
 
@@ -59,5 +62,6 @@ public class JumpAttackState_Boss : EnemyState
         base.Exit();
         enemy.SetJumpAttackOnCooldown();
         enemy.bossVisuals.EnableWeaponTrail(false);
+
     }
 }

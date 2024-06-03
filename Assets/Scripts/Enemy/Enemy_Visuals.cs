@@ -1,17 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public enum Enemy_MeleeWeaponType { OneHand, Throw, Unarmed}
+public enum Enemy_MeleeWeaponType { OneHand, Throw, Unarmed }
 public enum Enemy_RangeWeaponType { Pistol, Revolver, Shotgun, AutoRifle, Rifle, Random}
 
 public class Enemy_Visuals : MonoBehaviour
 {
-    public GameObject currentWeaponModel {  get; private set; }
-    public GameObject grenadeModel;
 
+    public GameObject currentWeaponModel { get; private set; }
+    public GameObject grenadeModel;
 
     [Header("Corruption visuals")]
     [SerializeField] private GameObject[] corruptionCrystals;
@@ -28,28 +26,27 @@ public class Enemy_Visuals : MonoBehaviour
     [SerializeField] private MultiAimConstraint weaponAimConstraint;
 
     private float leftHandTargetWeight;
-    private float weaponAimTargetWeigth;
+    private float weaponAimTargetWeight;
     private float rigChangeRate;
 
     private void Update()
     {
-        if(leftHandIKConstraint != null) 
+        if(leftHandIKConstraint != null)
             leftHandIKConstraint.weight = AdjustIKWeight(leftHandIKConstraint.weight, leftHandTargetWeight);
 
-        if(weaponAimConstraint != null) 
-            weaponAimConstraint.weight = AdjustIKWeight(weaponAimConstraint.weight, weaponAimTargetWeigth);
+        if(weaponAimConstraint != null)
+            weaponAimConstraint.weight = AdjustIKWeight(weaponAimConstraint.weight, weaponAimTargetWeight);
     }
 
     public void EnableGrenadeModel(bool active) => grenadeModel?.SetActive(active);
-
     public void EnableWeaponModel(bool active)
     {
         currentWeaponModel?.gameObject.SetActive(active);
     }
 
-    public void EnableSecondaryWeaponModel(bool active)
+    public void EnableSeconoderyWeaponModel(bool active)
     {
-        FindSecondaryWeaponModel()?.SetActive(active);
+        FindSeconderyWeaponModel()?.SetActive(active);
     }
 
     public void EnableWeaponTrail(bool enable)
@@ -58,37 +55,37 @@ public class Enemy_Visuals : MonoBehaviour
         currentWeaponScript.EnableTrailEffect(enable);
     }
 
+
     public void SetupLook()
     {
         SetupRandomColor();
         SetupRandomWeapon();
-        SetupRandomCorruption();
+        SetupRandomCorrution();
     }
 
-    private void SetupRandomCorruption()
+    private void SetupRandomCorrution()
     {
-        List<int> availableIndexs = new List<int>();
+        List<int> avalibleIndexs = new List<int>();
         corruptionCrystals = CollectCorruptionCrystals();
 
-        for(int i = 0; i < corruptionCrystals.Length; i++) 
+        for (int i = 0; i < corruptionCrystals.Length; i++)
         {
-            availableIndexs.Add(i);
+            avalibleIndexs.Add(i);
             corruptionCrystals[i].SetActive(false);
         }
 
         for (int i = 0; i < corruptionAmount; i++)
         {
-            if(availableIndexs.Count == 0)
+            if (avalibleIndexs.Count == 0)
                 break;
 
-            int randomIndex = Random.Range(0, availableIndexs.Count);
-            int objectIndex = availableIndexs[randomIndex];
+            int randomIndex = Random.Range(0, avalibleIndexs.Count);
+            int objectIndex = avalibleIndexs[randomIndex];
 
             corruptionCrystals[objectIndex].SetActive(true);
-            availableIndexs.RemoveAt(randomIndex);
+            avalibleIndexs.RemoveAt(randomIndex);
         }
     }
-
     private void SetupRandomWeapon()
     {
         bool thisEnemyIsMelee = GetComponent<Enemy_Melee>() != null;
@@ -97,14 +94,13 @@ public class Enemy_Visuals : MonoBehaviour
         if (thisEnemyIsRange)
             currentWeaponModel = FindRangeWeaponModel();
 
-        if (thisEnemyIsMelee) 
+        if (thisEnemyIsMelee)
             currentWeaponModel = FindMeleeWeaponModel();
 
         currentWeaponModel.SetActive(true);
 
         OverrideAnimatorControllerIfCan();
     }
-
     private void SetupRandomColor()
     {
         int randomIndex = Random.Range(0, colorTextures.Length);
@@ -116,16 +112,17 @@ public class Enemy_Visuals : MonoBehaviour
         skinnedMeshRenderer.material = newMat;
     }
 
+
     private GameObject FindRangeWeaponModel()
     {
         Enemy_RangeWeaponModel[] weaponModels = GetComponentsInChildren<Enemy_RangeWeaponModel>(true);
         Enemy_RangeWeaponType weaponType = GetComponent<Enemy_Range>().weaponType;
 
-        foreach(var weaponModel in weaponModels)
+        foreach (var weaponModel in weaponModels)
         {
-            if(weaponModel.weaponType == weaponType)
+            if (weaponModel.weaponType == weaponType)
             {
-                SwitchAnimationLayer((int)weaponModel.weaponHoldType);
+                SwitchAnimationLayer(((int)weaponModel.weaponHoldType));
                 SetupLeftHandIK(weaponModel.leftHandTarget, weaponModel.leftElbowTarget);
                 return weaponModel.gameObject;
             }
@@ -138,9 +135,7 @@ public class Enemy_Visuals : MonoBehaviour
     private GameObject FindMeleeWeaponModel()
     {
         Enemy_WeaponModel[] weaponModels = GetComponentsInChildren<Enemy_WeaponModel>(true);
-
         Enemy_MeleeWeaponType weaponType = GetComponent<Enemy_Melee>().weaponType;
-
         List<Enemy_WeaponModel> filteredWeaponModels = new List<Enemy_WeaponModel>();
 
         foreach (var weaponModel in weaponModels)
@@ -149,10 +144,9 @@ public class Enemy_Visuals : MonoBehaviour
                 filteredWeaponModels.Add(weaponModel);
         }
 
+
         int randomIndex = Random.Range(0, filteredWeaponModels.Count);
-
         return filteredWeaponModels[randomIndex].gameObject;
-
     }
 
     private GameObject[] CollectCorruptionCrystals()
@@ -168,14 +162,14 @@ public class Enemy_Visuals : MonoBehaviour
         return corruptionCrystals;
     }
 
-    private GameObject FindSecondaryWeaponModel()
+    private GameObject FindSeconderyWeaponModel()
     {
-        Enemy_SecondaryRangeWeaponModel[] weaponModels = GetComponentsInChildren<Enemy_SecondaryRangeWeaponModel>(true);
+        Enemy_SeconoderyRangeWeaponModel[] weaponModels = GetComponentsInChildren<Enemy_SeconoderyRangeWeaponModel>(true);
         Enemy_RangeWeaponType weaponType = GetComponentInParent<Enemy_Range>().weaponType;
 
-        foreach(var weaponModel in weaponModels)
+        foreach (var weaponModel in weaponModels)
         {
-            if(weaponModel.weaponType == weaponType)
+            if (weaponModel.weaponType == weaponType)
                 return weaponModel.gameObject;
         }
 
@@ -184,7 +178,8 @@ public class Enemy_Visuals : MonoBehaviour
 
     private void OverrideAnimatorControllerIfCan()
     {
-        AnimatorOverrideController overrideController = currentWeaponModel.GetComponent<Enemy_WeaponModel>()?.overrideController;
+        AnimatorOverrideController overrideController =
+                    currentWeaponModel.GetComponent<Enemy_WeaponModel>()?.overrideController;
 
         if (overrideController != null)
         {
@@ -192,10 +187,11 @@ public class Enemy_Visuals : MonoBehaviour
         }
     }
 
+
     private void SwitchAnimationLayer(int layerIndex)
     {
         Animator anim = GetComponentInChildren<Animator>();
-         
+
         for (int i = 1; i < anim.layerCount; i++)
         {
             anim.SetLayerWeight(i, 0);
@@ -206,9 +202,15 @@ public class Enemy_Visuals : MonoBehaviour
 
     public void EnableIK(bool enableLeftHand, bool enableAim, float changeRate = 10)
     {
+        if (leftHandIKConstraint == null)
+        {
+            Debug.LogWarning("No IK assigned");
+            return;
+        }
+
         rigChangeRate = changeRate;
         leftHandTargetWeight = enableLeftHand ? 1 : 0;
-        weaponAimTargetWeigth = enableAim ? 1 : 0;
+        weaponAimTargetWeight = enableAim ? 1 : 0;
     }
 
     private void SetupLeftHandIK(Transform leftHandTarget, Transform leftElbowTarget)
@@ -222,9 +224,10 @@ public class Enemy_Visuals : MonoBehaviour
 
     private float AdjustIKWeight(float currentWeight, float targetWeight)
     {
-        if(Mathf.Abs(currentWeight - targetWeight) > 0.05f)
+        if (Mathf.Abs(currentWeight - targetWeight) > 0.05f)
             return Mathf.Lerp(currentWeight, targetWeight, rigChangeRate * Time.deltaTime);
         else
             return targetWeight;
     }
+
 }

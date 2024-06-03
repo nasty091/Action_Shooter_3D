@@ -15,19 +15,13 @@ public class IdleState_Melee : EnemyState
     {
         base.Enter();
 
-        stateTimer = enemyBase.idleTime;
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
+        stateTimer = enemy.idleTime;
     }
 
     public override void Update()
     {
         base.Update();
 
-        
 
         if (stateTimer < 0)
             stateMachine.ChangeState(enemy.moveState);

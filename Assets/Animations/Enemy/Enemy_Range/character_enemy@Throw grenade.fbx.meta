@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d4b683b40f0da894999cad35f535512e
+guid: 9e57d605187ab244b9107983ca64fa6a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -528,18 +528,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: character_enemy(Clone)
+    - name: character_enemy@(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Robot
-      parentName: character_enemy(Clone)
+      parentName: character_enemy@(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
       scale: {x: 100, y: 100, z: 100}
     - name: mixamorig:Hips
-      parentName: character_enemy(Clone)
+      parentName: character_enemy@(Clone)
       position: {x: -0, y: 0.7293754, z: 0.041038297}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -875,7 +875,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1fb48987a78313e4d873b9b2dc040b38, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 21abb20201c4028478d8c79c2860c652, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

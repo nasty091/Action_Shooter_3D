@@ -16,7 +16,7 @@ public class DeadState_Boss : EnemyState
     {
         base.Enter();
 
-        enemy.abilityState.DiscableFlamethrower();
+        enemy.abilityState.DisableFlamethrower();
 
         interactionDisabled = false;
 
@@ -31,8 +31,7 @@ public class DeadState_Boss : EnemyState
     public override void Update()
     {
         base.Update();
-
-        // uncomment to disable interaction when enmey is dead
+        // uncommnet if you want to disale interaction 
         //DisableInteractionIfShould();
     }
 
@@ -42,7 +41,7 @@ public class DeadState_Boss : EnemyState
         {
             interactionDisabled = true;
             enemy.ragdoll.RagdollActive(false);
-            enemy.ragdoll.ColliderActive(false);
+            enemy.ragdoll.CollidersActive(false);
         }
     }
 }

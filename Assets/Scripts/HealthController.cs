@@ -7,6 +7,7 @@ public class HealthController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
+
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
@@ -19,9 +20,9 @@ public class HealthController : MonoBehaviour
 
     public virtual void IncreaseHealth()
     {
-        currentHealth++;    
+        currentHealth++;
 
-        if(currentHealth > maxHealth) 
+        if(currentHealth > maxHealth)
             currentHealth = maxHealth;
     }
 

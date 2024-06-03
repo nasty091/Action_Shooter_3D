@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleState_Range : EnemyState
@@ -14,16 +12,13 @@ public class BattleState_Range : EnemyState
 
     private float coverCheckTimer;
     private bool firstTimeAttack = true;
-
     public BattleState_Range(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
         enemy = enemyBase as Enemy_Range;
     }
-
     public override void Enter()
     {
         base.Enter();
-
         SetupValuesForFirstAttack();
 
         enemy.agent.isStopped = true;
@@ -34,6 +29,7 @@ public class BattleState_Range : EnemyState
         stateTimer = enemy.attackDelay;
     }
 
+
     public override void Update()
     {
         base.Update();
@@ -41,7 +37,7 @@ public class BattleState_Range : EnemyState
         if (enemy.IsSeeingPlayer())
             enemy.FaceTarget(enemy.aim.position);
 
-        if(enemy.CanThrowGrenade())
+        if (enemy.CanThrowGrenade())
             stateMachine.ChangeState(enemy.throwGrenadeState);
 
         if (MustAdvancePlayer())
@@ -54,7 +50,7 @@ public class BattleState_Range : EnemyState
 
         if (WeaponOutOfBullets())
         {
-            if(enemy.IsUnstoppable() && UnstoppableWalkReady())
+            if (enemy.IsUnstopppable() && UnstoppableWalkReady())
             {
                 enemy.advanceDuration = weaponCooldown;
                 stateMachine.ChangeState(enemy.advancePlayerState);
@@ -66,6 +62,7 @@ public class BattleState_Range : EnemyState
             return;
         }
 
+
         if (CanShoot() && enemy.IsAimOnPlayer())
         {
             Shoot();
@@ -74,23 +71,24 @@ public class BattleState_Range : EnemyState
 
     private bool MustAdvancePlayer()
     {
-        if(enemy.IsUnstoppable())
+        if (enemy.IsUnstopppable())
             return false;
 
-        return enemy.IsPlayerInAgressionRange() == false && ReadyToLeaveCover();
+        return enemy.IsPlayerInAgrresionRange() == false && ReadyToLeaveCover();
     }
 
     private bool UnstoppableWalkReady()
     {
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, enemy.player.position);
         bool outOfStoppingDistance = distanceToPlayer > enemy.advanceStoppingDistance;
-        bool unstoppableWalkOnCooldown = 
-            Time.time < enemy.weaponData.minWeaponCooldown + enemy.advancePlayerState.lastTimeAdvanced;
+        bool unstoppableWalkOnCooldown =
+            Time.time < enemy.weaponData.maxWeaponCooldown + enemy.advancePlayerState.lastTimeAdvanced;
 
         return outOfStoppingDistance && unstoppableWalkOnCooldown == false;
     }
 
-    #region Cover system reigon
+    #region Cover system region
+
 
     private bool ReadyToLeaveCover()
     {
@@ -106,9 +104,10 @@ public class BattleState_Range : EnemyState
 
         if (coverCheckTimer < 0)
         {
-            coverCheckTimer = .5f;
+            coverCheckTimer = .5f; // We do cover check each .5f seconds
 
             if (ReadyToChangeCover() && ReadyToLeaveCover())
+
             {
                 if (enemy.CanGetCover())
                     stateMachine.ChangeState(enemy.runToCoverState);
@@ -124,6 +123,7 @@ public class BattleState_Range : EnemyState
         return inDanger && advanceTimeIsOver;
     }
 
+
     private bool IsPlayerClose()
     {
         return Vector3.Distance(enemy.transform.position, enemy.player.transform.position) < enemy.safeDistance;
@@ -133,32 +133,30 @@ public class BattleState_Range : EnemyState
     {
         Vector3 directionToPlayer = enemy.player.transform.position - enemy.transform.position;
 
-        if(Physics.Raycast(enemy.transform.position, directionToPlayer, out RaycastHit hit))
+
+        if (Physics.Raycast(enemy.transform.position, directionToPlayer, out RaycastHit hit))
         {
-            if(hit.transform.root == enemy.player.root)
+            if (hit.transform.root == enemy.player.root)
                 return true;
         }
 
         return false;
     }
 
+
     #endregion
 
-    #region Weapon reigon
+    #region Weapon region
 
-    private void AttemptToResetWeapon() 
-    { 
+    private void AttemptToResetWeapon()
+    {
         bulletsShot = 0;
         bulletsPerAttack = enemy.weaponData.GetBulletsPerAttack();
         weaponCooldown = enemy.weaponData.GetWeaponCooldown();
-    } 
-    
+    }
     private bool WeaponOnCooldown() => Time.time > lastTimeShot + weaponCooldown;
-
     private bool WeaponOutOfBullets() => bulletsShot >= bulletsPerAttack;
-
     private bool CanShoot() => Time.time > lastTimeShot + 1 / enemy.weaponData.fireRate;
-
     private void Shoot()
     {
         enemy.FireSingleBullet();
@@ -170,9 +168,10 @@ public class BattleState_Range : EnemyState
     {
         if (firstTimeAttack)
         {
-            // Advance stop distance should be slitly smaller than aggresion range in order
-            // in order for enemy to advance all the time
+            //Advance stop distance should be slitly smaller than aggresion range in order
+            //in order for enemy to advance all the time.
             enemy.aggresionRange = enemy.advanceStoppingDistance + 2;
+
 
             firstTimeAttack = false;
             bulletsPerAttack = enemy.weaponData.GetBulletsPerAttack();

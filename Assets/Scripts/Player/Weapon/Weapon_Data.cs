@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 [CreateAssetMenu(fileName = "New Weapon Data", menuName = "Weapon System/Weapon Data")]
 public class Weapon_Data : ScriptableObject
@@ -15,13 +14,15 @@ public class Weapon_Data : ScriptableObject
     public int magazineCapacity;
     public int totalReserveAmmo;
 
+
     [Header("Regular shot")]
     public ShootType shootType;
     public int bulletsPerShot = 1;
     public float fireRate;
 
+
     [Header("Burst shot")]
-    public bool burstAvailable;
+    public bool burstAvalible;
     public bool burstActive;
     public int burstBulletsPerShot;
     public float burstFireRate;
@@ -30,7 +31,6 @@ public class Weapon_Data : ScriptableObject
     [Header("Weapon spread")]
     public float baseSpread;
     public float maxSpread;
-
     public float spreadIncreaseRate = .15f;
 
     [Header("Weapon generics")]
@@ -41,6 +41,6 @@ public class Weapon_Data : ScriptableObject
     public float equipmentSpeed = 1;
     [Range(4, 25)]
     public float gunDistance = 4;
-    [Range(4, 8)]
+    [Range(4, 10)]
     public float cameraDistance = 6;
 }

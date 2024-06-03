@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AbilityState_Melee : EnemyState
 {
+
     private Enemy_Melee enemy;
     private Vector3 movementDirection;
 
     private const float MAX_MOVEMENT_DISTANCE = 20;
 
     private float moveSpeed;
+ 
 
     public AbilityState_Melee(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -29,7 +31,6 @@ public class AbilityState_Melee : EnemyState
     public override void Exit()
     {
         base.Exit();
-
         enemy.walkSpeed = moveSpeed;
         enemy.anim.SetFloat("RecoveryIndex", 0);
     }
@@ -47,7 +48,7 @@ public class AbilityState_Melee : EnemyState
         if (enemy.ManualMovementActive())
         {
             enemy.transform.position =
-                Vector3.MoveTowards(enemy.transform.position, movementDirection, moveSpeed * Time.deltaTime);
+                Vector3.MoveTowards(enemy.transform.position, movementDirection, enemy.walkSpeed * Time.deltaTime);
         }
 
         if (triggerCalled)

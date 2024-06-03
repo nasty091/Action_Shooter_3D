@@ -35,7 +35,7 @@ public class DeadState_Melee : EnemyState
     {
         base.Update();
 
-        // uncomment to disable interaction when enmey is dead
+        // uncommnet if you want to disale interaction 
         //DisableInteractionIfShould();
     }
 
@@ -45,7 +45,7 @@ public class DeadState_Melee : EnemyState
         {
             interactionDisabled = true;
             enemy.ragdoll.RagdollActive(false);
-            enemy.ragdoll.ColliderActive(false);
+            enemy.ragdoll.CollidersActive(false);
         }
     }
 }

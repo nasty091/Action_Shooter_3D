@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class EnemyStateMachine
 {
-    public EnemyState currentState { get; private set; }    
+    public EnemyState currentState { get; private set; }
 
     public void Initialize(EnemyState startState)
     {

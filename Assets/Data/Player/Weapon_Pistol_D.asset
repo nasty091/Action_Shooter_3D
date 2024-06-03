@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a3777e3f7c54747bdfa63a0dcd4925, type: 3}
+  m_Script: {fileID: 11500000, guid: ebc2466499cd6ca4c866730b163cd293, type: 3}
   m_Name: Weapon_Pistol_D
   m_EditorClassIdentifier: 
   weaponName: Heaven 567
-  bulletDamage: 25
+  bulletDamage: 18
   bulletsInMagazine: 15
   magazineCapacity: 15
   totalReserveAmmo: 999999999
   shootType: 0
   bulletsPerShot: 1
   fireRate: 6
-  burstAvailable: 0
+  burstAvalible: 0
   burstActive: 0
   burstBulletsPerShot: 0
   burstFireRate: 0

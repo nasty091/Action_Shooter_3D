@@ -22,8 +22,9 @@ public class Dummy : MonoBehaviour, IDamagable
     private void Update()
     {
         if(Time.time > refreshCooldown + lastTimeDamaged || Input.GetKeyDown(KeyCode.B))
-            Refresh();  
+            Refresh();
     }
+
 
     private void Refresh()
     {
@@ -39,9 +40,5 @@ public class Dummy : MonoBehaviour, IDamagable
         if (currentHealth <= 0)
             Die();
     }
-
-    private void Die()
-    {
-        mesh.sharedMaterial = redMat;
-    }
+    private void Die() => mesh.sharedMaterial = redMat;
 }

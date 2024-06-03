@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityState_Boss : EnemyState
@@ -20,7 +18,6 @@ public class AbilityState_Boss : EnemyState
         enemy.agent.isStopped = true;
         enemy.agent.velocity = Vector3.zero;
         enemy.bossVisuals.EnableWeaponTrail(true);
-
     }
 
     public override void Update()
@@ -30,7 +27,7 @@ public class AbilityState_Boss : EnemyState
         enemy.FaceTarget(enemy.player.position);
 
         if (ShouldDisableFlamethrower())
-            DiscableFlamethrower();
+            DisableFlamethrower();
 
         if (triggerCalled)
             stateMachine.ChangeState(enemy.moveState);
@@ -38,7 +35,7 @@ public class AbilityState_Boss : EnemyState
 
     private bool ShouldDisableFlamethrower() => stateTimer < 0;
 
-    public void DiscableFlamethrower()
+    public void DisableFlamethrower()
     {
         if (enemy.bossWeaponType != BossWeaponType.Flamethrower)
             return;
@@ -60,9 +57,9 @@ public class AbilityState_Boss : EnemyState
             enemy.bossVisuals.EnableWeaponTrail(false);
         }
 
-        if(enemy.bossWeaponType == BossWeaponType.Hammer)
+        if (enemy.bossWeaponType == BossWeaponType.Hummer)
         {
-            enemy.ActivateHammer();
+            enemy.ActivateHummer();
         }
     }
 

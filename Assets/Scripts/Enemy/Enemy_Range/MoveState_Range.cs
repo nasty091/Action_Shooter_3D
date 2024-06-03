@@ -33,6 +33,7 @@ public class MoveState_Range : EnemyState
 
         enemy.FaceTarget(GetNextPathPoint());
 
+
         if (enemy.agent.remainingDistance <= enemy.agent.stoppingDistance + .05f)
             stateMachine.ChangeState(enemy.idleState);
     }

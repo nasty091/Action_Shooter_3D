@@ -15,6 +15,7 @@ public class ZoneLimitation : MonoBehaviour
         ActivateWall(false);
     }
 
+
     private void ActivateWall(bool activate)
     {
         foreach(var line in lines)
@@ -32,7 +33,7 @@ public class ZoneLimitation : MonoBehaviour
         zoneCollider.isTrigger = !activate;
     }
 
-    IEnumerator WallActivateionCo()
+    IEnumerator WallActivationCo()
     {
         ActivateWall(true);
 
@@ -43,7 +44,7 @@ public class ZoneLimitation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(WallActivateionCo());
-        Debug.Log("Touch the wall");
+        StartCoroutine(WallActivationCo());
+        Debug.Log("My sensors are going crazy, I think it's dangerous!");
     }
 }

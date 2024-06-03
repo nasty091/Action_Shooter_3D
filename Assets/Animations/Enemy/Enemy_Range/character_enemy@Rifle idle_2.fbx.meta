@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81a7554a5172b9749aa03abd8e292f39
+guid: 6d07dbb3a9a20cc44bbade2f4f87dac0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -44,7 +44,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -528,18 +528,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: character_enemy(Clone)
+    - name: character_enemy@(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Robot
-      parentName: character_enemy(Clone)
+      parentName: character_enemy@(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
       scale: {x: 100, y: 100, z: 100}
     - name: mixamorig:Hips
-      parentName: character_enemy(Clone)
+      parentName: character_enemy@(Clone)
       position: {x: -0, y: 0.7293754, z: 0.041038297}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -875,7 +875,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 1fb48987a78313e4d873b9b2dc040b38, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 21abb20201c4028478d8c79c2860c652, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

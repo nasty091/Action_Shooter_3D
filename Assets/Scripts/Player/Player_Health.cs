@@ -6,7 +6,7 @@ public class Player_Health : HealthController
 {
     private Player player;
 
-    public bool isDead {  get; private set; }
+    public bool isDead { get; private set; }
 
     protected override void Awake()
     {
@@ -19,7 +19,7 @@ public class Player_Health : HealthController
     {
         base.ReduceHealth(damage);
 
-        if(ShouldDie())
+        if (ShouldDie())
             Die();
     }
 
@@ -28,6 +28,7 @@ public class Player_Health : HealthController
         if (isDead)
             return;
 
+        Debug.Log("Player was killed at " + Time.time);
         isDead = true;
         player.anim.enabled = false;
         player.ragdoll.RagdollActive(true);
