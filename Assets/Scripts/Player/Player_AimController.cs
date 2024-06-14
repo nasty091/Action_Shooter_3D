@@ -41,6 +41,9 @@ public class Player_AimController : MonoBehaviour
         if (player.health.isDead)
             return;
 
+        if (player.controlsEnabled == false)
+            return;
+
         if(Input.GetKeyDown(KeyCode.P))
             isAimingPrecisly = !isAimingPrecisly;
 
@@ -52,6 +55,12 @@ public class Player_AimController : MonoBehaviour
         UpdateCameraPosition();
     }
 
+    public Transform GetAimCameraTarget()
+    {
+        cameraTarget.position = player.transform.position;
+        return cameraTarget;
+    }
+    public void EnableAimLaer(bool enable) => aimLaser.enabled = enable;
     private void UpdateAimVisuals()
     {
         aimLaser.enabled = player.weapon.WeaponReady();

@@ -2,8 +2,11 @@ using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 
+
 public class LevelGenerator : MonoBehaviour
 {
+    public static LevelGenerator instance;
+
     // Enemies
     private List<Enemy> enemyList;
 
@@ -21,18 +24,21 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private SnapPoint nextSnapPoint;
     private SnapPoint defaultSnapPoint;
 
-
     // Cooldown
     [Space]
     [SerializeField] private float generationCooldown;
     private float cooldownTimer;
-    private bool generationOver;
+    private bool generationOver = true;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
         enemyList = new List<Enemy>();
         defaultSnapPoint = nextSnapPoint;
-        InitializeGeneration();
     }
 
 
@@ -58,7 +64,7 @@ public class LevelGenerator : MonoBehaviour
     }
 
     [ContextMenu("Restart generation")]
-    private void InitializeGeneration()
+    public void InitializeGeneration()
     {
         nextSnapPoint = defaultSnapPoint;
         generationOver = false;
@@ -73,7 +79,6 @@ public class LevelGenerator : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
-
 
         foreach (Transform t in generatedLevelParts)
         {
@@ -96,6 +101,8 @@ public class LevelGenerator : MonoBehaviour
             enemy.transform.parent = null;
             enemy.gameObject.SetActive(true);
         }
+
+        MissionManager.instance.StartMission();
     }
 
     [ContextMenu("Create next level part")]
@@ -133,4 +140,13 @@ public class LevelGenerator : MonoBehaviour
 
         return choosenPart;
     }
+
+    public Enemy GetRandomEnemy()
+    {
+        int randomIndex = Random.Range(0,enemyList.Count);
+
+        return enemyList[randomIndex];
+    }
+
+    public List<Enemy> GetEnemyList() => enemyList;
 }

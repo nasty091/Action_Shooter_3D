@@ -14,11 +14,12 @@ public class Player : MonoBehaviour
     public Ragdoll ragdoll { get; private set; }
 
     public Animator anim { get; private set; }
+    public Player_SoundFX sound { get; private set; }
+
+    public bool controlsEnabled { get; private set; }
 
     private void Awake()
     {
-        controls = new PlayerControls();
-
         anim = GetComponentInChildren<Animator>();
         ragdoll = GetComponent<Ragdoll>();
         health = GetComponent<Player_Health>();
@@ -27,14 +28,26 @@ public class Player : MonoBehaviour
         weapon = GetComponent<Player_WeaponController>();
         weaponVisuals = GetComponent<Player_WeaponVisuals>();
         interaction = GetComponent<Player_Interaction>();
+        sound = GetComponent<Player_SoundFX>();
+        controls = ControlsManager.instance.controls;
     }
+
 
     private void OnEnable()
     {
         controls.Enable();
+        controls.Character.UIMissionToolTipSwitch.performed += ctx => UI.instance.inGameUI.SwitchMissionTooltip();
+        controls.Character.UIPause.performed += ctx => UI.instance.PauseSwitch();
     }
     private void OnDisable()
     {
         controls.Disable();
+    }
+
+    public void SetControlsEnabledTo(bool enabled)
+    {
+        controlsEnabled = enabled;
+        ragdoll.CollidersActive(enabled);
+        aim.EnableAimLaer(enabled);
     }
 }

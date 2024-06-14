@@ -537,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6830602459391707597}
   - component: {fileID: 4856347677500562478}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: IntersectionCheckParent (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11745,6 +11745,10 @@ PrefabInstance:
     - target: {fileID: 2110828444127150907, guid: 442d3daa594cd6e4ba6f6528af3ba4e3, type: 3}
       propertyPath: m_Name
       value: mountain_small_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110828444127150907, guid: 442d3daa594cd6e4ba6f6528af3ba4e3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2110828444127150907, guid: 442d3daa594cd6e4ba6f6528af3ba4e3, type: 3}
       propertyPath: m_IsActive
@@ -23079,6 +23083,10 @@ PrefabInstance:
     - target: {fileID: 9007777140505354827, guid: 9d5ee17cfa43f554db1faf07c8d50545, type: 3}
       propertyPath: m_Name
       value: mountain_large_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007777140505354827, guid: 9d5ee17cfa43f554db1faf07c8d50545, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9007777140505354827, guid: 9d5ee17cfa43f554db1faf07c8d50545, type: 3}
       propertyPath: m_IsActive
