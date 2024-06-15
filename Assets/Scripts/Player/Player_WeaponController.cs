@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class Player_WeaponController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class Player_WeaponController : MonoBehaviour
     {
         player = GetComponent<Player>();
         AssignInputEvents();
+        UpdateWeaponUI();
     }
 
     private void Update()
@@ -41,6 +43,13 @@ public class Player_WeaponController : MonoBehaviour
         if (isShooting)
             Shoot();
     }
+    
+    public void SetWeaponSlots(List<Weapon> weaponSlots) => this.weaponSlots = weaponSlots;
+    public List<Weapon> GetWeaponSlots() => weaponSlots;
+    public void SetCurrentWeapon(Weapon currentWeapon) => this.currentWeapon = currentWeapon;
+    public Weapon GetCurrentWeapon() => weaponSlots[1];
+
+    public List<Weapon_Data> GetWeaponDatas() => defaultWeaponData;
 
     #region Slots managment - Pickup\Equip\Drop\Ready Weapon
 
@@ -56,7 +65,7 @@ public class Player_WeaponController : MonoBehaviour
 
         EquipWeapon(0);
     }
-    private void EquipWeapon(int i)
+    public void EquipWeapon(int i)
     {
         if (i >= weaponSlots.Count)
             return;

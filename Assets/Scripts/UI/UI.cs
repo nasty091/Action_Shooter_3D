@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     public UI_WeaponSelection weaponSelection { get; private set; }
     public UI_GameOver gameOverUI { get; private set; }
     public UI_Settings settingsUI { get; private set; }
+    public UI_MainMenu mainMenuUI { get; private set; }
     public GameObject victoryScreenUI;
     public GameObject pauseUI;
 
@@ -26,6 +27,7 @@ public class UI : MonoBehaviour
         weaponSelection = GetComponentInChildren<UI_WeaponSelection>(true);
         gameOverUI = GetComponentInChildren<UI_GameOver>(true);
         settingsUI = GetComponentInChildren<UI_Settings>(true);
+        mainMenuUI = GetComponentInChildren<UI_MainMenu>(true);
     }
     private void Start()
     {
@@ -35,11 +37,11 @@ public class UI : MonoBehaviour
 
 
         // Remove this if statement before build, it's for easier testing
-        if (GameManager.instance.quickStart)
-        {
-            LevelGenerator.instance.InitializeGeneration();
-            StartTheGame();
-        }
+        //if (GameManager.instance.quickStart)
+        //{
+        //    LevelGenerator.instance.InitializeGeneration();
+        //    StartTheGame();
+        //}
     }
     public void SwitchTo(GameObject uiToSwitchOn)
     {
@@ -54,6 +56,7 @@ public class UI : MonoBehaviour
             settingsUI.LoadSettings();
     }
 
+    public void ContinueTheGame() => StartCoroutine(ContinueGameSequence());
     public void StartTheGame() => StartCoroutine(StartGameSequence());
 
     public void QuitTheGame() => Application.Quit();
@@ -61,6 +64,7 @@ public class UI : MonoBehaviour
 
     public void RestartTheGame()
     {
+        PauseSwitch();
         StartCoroutine(ChangeImageAlpha(1, 1f, GameManager.instance.RestartScene));
     }
 
@@ -109,6 +113,28 @@ public class UI : MonoBehaviour
         PlayerControls controls = GameManager.instance.player.controls;
 
         controls.UI.UIPause.performed += ctx => PauseSwitch();
+    }
+
+    private IEnumerator ContinueGameSequence()
+    {
+        bool quickStart = GameManager.instance.quickStart;
+
+        //THIS SHOULD BE UNCOMMENTED BEFORE MAKING A BUILD
+        if (quickStart == false)
+        {
+            fadeImage.color = Color.black;
+            StartCoroutine(ChangeImageAlpha(1, 1, null));
+            yield return new WaitForSeconds(1);
+
+        }
+
+        yield return null;
+        SwitchTo(inGameUI.gameObject);
+
+        if (quickStart)
+            StartCoroutine(ChangeImageAlpha(0, .1f, null));
+        else
+            StartCoroutine(ChangeImageAlpha(0, 1f, null));
     }
 
     private IEnumerator StartGameSequence()
@@ -166,4 +192,8 @@ public class UI : MonoBehaviour
             button.AssignAudioSource();
         }
     }
+
+    public void SaveGame() => GameManager.instance.player.SaveGame();
+
+    public void LoadGame() => GameManager.instance.player.LoadGame();
 }

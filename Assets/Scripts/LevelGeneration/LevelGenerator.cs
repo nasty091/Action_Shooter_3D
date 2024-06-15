@@ -63,6 +63,9 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    public Transform GetLastLevelPart() => lastLevelPart;
+    public void SetLastLevelPart(Transform lastLevelPart) => this.lastLevelPart = lastLevelPart;
+
     [ContextMenu("Restart generation")]
     public void InitializeGeneration()
     {

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour
     public Player_SoundFX sound { get; private set; }
 
     public bool controlsEnabled { get; private set; }
+    [SerializeField] private List<Mission> missionList;
 
     private void Awake()
     {
@@ -50,4 +54,55 @@ public class Player : MonoBehaviour
         ragdoll.CollidersActive(enabled);
         aim.EnableAimLaer(enabled);
     }
+
+
+    public void SaveGame()
+    {
+        Player_Data playerData = new Player_Data();
+
+        Transform playerTrans = gameObject.transform;
+
+        //playerData.position = new float[] { playerTrans.position.x, playerTrans.position.y, playerTrans.position.z }; 
+        //playerData.health = this.health.currentHealth;
+        playerData.mission = MissionManager.instance.currentMission; // make if here to find name of mission to get the value of each mission
+        playerData.weaponDatas = weapon.GetWeaponDatas();
+        //playerData.weaponSlots = weapon.GetWeaponSlots();
+        //playerData.currentWeapon = weapon.CurrentWeapon();
+        //playerData.lastLevelPart = LevelGenerator.instance.GetLastLevelPart();
+
+        string json = JsonUtility.ToJson(playerData);
+        string path = Application.persistentDataPath + "/playerData.json";
+        System.IO.File.WriteAllText(path, json);
+    }
+
+    public void LoadGame()
+    {
+        string path = Application.persistentDataPath + "/playerData.json";
+        if (File.Exists(path))
+        {
+            string json = System.IO.File.ReadAllText(path);
+            Player_Data loadedData = JsonUtility.FromJson<Player_Data>(json);
+
+            //update player's position and health, mission, weapons 
+            //this.transform.position = new Vector3(loadedData.position[0], loadedData.position[1], loadedData.position[2]);
+            //this.health.currentHealth = loadedData.health;
+            foreach(Mission miss in missionList)
+            {
+                if(loadedData.mission.name == miss.name)
+                {
+                    MissionManager.instance.currentMission = miss;
+                }
+            }
+
+
+            this.weapon.SetDefaultWeapon(loadedData.weaponDatas);
+            LevelGenerator.instance.InitializeGeneration();
+            UI.instance.ContinueTheGame();
+            UI.instance.inGameUI.UpdateHealthUI(this.health.currentHealth, this.health.maxHealth);
+            //UI.instance.inGameUI.UpdateMissionInfo(loadedData.mission.missionName, loadedData.mission.missionDescription);
+        }
+        else
+            UI.instance.mainMenuUI.ShowWarningMessage("No data to countinue");
+    }
+
 }
