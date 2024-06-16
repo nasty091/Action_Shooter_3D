@@ -42,6 +42,8 @@ public class UI : MonoBehaviour
         //    LevelGenerator.instance.InitializeGeneration();
         //    StartTheGame();
         //}
+
+        settingsUI.LoadSettings();
     }
     public void SwitchTo(GameObject uiToSwitchOn)
     {
@@ -65,6 +67,11 @@ public class UI : MonoBehaviour
     public void RestartTheGame()
     {
         PauseSwitch();
+        StartCoroutine(ChangeImageAlpha(1, 1f, GameManager.instance.RestartScene));
+    }
+
+    public void RestartTheGameAfterWinOrLoss()
+    {
         StartCoroutine(ChangeImageAlpha(1, 1f, GameManager.instance.RestartScene));
     }
 

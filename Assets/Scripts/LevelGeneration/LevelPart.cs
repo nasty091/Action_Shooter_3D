@@ -127,6 +127,7 @@ Physics.OverlapBox(collider.bounds.center, collider.bounds.extents, Quaternion.i
     }
 
     public Enemy[] MyEnemies() => GetComponentsInChildren<Enemy>(true);
+    public Interactable[] MyPickups() => GetComponentsInChildren<Interactable>(true);
 }
 
 

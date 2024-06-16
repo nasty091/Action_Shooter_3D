@@ -6,6 +6,8 @@ public abstract class Mission : ScriptableObject
 {
     public string missionName;
 
+    public List<Transform> levelParts;
+
     [TextArea]
     public string missionDescription;
     

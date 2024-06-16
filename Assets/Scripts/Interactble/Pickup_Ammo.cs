@@ -45,10 +45,10 @@ public class Pickup_Ammo : Interactable
 
     private int GetBulletAmount(AmmoData ammoData)
     {
-        float min = Mathf.Min(ammoData.minAmount,ammoData.maxAmount);
-        float max = Mathf.Max(ammoData.minAmount,ammoData.maxAmount);
+        float min = Mathf.Min(ammoData.minAmount, ammoData.maxAmount);
+        float max = Mathf.Max(ammoData.minAmount, ammoData.maxAmount);
 
-        float randomAmmoAmount = Random.Range(min,max);
+        float randomAmmoAmount = Random.Range(min, max);
 
         return Mathf.RoundToInt(randomAmmoAmount);
     }
@@ -56,7 +56,7 @@ public class Pickup_Ammo : Interactable
     {
         if (weapon == null)
             return;
-
+        Debug.Log("Add ammo: " + amount);
         weapon.totalReserveAmmo += amount;
     }
     private void SetupBoxModel()

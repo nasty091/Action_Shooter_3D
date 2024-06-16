@@ -28209,6 +28209,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5909420088336520014, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}
+      propertyPath: aggresionRange
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6153876283241352372, guid: 7f79f90bf4369e84c9ca0ea17848904d, type: 3}
       propertyPath: m_Name
       value: Enemy_Range - Unstoppable Variant

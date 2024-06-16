@@ -21,7 +21,6 @@ public class UI_Settings : MonoBehaviour
     [Header("Toggle")]
     [SerializeField] private Toggle friendlyFireToggle;
 
-
     public void SFXSliderValue(float value)
     {
         sfxSliderText.text = Mathf.RoundToInt(value * 100) + "%";

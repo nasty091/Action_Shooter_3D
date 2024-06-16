@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Timer - Mission
   m_EditorClassIdentifier: 
   missionName: Race against time!
+  levelParts:
+  - {fileID: 2761732783408733036, guid: 0e61b6b7d285a9f4bb8e7e798bcdc748, type: 3}
+  - {fileID: 344561504900064319, guid: bc6e99b42c9c96b4087696f3b6ac03bc, type: 3}
+  - {fileID: 7543869285160702219, guid: 826bed76182e25d4aba233dd47efe942, type: 3}
+  - {fileID: 2961092432926518290, guid: a8fd711215e3e374b99bf670aa16d4ac, type: 3}
+  - {fileID: 1961009257641033207, guid: ebdada50b9e90ac409a065fefa1ebb10, type: 3}
   missionDescription: Your scanners detected upcoming sandstorm.You have less than
     15 minutes to reach the airplane before the conditions become untenable for a
     safe takeoff.
-  time: 300
+  time: 900

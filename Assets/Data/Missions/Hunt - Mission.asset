@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Hunt - Mission
   m_EditorClassIdentifier: 
   missionName: Scavenger Hunt
+  levelParts:
+  - {fileID: 2761732783408733036, guid: 0e61b6b7d285a9f4bb8e7e798bcdc748, type: 3}
+  - {fileID: 344561504900064319, guid: bc6e99b42c9c96b4087696f3b6ac03bc, type: 3}
+  - {fileID: 7543869285160702219, guid: 826bed76182e25d4aba233dd47efe942, type: 3}
   missionDescription: Hunt 12 enemies equipped with signal disruptors. These devices
     are interfering with the plane's radar system, preventing a safe takeoff. Eliminate
     the threat and clear the path for your escape.

@@ -10,6 +10,8 @@ public class LevelGenerator : MonoBehaviour
     // Enemies
     private List<Enemy> enemyList;
 
+    private List<Interactable> pickupList;
+
     // NavMesh
     [SerializeField] private NavMeshSurface navMeshSurface;
     [Space]
@@ -38,6 +40,8 @@ public class LevelGenerator : MonoBehaviour
     private void Start()
     {
         enemyList = new List<Enemy>();
+        pickupList = new List<Interactable>();
+
         defaultSnapPoint = nextSnapPoint;
     }
 
@@ -65,6 +69,8 @@ public class LevelGenerator : MonoBehaviour
 
     public Transform GetLastLevelPart() => lastLevelPart;
     public void SetLastLevelPart(Transform lastLevelPart) => this.lastLevelPart = lastLevelPart;
+    public List<Transform> GetLevelParts() => levelParts;
+    public void SetLevelParts(List<Transform> levelParts) => this.levelParts = levelParts;
 
     [ContextMenu("Restart generation")]
     public void InitializeGeneration()
@@ -83,6 +89,12 @@ public class LevelGenerator : MonoBehaviour
             Destroy(enemy.gameObject);
         }
 
+        foreach(Interactable pickup in pickupList)
+        {
+            Destroy(pickup.gameObject);
+        }
+
+
         foreach (Transform t in generatedLevelParts)
         {
             Destroy(t.gameObject);
@@ -90,6 +102,7 @@ public class LevelGenerator : MonoBehaviour
 
         generatedLevelParts = new List<Transform>();
         enemyList = new List<Enemy>();
+        pickupList = new List<Interactable>();
     }
 
     private void FinishGeneration()
@@ -103,6 +116,11 @@ public class LevelGenerator : MonoBehaviour
         {
             enemy.transform.parent = null;
             enemy.gameObject.SetActive(true);
+        }
+
+        foreach (Interactable pickup in pickupList)
+        {
+            pickup.transform.parent = null;
         }
 
         MissionManager.instance.StartMission();
@@ -131,6 +149,7 @@ public class LevelGenerator : MonoBehaviour
 
         nextSnapPoint = levelPartScript.GetExitPoint();
         enemyList.AddRange(levelPartScript.MyEnemies());
+        pickupList.AddRange(levelPartScript.MyPickups());   
     }
 
     private Transform ChooseRandomPart()
