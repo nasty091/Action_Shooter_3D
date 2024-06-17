@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Defence - Mission
   m_EditorClassIdentifier: 
   missionName: Final Defense
+  levelParts: []
   missionDescription: "Get to the exit point and defend the airplane till it\u2019s
     ready to take off."
-  defenceBegun: 0
-  defenceDuration: 120
+  defenceBegun: 1
+  defenceDuration: 240
   waveCooldown: 15
   amountOfRespawnPoints: 2
   respawnPoints:
   - {fileID: 0}
   - {fileID: 0}
-  enemiesPerWave: 4
+  enemiesPerWave: 2
   possibleEnemies:
   - {fileID: 4600353098732157086, guid: e7bbda066fb92904f83283ac6b6e154f, type: 3}
   - {fileID: 4265654128810666028, guid: 275039735d4c8b24c926e023855efbca, type: 3}

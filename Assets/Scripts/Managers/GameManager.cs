@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,14 +14,29 @@ public class GameManager : MonoBehaviour
     [Space]
     public bool quickStart;
 
+    public ItemForLastDefence[] pickupsForLastDefence;
+
+    public GameObject bossHammer;
+    public GameObject bossFlamethrower;
+
     private void Awake()
     {
         instance = this;
 
         player = FindObjectOfType<Player>();
+
+        pickupsForLastDefence = FindObjectsOfType<ItemForLastDefence>(true);
     }
 
-  
+    private void Update()
+    {
+        //if(Input.GetKeyDown(KeyCode.Z))
+        //    ResetGame();
+
+        if (Input.GetKeyDown(KeyCode.X))
+            ActivateAllMission();
+    }
+
     public void GameStart()
     {
         SetDefaultWeaponsForPlayer();
@@ -48,5 +64,36 @@ public class GameManager : MonoBehaviour
     {
         List<Weapon_Data> newList = UI.instance.weaponSelection.SelectedWeaponData();
         player.weapon.SetDefaultWeapon(newList);
+    }
+
+    public void ResetGame()
+    {
+        //Reset mission
+        PlayerPrefs.SetInt("Key", 0);
+        PlayerPrefs.SetInt("Car", 0);
+        PlayerPrefs.SetInt("Time", 0);
+        PlayerPrefs.SetInt("Final", 0);
+        UI.instance.missionSelection.LoadMission();
+
+        //Delete data saved
+        string path = Application.persistentDataPath + "/playerData.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log("Save file deleted from: " + path);
+        }
+        else
+        {
+            Debug.LogWarning("Save file not found to delete at: " + path);
+        }
+    }
+
+    public void ActivateAllMission()
+    {
+        PlayerPrefs.SetInt("Key", 1);
+        PlayerPrefs.SetInt("Car", 1);
+        PlayerPrefs.SetInt("Time", 1);
+        PlayerPrefs.SetInt("Final", 1);
+        UI.instance.missionSelection.LoadMission();
     }
 }

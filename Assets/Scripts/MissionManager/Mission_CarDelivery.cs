@@ -10,6 +10,8 @@ public class Mission_CarDelivery : Mission
     private bool carWasDelivered;
     public override void StartMission()
     {
+        carWasDelivered = false;
+
         FindObjectOfType<MissionObject_CarDeliveryZone>(true).gameObject.SetActive(true);
 
         string missionText = "Find a functional vehicle.";
@@ -31,6 +33,9 @@ public class Mission_CarDelivery : Mission
 
     public override bool MissionCompleted()
     {
+        UI.instance.missionSelection.timeMission.SetActive(true);
+        PlayerPrefs.SetInt("Final", 1);
+
         return carWasDelivered;
     }
 

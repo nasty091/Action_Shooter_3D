@@ -44,6 +44,9 @@ public class Mission_EnemyHunt : Mission
 
     public override bool MissionCompleted()
     {
+        UI.instance.missionSelection.keyMission.SetActive(true);
+        PlayerPrefs.SetInt("Key", 1);
+
         return killsToGo <= 0;
     }
 

@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
 
 
             this.weapon.SetDefaultWeapon(loadedData.weaponDatas);
+            LevelGenerator.instance.SetLevelParts(MissionManager.instance.currentMission.levelParts);
             LevelGenerator.instance.InitializeGeneration();
             UI.instance.ContinueTheGame();
             UI.instance.inGameUI.UpdateHealthUI(this.health.currentHealth, this.health.maxHealth);

@@ -14,6 +14,8 @@ public class UI : MonoBehaviour
     public UI_MainMenu mainMenuUI { get; private set; }
     public GameObject victoryScreenUI;
     public GameObject pauseUI;
+    public UI_MissionSelection missionSelection {  get; private set; }
+    public GameObject warningUI;
 
 
     [SerializeField] private GameObject[] UIElements;
@@ -28,6 +30,7 @@ public class UI : MonoBehaviour
         gameOverUI = GetComponentInChildren<UI_GameOver>(true);
         settingsUI = GetComponentInChildren<UI_Settings>(true);
         mainMenuUI = GetComponentInChildren<UI_MainMenu>(true);
+        missionSelection = GetComponentInChildren<UI_MissionSelection>(true);
     }
     private void Start()
     {
@@ -43,6 +46,8 @@ public class UI : MonoBehaviour
         //    StartTheGame();
         //}
 
+        missionSelection.TurnOffAllMission();
+        missionSelection.LoadMission();
         settingsUI.LoadSettings();
     }
     public void SwitchTo(GameObject uiToSwitchOn)
@@ -56,6 +61,16 @@ public class UI : MonoBehaviour
 
         if (uiToSwitchOn == settingsUI.gameObject)
             settingsUI.LoadSettings();
+    }
+
+    public void SwitchOnWarningUI()
+    {
+        warningUI.SetActive(true);
+    }
+
+    public void SwitchOffWarningUI()
+    {
+        warningUI.SetActive(false);
     }
 
     public void ContinueTheGame() => StartCoroutine(ContinueGameSequence());
@@ -203,4 +218,10 @@ public class UI : MonoBehaviour
     public void SaveGame() => GameManager.instance.player.SaveGame();
 
     public void LoadGame() => GameManager.instance.player.LoadGame();
+
+    public void ResetTheGame()
+    {
+        GameManager.instance.ResetGame();
+        SwitchOffWarningUI();
+    }
 }

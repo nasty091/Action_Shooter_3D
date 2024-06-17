@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +30,10 @@ public class Mission_LastDefence : Mission
 
     public override void StartMission()
     {
+        defenceBegun = false;
+        defenceTimer = defenceDuration;
+        waveTimer = waveCooldown;
+
         defencePoint = FindObjectOfType<MissionEnd_Trigger>().transform.position;
         respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
 
@@ -54,14 +57,22 @@ public class Mission_LastDefence : Mission
             return;
 
         waveTimer -= Time.deltaTime;
-        if(defenceTimer > 0)
+        if (defenceTimer > 0)
             defenceTimer -= Time.deltaTime;
 
-        if (waveTimer < 0)
+
+        if (waveTimer < 0 && defenceTimer > 120)
         {
             CreateNewEnemies(enemiesPerWave);
             waveTimer = waveCooldown;
         }
+
+
+        if (defenceTimer <= 120)
+            GameManager.instance.bossHammer.SetActive(true);
+        
+        if (defenceTimer <= 90)
+            GameManager.instance.bossFlamethrower.SetActive(true);
 
         defenceTimerText = System.TimeSpan.FromSeconds(defenceTimer).ToString("mm':'ss");
 
@@ -69,11 +80,16 @@ public class Mission_LastDefence : Mission
         string missionDetails = "Time left: " + defenceTimerText;
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
-        
+
     }
 
     private void StartDefenceEvent()
     {
+        foreach (ItemForLastDefence pickup in GameManager.instance.pickupsForLastDefence)
+        {
+            pickup.gameObject.SetActive(true);
+        }
+
         waveTimer = .5f;
         defenceTimer = defenceDuration;
         defenceBegun = true;
@@ -83,7 +99,7 @@ public class Mission_LastDefence : Mission
     {
         for (int i = 0; i < amount; i++)
         {
-            int randomEnemyIndex = Random.Range(0,possibleEnemies.Length);
+            int randomEnemyIndex = Random.Range(0, possibleEnemies.Length);
             int randomRespawnIndex = Random.Range(0, respawnPoints.Count);
 
             Transform randomRespawnPoint = respawnPoints[randomRespawnIndex];
@@ -101,7 +117,7 @@ public class Mission_LastDefence : Mission
         List<MissionObject_EnemyRespawnPoint> allPoints =
             new List<MissionObject_EnemyRespawnPoint>(FindObjectsOfType<MissionObject_EnemyRespawnPoint>());
 
-        while(closestPoints.Count < amount && allPoints.Count > 0)
+        while (closestPoints.Count < amount && allPoints.Count > 0)
         {
             float shortestDistance = float.MaxValue;
             MissionObject_EnemyRespawnPoint closestPoint = null;

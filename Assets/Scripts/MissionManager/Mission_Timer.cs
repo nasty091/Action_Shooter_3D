@@ -34,6 +34,9 @@ public class Mission_Timer : Mission
 
     public override bool MissionCompleted()
     {
+        UI.instance.missionSelection.finalMission.SetActive(true);
+        PlayerPrefs.SetInt("Final", 1);
+
         return currentTime > 0;
     }
 }

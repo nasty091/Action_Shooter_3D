@@ -11,6 +11,7 @@ public class Mission_KeyFind : Mission
 
     public override void StartMission()
     {
+        keyFound = false;
         MissionObject_Key.OnKeyPickedUp += PickUpKey;
 
         UI.instance.inGameUI.UpdateMissionInfo("Find a key-holder. Retrive the key.");
@@ -22,6 +23,9 @@ public class Mission_KeyFind : Mission
 
     public override bool MissionCompleted()
     {
+        UI.instance.missionSelection.carMission.SetActive(true);
+        PlayerPrefs.SetInt("Car", 1);
+
         return keyFound;
     }
 

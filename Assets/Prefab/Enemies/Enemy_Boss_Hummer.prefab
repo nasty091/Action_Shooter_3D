@@ -13035,7 +13035,7 @@ MonoBehaviour:
   - {fileID: 3142938418775484685}
   - {fileID: 4219087019665420567}
   - {fileID: 2097656858466747313}
-  bossWeaponType: 0
+  bossWeaponType: 1
   actionCooldown: 0.5
   attackRange: 1.6
   minAbilityDistance: 3
