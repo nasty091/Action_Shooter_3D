@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
             ActivateAllMission();
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            PlayerPrefs.SetInt("Final", 0);
+            PlayerPrefs.SetInt("Time", 1);
+        }
+            
     }
 
     public void GameStart()

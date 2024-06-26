@@ -8,14 +8,18 @@ using UnityEngine;
 public class Mission_CarDelivery : Mission
 {
     private bool carWasDelivered;
+
+    private string missionText;
+    private string missionDetails;
+
     public override void StartMission()
     {
         carWasDelivered = false;
 
         FindObjectOfType<MissionObject_CarDeliveryZone>(true).gameObject.SetActive(true);
 
-        string missionText = "Find a functional vehicle.";
-        string missionDetails = "Deliver it to the evacuation point.";
+        missionText = "Find a functional vehicle.";
+        missionDetails = "Deliver it to the evacuation point." + "\n" + "Distance left: ";
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
 
@@ -34,7 +38,7 @@ public class Mission_CarDelivery : Mission
     public override bool MissionCompleted()
     {
         UI.instance.missionSelection.timeMission.SetActive(true);
-        PlayerPrefs.SetInt("Final", 1);
+        PlayerPrefs.SetInt("Time", 1);
 
         return carWasDelivered;
     }
@@ -46,5 +50,18 @@ public class Mission_CarDelivery : Mission
 
         UI.instance.inGameUI.UpdateMissionInfo("Get to the evacuation point.");
     }
-    
+
+    public override void UpdateMission()
+    {
+        base.UpdateMission();
+
+        Transform deliveryZone = FindObjectOfType<MissionObject_CarDeliveryZone>(true).transform;
+        Transform playerTrans = GameManager.instance.player.transform;
+
+        float distanceLeft = Vector3.Distance(playerTrans.position, deliveryZone.position);
+        
+        missionDetails = "Deliver it to the evacuation point." + "\n" + "Distance left: " + distanceLeft + " (m)";
+
+        UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
+    }
 }

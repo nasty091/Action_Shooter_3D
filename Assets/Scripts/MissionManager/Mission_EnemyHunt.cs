@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,10 +7,10 @@ using UnityEngine;
 
 public class Mission_EnemyHunt : Mission
 {
-    public int amountToKill = 12;
+    public float amountToKill = 12;
     public EnemyType enemyType;
 
-    private int killsToGo;
+    private float killsToGo;
 
     public override void StartMission()
     {
@@ -36,7 +37,7 @@ public class Mission_EnemyHunt : Mission
             if (validEnemies.Count <= 0)
                 return;
 
-            int randomIndex = Random.Range(0, validEnemies.Count);
+            int randomIndex = UnityEngine.Random.Range(0, validEnemies.Count);
             validEnemies[randomIndex].AddComponent<MissionObject_HuntTarget>();
             validEnemies.RemoveAt(randomIndex);
         }
@@ -62,10 +63,17 @@ public class Mission_EnemyHunt : Mission
         }
     }
 
+    private int DonePercent()
+    {
+        float donePercent = (amountToKill - killsToGo) / amountToKill;
+
+        return (int)Mathf.Round(donePercent * 100);
+    }
+
     private void UpdateMissionUI()
     {
         string missionText = "Eliminate " + amountToKill + " enemies with signal disruptor.";
-        string missionDetaiils = "Targets left: " + killsToGo;
+        string missionDetaiils = "Targets left: " + killsToGo + " (Done: " + DonePercent() + "%)";
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetaiils);
     }

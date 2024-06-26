@@ -23,6 +23,9 @@ public class Mission_LastDefence : Mission
 
     private string defenceTimerText;
 
+    private GameObject bossHammer;
+    private GameObject bossFlamethrower;
+
     private void OnEnable()
     {
         defenceBegun = false;
@@ -33,6 +36,9 @@ public class Mission_LastDefence : Mission
         defenceBegun = false;
         defenceTimer = defenceDuration;
         waveTimer = waveCooldown;
+
+        bossHammer = GameManager.instance.bossHammer;
+        bossFlamethrower = GameManager.instance.bossFlamethrower;
 
         defencePoint = FindObjectOfType<MissionEnd_Trigger>().transform.position;
         respawnPoints = new List<Transform>(ClosestPoints(amountOfRespawnPoints));
@@ -51,8 +57,22 @@ public class Mission_LastDefence : Mission
         return defenceTimer < 0;
     }
 
+    private int DonePercent()
+    {
+        float donePercent = (defenceDuration - defenceTimer) / defenceDuration;
+
+        return (int)Mathf.Round(donePercent * 100);
+    }
+
     public override void UpdateMission()
     {
+        if(GameManager.instance.player.health.currentHealth <= 0)
+        {
+            defenceBegun = false;
+            GameManager.instance.bossHammer = bossHammer;
+            GameManager.instance.bossFlamethrower = bossFlamethrower;
+        }
+
         if (defenceBegun == false)
             return;
 
@@ -77,7 +97,7 @@ public class Mission_LastDefence : Mission
         defenceTimerText = System.TimeSpan.FromSeconds(defenceTimer).ToString("mm':'ss");
 
         string missionText = "Defend yourself till plane is ready to take off.";
-        string missionDetails = "Time left: " + defenceTimerText;
+        string missionDetails = "Time left: " + defenceTimerText + " (Done: " + DonePercent() + "%)";
 
         UI.instance.inGameUI.UpdateMissionInfo(missionText, missionDetails);
 

@@ -25,6 +25,13 @@ public class Player_Health : HealthController
         UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
     }
 
+    public override void IncreaseHealth(int healthAmount)
+    {
+        base.IncreaseHealth(healthAmount);
+
+        UI.instance.inGameUI.UpdateHealthUI(currentHealth, maxHealth);
+    }
+
     private void Die()
     {
         if (isDead)

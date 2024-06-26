@@ -18,9 +18,9 @@ public class HealthController : MonoBehaviour
         currentHealth -= damage;
     }
 
-    public virtual void IncreaseHealth()
+    public virtual void IncreaseHealth(int healthAmount)
     {
-        currentHealth++;
+        currentHealth += healthAmount;
 
         if(currentHealth > maxHealth)
             currentHealth = maxHealth;
